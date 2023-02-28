@@ -118,12 +118,15 @@ const Navbar = () => {
         <a href="/club" className="block py-2 px-4 text-sm hover:bg-gray-200">
           동아리 정보
         </a>
-        <a href="/auth/signin" className="block py-2 px-4 text-sm hover:bg-gray-200">
-          로그인
-        </a>
-        <a href="/auth/signup" className="block py-2 px-4 text-sm hover:bg-gray-200">
-          회원가입
-        </a>
+        {status === "authenticated" ?(
+        <button className="block py-2 px-4 text-sm hover:bg-gray-200" onClick={() => signOut()}>로그아웃</button>
+    ):(
+        <><a href="/auth/signin" className="block py-2 px-4 text-sm hover:bg-gray-200">
+              로그인
+            </a><a href="/auth/signup" className="block py-2 px-4 text-sm hover:bg-gray-200">
+                회원가입
+              </a></>
+    )}
       </div>
     </nav>
   );
