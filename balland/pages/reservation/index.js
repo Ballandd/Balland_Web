@@ -10,7 +10,7 @@ export default function Reservation() {
   return (
     <div>
       <Head>
-        <title>Tailwind Navbar Tutorial</title>
+        <title>Reservation Main</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
