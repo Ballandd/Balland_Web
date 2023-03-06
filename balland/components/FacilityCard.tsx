@@ -10,7 +10,7 @@ export interface infoCardProps {
 
 const FacilityCard = (props: infoCardProps) => {
     return (
-      <div className = "flex justify-center p-10 border-4 border-gray-700 rounded-md mt-40 ml-20 mr-20">
+      <div className = "flex justify-center p-10 border-4 border-gray-400 rounded-md mt-40 ml-20 mr-20">
         <div>
        <img
             className="lg:h-72 md:h-48 w-full object-cover object-center"

@@ -29,6 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // password: await hash(password, 12),
     // 성공시 response
     res.send({ result: true, message: 'User created', ...status })
+    res.status(201).json({ result: true, message: 'User created', ...status });
     client.close();
   } else {
     res.status(500).json({ result: false, error: 'Route not valid' });

@@ -42,7 +42,7 @@ export default function MyApp() {
             link = "../reservation"
           />
       </div>
-      <div>
+      <div className = "mt-10">
               <Calendar
                   onChange={onChange} // useState로 포커스 변경 시 현재 날짜 받아오기
                   value ={value}
@@ -71,25 +71,43 @@ export default function MyApp() {
                   } }
                    />
           </div>
-          <div className = "w-full mt-40 p-0">
-              <h4 className = "text-lg">time </h4>
-              <ul>
-                <li>
-                  <div className="w-full h-14 px-10 py-0 border-2 border-black rounded-md">
-                    <h1>08시 ~ 10시</h1>
-                    <span>{eight == true ? <h4>예약 가능</h4> : <h4>예약 불가</h4>}</span>
+          <div className = "w-full mt-10 p-0">
+              <h4 className = "text-lg">선택날짜 {value.getFullYear()}년 {value.getMonth()+1}월 {value.getDate()}일 </h4>
+              <ul className = "overflow-x-hidden	overflow-y-auto	">
+                <li className = "w-2/4 float-left mt-0 mx-0 mb-8 pr-6	box-border">
+                  <div className="w-full h-14 px-5 py-0 border-2 border-gray-400 rounded-md">
+                    <h4 className = "float-left relative mt-3 pl-22 text-base font-semibold ">08:00 ~ 10:00</h4>
+                    <span className = "float-right relative mt-3">{eight == true ? <h4 className = "text-blue-600	">예약 가능</h4> : <h4 className = "text-red-500	">예약 불가</h4>}</span>
                   </div>
                 </li>
-                <li>
-                  <div className="w-full h-14 px-10 py-0 border-2 border-black rounded-md">
-                    <h1>10시 ~ 12시</h1>
-                    <span>{ten == true ? <h4>예약 가능</h4> : <h4>예약 불가</h4>}</span>
+                <li className = "w-2/4 float-left mt-0 mx-0 mb-8 pr-6	box-border">
+                  <div className="w-full h-14 px-5 py-0 border-2 border-gray-400 rounded-md">
+                    <h4 className = "float-left relative mt-3 pl-22 text-base font-semibold ">10:00 ~ 12:00</h4>
+                    <span className = "float-right relative mt-3">{ten == true ? <h4 className = "text-blue-600	">예약 가능</h4> : <h4 className = "text-red-500	">예약 불가</h4>}</span>
                   </div>
                 </li>
-                <li>
-                  <div className="w-full h-14 px-10 py-0 border-2 border-black rounded-md">
-                    <h1>12시 ~ 14시</h1>
-                    <span>{twelve == true ? <h4>예약 가능</h4> : <h4>예약 불가</h4>}</span>
+                <li className = "w-2/4 float-left mt-0 mx-0 mb-8 pr-6	box-border">
+                  <div className="w-full h-14 px-5 py-0 border-2 border-gray-400 rounded-md">
+                  <h4 className = "float-left relative mt-3 pl-22 text-base font-semibold ">12:00 ~ 14:00</h4>
+                    <span className = "float-right relative mt-3">{twelve == true ? <h4 className = "text-blue-600	">예약 가능</h4> : <h4 className = "text-red-500	">예약 불가</h4>}</span>
+                  </div>
+                </li>
+                <li className = "w-2/4 float-left mt-0 mx-0 mb-8 pr-6	box-border">
+                  <div className="w-full h-14 px-5 py-0 border-2 border-gray-400 rounded-md">
+                  <h4 className = "float-left relative mt-3 pl-22 text-base font-semibold ">14:00 ~ 16:00</h4>
+                    <span className = "float-right relative mt-3">{fourteen == true ? <h4 className = "text-blue-600	">예약 가능</h4> : <h4 className = "text-red-500	">예약 불가</h4>}</span>
+                  </div>
+                </li>
+                <li className = "w-2/4 float-left mt-0 mx-0 mb-8 pr-6	box-border">
+                  <div className="w-full h-14 px-5 py-0 border-2 border-gray-400 rounded-md">
+                  <h4 className = "float-left relative mt-3 pl-22 text-base font-semibold ">16:00 ~ 18:00</h4>
+                    <span className = "float-right relative mt-3">{sixteen == true ? <h4 className = "text-blue-600	">예약 가능</h4> : <h4 className = "text-red-500	">예약 불가</h4>}</span>
+                  </div>
+                </li>
+                <li className = "w-2/4 float-left mt-0 mx-0 mb-8 pr-6	box-border">
+                  <div className="w-full h-14 px-5 py-0 border-2 border-gray-400 rounded-md">
+                  <h4 className = "float-left relative mt-3 pl-22 text-base font-semibold ">18:00 ~ 20:00</h4>
+                    <span className = "float-right relative mt-3">{twelve == true ? <h4 className = "text-blue-600	">예약 가능</h4> : <h4 className = "text-red-500	">예약 불가</h4>}</span>
                   </div>
                 </li>
               </ul>
