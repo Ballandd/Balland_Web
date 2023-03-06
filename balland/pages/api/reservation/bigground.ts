@@ -6,10 +6,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'POST') {
     console.log("hi")
     const {date}  = req.body.body;
+    const clone = new Date(date)
+    clone.setDate(clone.getDate()+1)
+    console.log(clone)
     // MongoDB 연결
     const client = await MongoClient.connect(uri);
     const db = client.db('balland');
-    const readdatereservation = await db.collection('reservationperdate').findOne({date:new Date(date)});
+    const readdatereservation = await db.collection('reservationperdate').findOne({date:clone});
     res.send(readdatereservation)
 
     // if (checkExisting) {
