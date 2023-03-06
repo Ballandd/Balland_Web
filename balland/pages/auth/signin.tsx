@@ -13,7 +13,10 @@ const SignIn = () => {
           email,
           password,
           redirect: false
-      });
+      }).then(res => {
+        console.log(res)
+      })
+      ;
   }
   useEffect(() => {
     if (session){

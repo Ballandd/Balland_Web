@@ -15,6 +15,8 @@ export default function MyApp() {
       body : {
         date : value,
       }
+    }).then(response => {
+        console.log(response)
     })
   }
   return (

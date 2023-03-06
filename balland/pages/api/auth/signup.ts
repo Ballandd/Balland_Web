@@ -15,9 +15,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const checkExisting = await db.collection('balland').findOne({ email });
 
     if (checkExisting) {
+      res.send({ result: false, error: '이미 가입된 계정이에요!' })
       client.close();
-      res.status(422).json({ result: false, error: '이미 가입된 계정이에요!' });
       return;
+      
     }
 
     const status = await db.collection('balland').insertOne({
@@ -27,7 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
     // password: await hash(password, 12),
     // 성공시 response
-    res.status(201).json({ result: true, message: 'User created', ...status });
+    res.send({ result: true, message: 'User created', ...status })
     client.close();
   } else {
     res.status(500).json({ result: false, error: 'Route not valid' });

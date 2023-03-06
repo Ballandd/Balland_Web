@@ -6,14 +6,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'POST') {
     console.log("hi")
     const {date}  = req.body.body;
-
-    console.log(new Date(date))
     // MongoDB 연결
     const client = await MongoClient.connect(uri);
     const db = client.db('balland');
     const readdatereservation = await db.collection('reservationperdate').findOne({date:new Date(date)});
-    res.status(200).json(readdatereservation)
-    console.log(readdatereservation)
+    res.send(readdatereservation)
+
     // if (checkExisting) {
     //   client.close();
     //   res.status(422).json({ result: false, error: '이미 가입된 계정이에요!' });

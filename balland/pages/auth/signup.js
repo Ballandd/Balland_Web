@@ -23,6 +23,8 @@ export default function Register() {
         password : password,
         name : name
       }
+    }).then(response => {
+      console.log(response)
     })
   }
   return (
