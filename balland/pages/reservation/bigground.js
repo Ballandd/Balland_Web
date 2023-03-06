@@ -8,6 +8,11 @@ import 'react-calendar/dist/Calendar.css'; // css import
 export default function MyApp() {
   const [value, onChange] = useState(new Date());
   const [mark, setMark] = useState([])
+  const [eight, setEight] = useState(true)
+  const [ten, setTen] = useState(true)
+  const [twelve, setTwelve] = useState(true)
+  const [fourteen, setFourteen] = useState(true)
+  const [sixteen, setSixteen] = useState(true)
   const onClick = async ()=> {
     await axios.post("/api/reservation/bigground",{
       method : "POST",
@@ -16,7 +21,12 @@ export default function MyApp() {
         date : value,
       }
     }).then(response => {
-        console.log(response)
+        console.log(response.data)
+        setEight(response.data[8])
+        setTen(response.data[10])
+        setTwelve(response.data[12])
+        setFourteen(response.data[14])
+        setSixteen(response.data[16])
     })
   }
   useEffect(()=>{
@@ -61,8 +71,28 @@ export default function MyApp() {
                   } }
                    />
           </div>
-          <div>
-              <h1>time</h1>
+          <div className = "w-full mt-40 p-0">
+              <h4 className = "text-lg">time </h4>
+              <ul>
+                <li>
+                  <div className="w-full h-14 px-10 py-0 border-2 border-black rounded-md">
+                    <h1>08시 ~ 10시</h1>
+                    <span>{eight == true ? <h4>예약 가능</h4> : <h4>예약 불가</h4>}</span>
+                  </div>
+                </li>
+                <li>
+                  <div className="w-full h-14 px-10 py-0 border-2 border-black rounded-md">
+                    <h1>10시 ~ 12시</h1>
+                    <span>{ten == true ? <h4>예약 가능</h4> : <h4>예약 불가</h4>}</span>
+                  </div>
+                </li>
+                <li>
+                  <div className="w-full h-14 px-10 py-0 border-2 border-black rounded-md">
+                    <h1>12시 ~ 14시</h1>
+                    <span>{twelve == true ? <h4>예약 가능</h4> : <h4>예약 불가</h4>}</span>
+                  </div>
+                </li>
+              </ul>
           </div>
           
           </div>
