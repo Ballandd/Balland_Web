@@ -5,11 +5,6 @@ import Link from "next/link"
 
 export default function Reservation() {
   
-  const {session, data, status } = useSession()
-  console.log(session, data, status)
-  if (status == "unauthenticated"){
-    Router.replace("/auth/signin")
-  }
   return (
     <div>
       <Head>
