@@ -1,6 +1,4 @@
 import Head from "next/head";
-import { useSession } from "next-auth/react";
-import Router from "next/router";
 import Link from "next/link"
 
 export default function Reservation() {

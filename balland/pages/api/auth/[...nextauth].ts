@@ -2,6 +2,8 @@ import { MongoClient } from "mongodb";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import * as bcrypt from 'bcrypt'
+import { getToken } from "next-auth/jwt";
+import jwt from "jsonwebtoken";
 
 if (!process.env.NEXT_PUBLIC_MONGODB_URI) throw new Error('env error');
 const uri: string = process.env.NEXT_PUBLIC_MONGODB_URI;
@@ -15,7 +17,6 @@ export default NextAuth({
                 email: { label: "Email", type: "email", placeholder: "balland@ajou.ac.kr" },
                 password: { label: "Password", type: "password" }
             },
-            
             async authorize(credentials, req) {
                 console.log(credentials)
                 if (!credentials){
@@ -42,6 +43,7 @@ export default NextAuth({
     ],
     pages:{
         signIn:"/auth/signin"
-    }
+    },
+    
   
 })
