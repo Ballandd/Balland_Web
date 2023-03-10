@@ -2,8 +2,6 @@ import { MongoClient } from "mongodb";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import * as bcrypt from 'bcrypt'
-import { getToken } from "next-auth/jwt";
-import jwt from "jsonwebtoken";
 
 if (!process.env.NEXT_PUBLIC_MONGODB_URI) throw new Error('env error');
 const uri: string = process.env.NEXT_PUBLIC_MONGODB_URI;
