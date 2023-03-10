@@ -17,8 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (checkExisting) {
       res.send({ result: false, error: '이미 가입된 계정이에요!' })
       client.close();
-      return;
-      
+      return; 
     }
 
     const status = await db.collection('balland').insertOne({

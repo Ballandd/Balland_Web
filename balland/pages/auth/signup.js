@@ -1,11 +1,14 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [error, setError] = useState('');
+  const [errormessage, setErrormessage] = useState('');
+  const router = useRouter()
   const onEmailHandler = (event) =>{
     setEmail(event.currentTarget.value)
   }
@@ -26,8 +29,26 @@ export default function Register() {
       }
     }).then(response => {
       console.log(response)
+      console.log(response.data.result)
+      console.log(response.data.error)
+      setError(response.data.result)
+      if(error == false){
+        setErrormessage(response.data.error)
+      }
+      checkstatus()
     })
   }
+  const checkstatus = async () => {
+    if (error == true) {
+      //세션유지코드
+      router.push("/");
+    }
+  };
+  useEffect(() => {
+    if (errormessage != "") {
+      alert(errormessage);
+    }
+  }, [errormessage]);
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -74,8 +95,8 @@ export default function Register() {
                       type="email"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Name"
-                      value = {name}
-                      onChange = {onNameHandler} 
+                      value={name}
+                      onChange={onNameHandler}
                     />
                   </div>
 
@@ -90,8 +111,8 @@ export default function Register() {
                       type="email"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Email"
-                      value = {email}
-                      onChange = {onEmailHandler} 
+                      value={email}
+                      onChange={onEmailHandler}
                     />
                   </div>
 
@@ -106,8 +127,8 @@ export default function Register() {
                       type="password"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Password"
-                      value = {password}
-                      onChange = {onPasswordHandler} 
+                      value={password}
+                      onChange={onPasswordHandler}
                     />
                   </div>
 
@@ -134,7 +155,7 @@ export default function Register() {
                     <button
                       // className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="button"
-                      onClick ={onClick}
+                      onClick={onClick}
                     >
                       Create Account
                     </button>
