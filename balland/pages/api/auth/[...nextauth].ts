@@ -1,11 +1,10 @@
-import { MongoClient } from "mongodb";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import * as bcrypt from 'bcrypt'
+import clientPromise from '../../../lib/mongodb';
 
-if (!process.env.NEXT_PUBLIC_MONGODB_URI) throw new Error('env error');
-const uri: string = process.env.NEXT_PUBLIC_MONGODB_URI;
 export default NextAuth({
+    
     secret : process.env.AUTH_SECRET,
     providers: [
         CredentialsProvider({
@@ -22,7 +21,7 @@ export default NextAuth({
                 }
                 const email = credentials.email
                 const password = credentials.password
-                const client = await MongoClient.connect(uri)
+                const client = await clientPromise;
                 const user = await client.db('balland').collection('balland').findOne({
                     email: email,
                 })
