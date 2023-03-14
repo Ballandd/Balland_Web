@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const checkExisting = await db.collection('balland').findOne({ email });
 
     if (checkExisting) {
-      res.send({ result: false, error: '이미 가입된 계정이에요!' })
+      res.send({ result: false, message: '이미 가입된 계정이에요!' })
       client.close();
       return; 
     }
