@@ -39,7 +39,6 @@ export default function Register() {
         setErrormessage(response.data.message)
         // 세션유지코드
         // 홈으로 이동하지 않음
-        router.push("/")
       }
       /*checkstatus()*/
     })
@@ -55,11 +54,14 @@ export default function Register() {
   useEffect(() => {
     if (errormessage == '이미 가입된 계정이에요!') {
       alert(errormessage);
+      setErrormessage('')
       // 잘못 입력 후 다시 잘못 입력(원래 다시, 존재 email)
       // alert 반환하지 않음
     }
     else if (errormessage == 'User created') {
-      alert(errormessage);
+      alert("회원가입이 완료 되었습니다. 로그인을 진행 해 주세요");
+      router.push("/auth/signin")
+      setErrormessage('')
     }
   }, [errormessage]);
 
