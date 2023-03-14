@@ -30,25 +30,39 @@ export default function Register() {
     }).then(response => {
       console.log(response)
       console.log(response.data.result)
-      console.log(response.data.error)
+      console.log(response.data.message)
       setError(response.data.result)
       if(error == false){
-        setErrormessage(response.data.error)
+        setErrormessage(response.data.message)
       }
-      checkstatus()
+      else if(error == true){
+        setErrormessage(response.data.message)
+        // 세션유지코드
+        // 홈으로 이동하지 않음
+        router.push("/")
+      }
+      /*checkstatus()*/
     })
   }
+  /*
   const checkstatus = async () => {
     if (error == true) {
       //세션유지코드
       router.push("/");
     }
   };
+  */
   useEffect(() => {
-    if (errormessage != "") {
+    if (errormessage == '이미 가입된 계정이에요!') {
+      alert(errormessage);
+      // 잘못 입력 후 다시 잘못 입력(원래 다시, 존재 email)
+      // alert 반환하지 않음
+    }
+    else if (errormessage == 'User created') {
       alert(errormessage);
     }
   }, [errormessage]);
+
   return (
     <>
       <div className="container mx-auto px-4 h-full">
