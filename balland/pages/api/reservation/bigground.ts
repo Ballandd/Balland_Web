@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import clientPromise from '../../../lib/mongodb';
  
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  console.log(req.method)
   const client = await clientPromise;
   if (req.method === 'POST') {
     const {date}  = req.body.body;
