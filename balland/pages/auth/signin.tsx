@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 const SignIn = () => {
   const {data:session} = useSession()
+  const [errormessage, setErrormessage] = useState('');
   const router = useRouter()
   const login = async (e: any) => {
       e.preventDefault();
@@ -15,11 +16,30 @@ const SignIn = () => {
           redirect: false
       }).then(res => {
         console.log(res)
-      })
-      ;
+        setErrormessage(res?.error!)
+      });
   }
+
+  useEffect(() => {
+    if (errormessage == "잘못된 입력값으로 인한 오류가 발생했습니다.") {
+      alert("잘못된 입력값으로 인한 오류가 발생했습니다.");
+      setErrormessage('')
+    }
+    else if (errormessage == "존재하지 않는 아이디입니다") {
+      alert("존재하지 않는 아이디입니다");
+      router.push("/auth/signin")
+      setErrormessage('')
+    }
+    else if (errormessage == "비밀번호가 불일치합니다.") {
+      alert("비밀번호가 불일치합니다.");
+      router.push("/auth/signin")
+      setErrormessage('')
+    }
+  }, [errormessage]);
+
   useEffect(() => {
     if (session){
+      alert("로그인 되었습니다. 환영합니다!");
       router.push("/")
     }
   }, [session])

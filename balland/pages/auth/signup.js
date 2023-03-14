@@ -32,31 +32,13 @@ export default function Register() {
       console.log(response.data.result)
       console.log(response.data.message)
       setError(response.data.result)
-      if(error == false){
-        setErrormessage(response.data.message)
-      }
-      else if(error == true){
-        setErrormessage(response.data.message)
-        // 세션유지코드
-        // 홈으로 이동하지 않음
-      }
-      /*checkstatus()*/
+      setErrormessage(response.data.message)
     })
   }
-  /*
-  const checkstatus = async () => {
-    if (error == true) {
-      //세션유지코드
-      router.push("/");
-    }
-  };
-  */
   useEffect(() => {
-    if (errormessage == '이미 가입된 계정이에요!') {
-      alert(errormessage);
+    if (errormessage == 'Account already signed up') {
+      alert('이미 가입된 계정이에요!');
       setErrormessage('')
-      // 잘못 입력 후 다시 잘못 입력(원래 다시, 존재 email)
-      // alert 반환하지 않음
     }
     else if (errormessage == 'User created') {
       alert("회원가입이 완료 되었습니다. 로그인을 진행 해 주세요");
