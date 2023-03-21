@@ -11,7 +11,7 @@ export default function Competition() {
 
       
       {/* content goes here */}
-      <div className={styles.e12_748}>
+      {/* <div className={styles.e12_748}>
   <div className={styles.e12_749}>
     <div className={styles.e12_750}></div>
     <div className={styles.e12_751}></div>
@@ -144,104 +144,104 @@ export default function Competition() {
        </div>
      </div>
    </div>
-//   <div className=e12_853>
-//     <div className="e12_854"></div>
-//     <div className="e12_855"></div>
-//     <div className="e12_856"></div><span  className="e12_857">진행중</span><span  className="e12_858">KUSF 대학야구 U-리그 A조</span>
-//     <div className="e12_859"></div>
-//     <div className=e12_860>
-//       <div className=e12_861><span  className="e12_862">대회기간 : 23.03.23 ~ 23.06.23</span>
-//         <div className=e12_863>
-//           <div className=e12_864>
-//             <div className="e12_865"></div>
-//             <div className="e12_866"></div>
-//           </div>
-//         </div>
-//       </div>
-//       <div className=e12_867><span  className="e12_868">대회주체 : 한국대학스포츠협의회</span>
-//         <div className=e12_869>
-//           <div className=e12_870>
-//             <div className="e12_871"></div>
-//             <div className="e12_872"></div>
-//           </div>
-//         </div>
-//       </div>
-//       <div className=e12_873><span  className="e12_874">우승상금 : 300만원</span>
-//         <div className=e12_875>
-//           <div className=e12_876>
-//             <div className="e12_877"></div>
-//             <div className="e12_878"></div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   </div>
-//   <div className=e12_879>
-//     <div className="e12_880"></div>
-//     <div className="e12_881"></div>
-//     <div className="e12_882"></div><span  className="e12_883">진행중</span><span  className="e12_884">KUSF 대학야구 U-리그 A조</span>
-//     <div className="e12_885"></div>
-//     <div className=e12_886>
-//       <div className=e12_887><span  className="e12_888">대회기간 : 23.03.23 ~ 23.06.23</span>
-//         <div className=e12_889>
-  //         <div className=e12_890>
-  //           <div className="e12_891"></div>
-  //           <div className="e12_892"></div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //     <div className=e12_893><span  className="e12_894">대회주체 : 한국대학스포츠협의회</span>
-  //       <div className=e12_895>
-  //         <div className=e12_896>
-  //           <div className="e12_897"></div>
-  //           <div className="e12_898"></div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //     <div className=e12_899><span  className="e12_900">우승상금 : 300만원</span>
-  //       <div className=e12_901>
-  //         <div className=e12_902>
-  //           <div className="e12_903"></div>
-  //           <div className="e12_904"></div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>
-  // </div>
-  // <div className=e12_905>
-  //   <div className="e12_906"></div>
-  //   <div className="e12_907"></div>
-  //   <div className="e12_908"></div><span  className="e12_909">진행중</span><span  className="e12_910">KUSF 대학야구 U-리그 A조</span>
-  //   <div className="e12_911"></div>
-  //   <div className=e12_912>
-  //     <div className=e12_913><span  className="e12_914">대회기간 : 23.03.23 ~ 23.06.23</span>
-  //       <div className=e12_915>
-  //         <div className=e12_916>
-  //           <div className="e12_917"></div>
-  //           <div className="e12_918"></div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //     <div className=e12_919><span  className="e12_920">대회주체 : 한국대학스포츠협의회</span>
-  //       <div className=e12_921>
-  //         <div className=e12_922>
-  //           <div className="e12_923"></div>
-  //           <div className="e12_924"></div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //     <div className=e12_925><span  className="e12_926">우승상금 : 300만원</span>
-  //       <div className=e12_927>
-  //         <div className=e12_928>
-  //           <div className="e12_929"></div>
-  //           <div className="e12_930"></div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>
-  // </div>
-  // <div className=e12_931>
-  //   <div className="e12_932"></div>
+   <div className=e12_853>
+    <div className="e12_854"></div>
+    <div className="e12_855"></div>
+    <div className="e12_856"></div><span  className="e12_857">진행중</span><span  className="e12_858">KUSF 대학야구 U-리그 A조</span>
+    <div className="e12_859"></div>
+    <div className=e12_860>
+      <div className=e12_861><span  className="e12_862">대회기간 : 23.03.23 ~ 23.06.23</span>
+        <div className=e12_863>
+          <div className=e12_864>
+            <div className="e12_865"></div>
+            <div className="e12_866"></div>
+          </div>
+        </div>
+      </div>
+      <div className=e12_867><span  className="e12_868">대회주체 : 한국대학스포츠협의회</span>
+        <div className=e12_869>
+          <div className=e12_870>
+            <div className="e12_871"></div>
+            <div className="e12_872"></div>
+          </div>
+        </div>
+      </div>
+      <div className=e12_873><span  className="e12_874">우승상금 : 300만원</span>
+        <div className=e12_875>
+          <div className=e12_876>
+            <div className="e12_877"></div>
+            <div className="e12_878"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div className=e12_879>
+    <div className="e12_880"></div>
+    <div className="e12_881"></div>
+    <div className="e12_882"></div><span  className="e12_883">진행중</span><span  className="e12_884">KUSF 대학야구 U-리그 A조</span>
+    <div className="e12_885"></div>
+    <div className=e12_886>
+      <div className=e12_887><span  className="e12_888">대회기간 : 23.03.23 ~ 23.06.23</span>
+        <div className=e12_889>
+          <div className=e12_890>
+            <div className="e12_891"></div>
+            <div className="e12_892"></div>
+          </div>
+        </div>
+      </div>
+      <div className=e12_893><span  className="e12_894">대회주체 : 한국대학스포츠협의회</span>
+        <div className=e12_895>
+          <div className=e12_896>
+            <div className="e12_897"></div>
+            <div className="e12_898"></div>
+          </div>
+        </div>
+      </div>
+      <div className=e12_899><span  className="e12_900">우승상금 : 300만원</span>
+        <div className=e12_901>
+          <div className=e12_902>
+            <div className="e12_903"></div>
+            <div className="e12_904"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div className=e12_905>
+    <div className="e12_906"></div>
+    <div className="e12_907"></div>
+    <div className="e12_908"></div><span  className="e12_909">진행중</span><span  className="e12_910">KUSF 대학야구 U-리그 A조</span>
+    <div className="e12_911"></div>
+    <div className=e12_912>
+      <div className=e12_913><span  className="e12_914">대회기간 : 23.03.23 ~ 23.06.23</span>
+        <div className=e12_915>
+          <div className=e12_916>
+            <div className="e12_917"></div>
+            <div className="e12_918"></div>
+          </div>
+        </div>
+      </div>
+      <div className=e12_919><span  className="e12_920">대회주체 : 한국대학스포츠협의회</span>
+        <div className=e12_921>
+          <div className=e12_922>
+            <div className="e12_923"></div>
+            <div className="e12_924"></div>
+          </div>
+        </div>
+      </div>
+      <div className=e12_925><span  className="e12_926">우승상금 : 300만원</span>
+        <div className=e12_927>
+          <div className=e12_928>
+            <div className="e12_929"></div>
+            <div className="e12_930"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div className=e12_931>
+    <div className="e12_932"></div>
      <div className="e12_933"></div>
      <div className="e12_934"></div><span  className="e12_935">종료</span><span  className="e12_936">KUSF 대학야구 U-리그 A조</span>
      <div className="e12_937"></div>
@@ -272,7 +272,7 @@ export default function Competition() {
        </div>
      </div>
      </div>
-      </div>
+      </div> */}
     </div>
   );
 }

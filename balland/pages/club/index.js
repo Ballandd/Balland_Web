@@ -10,7 +10,7 @@ export default function Club() {
       </Head>
 
       {/* content goes here e1_2*/}
-      <div className = {styles.e1_2}>
+      {/* <div className = {styles.e1_2}>
   <div className={styles.e4_1061}>
     <div className={styles.e4_1062}></div>
     <div className={styles.e4_1063}>
@@ -293,7 +293,7 @@ export default function Club() {
       </div>
     </div>
   </div> }
-</div>
+</div> */}
     </div>
   );
 }
