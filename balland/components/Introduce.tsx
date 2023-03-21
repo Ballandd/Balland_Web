@@ -27,11 +27,6 @@ const Introduce = (props: infoCardProps) => {
                 </div>
             </div>
             </div>
-        
-          {/* <div >
-              <h2 className = "w-146 h-29 absolute left-35 top-20 font-mono text-left text-2xl tracking-normal">{props.facilityname}</h2>
-
-          </div> */}
       </div>
     )
 }
