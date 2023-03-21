@@ -1,5 +1,6 @@
 import Head from "next/head";
 import styles from "../../styles/Competition.module.css"
+import CompetitionInformation from "../../components/CompetitionInformation.tsx"
 export default function Competition() {
 
   return (
@@ -8,7 +9,15 @@ export default function Competition() {
         <title>Tailwind Navbar Tutorial</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+    <div className = "w-screen h-96">
+      <CompetitionInformation
+        picture = "/BallandLogo.png"
+        name = "AFC배 축구대회"
+        period = "2023.03.31~2023.04.12"
+        part = "아주대학교 축구 동아리 AFC"
+        prize = "20만원"
+      />
+    </div>
       
       {/* content goes here */}
       {/* <div className={styles.e12_748}>
