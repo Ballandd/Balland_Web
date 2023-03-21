@@ -1,5 +1,6 @@
 import Head from "next/head";
 import styles from "../../styles/Bigground.module.css"
+import ReserveTime from "../../components/ReserveTime.tsx"
 export default function Club() {
 
   return (
@@ -8,7 +9,12 @@ export default function Club() {
         <title>Tailwind Navbar Tutorial</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <div className="h-96 w-96">
+        <ReserveTime
+          time = "09:00~10:00"
+          status = {true}
+        />
+      </div>
       {/* content goes here e1_2*/}
       {/* <div className = {styles.e1_2}>
   <div className={styles.e4_1061}>
