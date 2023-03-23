@@ -1,14 +1,15 @@
 import '../styles/globals.css'
-import Navbar from '../components/Navbar.js'
 import { SessionProvider } from 'next-auth/react'
+import Layout from '../components/AppLyout'
 function MyApp({ Component, pageProps }) {
     return (
-    <>
+    <div className = "bg-slate-100">
     <SessionProvider session={pageProps.session}>
-    <Navbar></Navbar>
+    <Layout>
       <Component {...pageProps} />
+      </Layout>
       </SessionProvider>
-    </>
+    </div>
     )
 }
 

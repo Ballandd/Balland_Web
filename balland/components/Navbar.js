@@ -5,7 +5,7 @@ const Navbar = () => {
   const [menuToggle, setMenuToggle] = useState(false);
     const {data:session, status} = useSession();
   return (
-    <nav className="bg-gray-100">
+    <nav className="bg-white">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between">
           {/* 메뉴 */}
