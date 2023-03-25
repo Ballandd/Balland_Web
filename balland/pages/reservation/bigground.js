@@ -36,10 +36,7 @@ export default function MyApp() {
       <div className = "grid grid-cols-2 gap-4 p-3">
       <div className = "col-span-2">
           <FacilityCard
-            imageSrc="/groud.jpeg"
-            title="대운동장"
-            desc="아주대학교의 Homeground"
-            link = "../reservation"
+            picture="/groud.jpeg"
           />
       </div>
       <div className = "mt-10">
