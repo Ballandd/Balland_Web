@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "../../styles/Bigground.module.css"
 import GroupRank from "../../components/GroupRank.tsx"
 export default function Club() {
 

@@ -10,6 +10,7 @@ export default function MyApp() {
   const [value, setValue] = useState(new Date());
   const [mindate, setMindate] = useState(new Date())
   const [maxdate, setmaxDate] = useState(new Date())
+  const maxday = new Date(maxdate.setDate(maxdate.getDate() + 14))
   const [choiceTime, setChoiceTime] = useState('')
   const [eight, setEight] = useState(true)
   const [ten, setTen] = useState(true)
@@ -34,15 +35,6 @@ export default function MyApp() {
         setEightteen(response.data[18])
     })
   }
-
-  useEffect(()=>{
-    setmaxDate(Date(mindate.getDate() + 14))
-  },[])
-
-  useEffect(()=>{
-    console.log(maxdate)
-  },[maxdate])
-
   useEffect(()=>{
     onClick()
   },[value])
@@ -63,13 +55,13 @@ export default function MyApp() {
       <div className = "w-[570px] h-[398px] bg-white">
       <Group position="center">
         <DatePicker 
-        hideOutsideDates
+          hideOutsideDates
           value={value} 
           onChange={setValue} 
           size = "xl"
           defaultDate={value}
           minDate={mindate}
-          maxDate={maxdate}
+          maxDate={maxday}
           />
       </Group>
       </div>
