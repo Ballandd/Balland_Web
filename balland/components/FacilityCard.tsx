@@ -8,7 +8,7 @@ const Facility = (props: FacilityProps) => {
     return (
       <div className = "flex justify-center">
           <img
-            className = "w-64 h-1/2 "
+            className = "w-[570px] h-[380px] "
             src = {props.picture}
           />
       </div>

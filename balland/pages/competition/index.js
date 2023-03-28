@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "../../styles/Competition.module.css"
 import CompetitionInformation from "../../components/CompetitionInformation.tsx"
 import posts from "../competition.json"
 import Link from "next/link";
