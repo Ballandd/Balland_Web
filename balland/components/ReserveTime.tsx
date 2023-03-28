@@ -9,7 +9,7 @@ const ReserveTime = (props: infoCardProps) => {
     const isStatus = props.status;
 
     return (
-      <div className="w-[135px] h-[70px] rounded-lg border bg-white">
+      <div className="w-[135px] h-[70px] rounded-lg border bg-white mt-[20px]">
         <div className="flex flex-col">
           <div className="flex flex-row mt-2 justify-items-center">
             <Icon icon="ic:baseline-access-time" width={24} />
