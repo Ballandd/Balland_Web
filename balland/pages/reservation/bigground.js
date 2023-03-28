@@ -5,7 +5,7 @@ import Introduce from "../../components/Introduce.tsx"
 import FacilityCard from "../../components/FacilityCard.tsx"
 import { DatePicker } from '@mantine/dates';
 import { Group } from '@mantine/core';
-
+import ReserveTime from "../../components/ReserveTime.tsx"
 export default function MyApp() {
   const [value, setValue] = useState(new Date());
   const [mindate, setMindate] = useState(new Date())
@@ -65,11 +65,29 @@ export default function MyApp() {
           />
       </Group>
       </div>
-      <Introduce
-        facilityname = "대운동장"
-        phonenumber = "041-566-8775"
-        location = "수원시"
-      />
+      <div className = "w-[350px] h-[398px] bg-white ml-[20px]">
+      <div className = "divide-y-2 divide-solid divide-black">
+            <h2 className = " mt-5 ml-5 left-9 top-5 font-mono text-left text-xl font-semibold">예약 현황 확인</h2>
+            <div className = "grid grid-cols-2 ml-[38px] mr-[38px]">
+                <ReserveTime 
+                  time = "05:00 ~ 06:00"
+                  status = {true}
+                />
+                <ReserveTime 
+                  time = "06:00 ~ 07:00"
+                  status = {true}
+                />
+                <ReserveTime 
+                  time = "07:00 ~ 08:00"
+                  status = {true}
+                />
+                <ReserveTime 
+                  time = "08:00 ~ 09:00"
+                  status = {true}
+                />
+                </div>
+      </div>
+      </div>
     </div>
     </div>
   );
