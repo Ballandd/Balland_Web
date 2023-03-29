@@ -58,7 +58,7 @@ export default function MyApp() {
           hideOutsideDates
           value={value} 
           onChange={setValue} 
-          size = "xl"
+          size = "lg"
           defaultDate={value}
           minDate={mindate}
           maxDate={maxday}
