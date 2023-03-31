@@ -22,6 +22,7 @@ export default function Competition() {
                 period = {compete.period}
                 part = {compete.part}
                 prize = {compete.prize}
+                status ={compete.status}
                 />
                 </Link>
                 </div>
