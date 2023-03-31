@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
-import moment from 'moment'
 import Introduce from "../../components/Introduce.tsx"
 import FacilityCard from "../../components/FacilityCard.tsx"
 import { DatePicker } from '@mantine/dates';
 import { Group } from '@mantine/core';
 import ReserveTime from "../../components/ReserveTime.tsx"
+import Link from 'next/link';
 export default function MyApp() {
   const [value, setValue] = useState(new Date());
   const [mindate, setMindate] = useState(new Date())
@@ -17,6 +17,7 @@ export default function MyApp() {
   const [fourteen, setFourteen] = useState(true)
   const [sixteen, setSixteen] = useState(true)
   const [eightteen, setEightteen] = useState(true)
+  const [linktime, setLinktime] = useState(0)
   const availabletime = ["08:00 ~ 10:00","10:00 ~ 12:00", "12:00 ~ 14:00", "14:00 ~ 16:00", "16:00 ~ 18:00", "18:00 ~ 20:00" ]
   const reservationstatus = [eight, ten, twelve,fourteen,sixteen,eightteen]
   const onClick = async ()=> {
@@ -27,7 +28,6 @@ export default function MyApp() {
         date : value,
       }
     }).then(response => {
-        console.log(response)
         setEight(response.data[8])
         setTen(response.data[10])
         setTwelve(response.data[12])
@@ -41,14 +41,23 @@ export default function MyApp() {
     newArr[idx] = true
     setChoiceTime(newArr)
   }
+
   useEffect(()=>{
     onClick()
+    setChoiceTime(false)
   },[value])
+
   useEffect(()=>{
     const maxday = new Date()
     maxday.setDate(maxday.getDate()+14)
     setmaxDate(maxday)
   },[])
+
+  useEffect(()=>{
+    const timeset = choiceTime
+    const time = Array.from(timeset).indexOf(true)
+    setLinktime(8 + (time*2))
+  },[choiceTime])
 
   return (
     <div className = "grid justify-items-center">
@@ -96,7 +105,9 @@ export default function MyApp() {
     <div className = "flex mt-[21px]">
       <div className = "w-[570px] h-[60px]">
       </div>
+      <Link href = {`/reservation/bigground/${linktime}`}>
         <button className = "w-[350px] h-[60px] ml-[20px] bg-blue-600 rounded-lg text-white text-[20px]">예약 하기</button>
+        </Link>
     </div>
     </div>
   );
