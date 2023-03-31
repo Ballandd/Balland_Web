@@ -4,20 +4,16 @@ import { useState } from 'react';
 export interface infoCardProps {
     time: string;
     status: boolean;
+    isSelected : boolean;
+    handleClick : (value :number) => void;
+    elementIndex : number
   }
 
 const ReserveTime = (props: infoCardProps) => {
     const isStatus = props.status;
-    const [clickStatus, setClickStatus] = useState(false)
-    // const [eight,setEight] = useState(false)
-    // const [ten,setTen] = useState(false)
-    // const [twelve,setTwelve] = useState(false)
-    // const [fourteen,setfourteen] = useState(false)
-    // const [sixteen,setsixteen] = useState(false)
-    // const [eighteen,seteighteen] = useState(false)
     return (
-      <button onClick ={()=>setClickStatus(true)} disabled={isStatus == true ? false : true} >
-      <div className={`w-[135px] h-[70px] rounded-lg border mt-[20px] ${clickStatus?"border-blue-600" :null}`}>
+      <button onClick ={()=>props.handleClick(props.elementIndex)} disabled={isStatus == true ? false : true} >
+      <div className={`w-[135px] h-[70px] rounded-lg border mt-[20px] ${props.isSelected?"border-blue-600" :null}`}>
         <div className="flex flex-col">
           <div className="flex flex-row mt-2 justify-items-center">
             <Icon icon="ic:baseline-access-time" width={24} />

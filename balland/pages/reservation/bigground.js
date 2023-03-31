@@ -10,7 +10,7 @@ export default function MyApp() {
   const [value, setValue] = useState(new Date());
   const [mindate, setMindate] = useState(new Date())
   const [maxdate, setmaxDate] = useState(new Date())
-  const [choiceTime, setChoiceTime] = useState('')
+  const [choiceTime, setChoiceTime] = useState(false)
   const [eight, setEight] = useState(true)
   const [ten, setTen] = useState(true)
   const [twelve, setTwelve] = useState(true)
@@ -36,13 +36,17 @@ export default function MyApp() {
         setEightteen(response.data[18])
     })
   }
+  const timeClick = (idx) => {
+    const newArr = Array(availabletime.length).fill(false)
+    newArr[idx] = true
+    setChoiceTime(newArr)
+  }
   useEffect(()=>{
     onClick()
   },[value])
   useEffect(()=>{
     const maxday = new Date()
     maxday.setDate(maxday.getDate()+14)
-    console.log(maxday)
     setmaxDate(maxday)
   },[])
 
@@ -80,6 +84,9 @@ export default function MyApp() {
                   <ReserveTime key = {index}
                     time = {time}
                     status = {reservationstatus[index]}
+                    isSelected = {choiceTime[index]}
+                    handleClick = {timeClick}
+                    elementIndex = {index}
                     />
                 ))}
                 </div>
