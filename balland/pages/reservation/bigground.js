@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
-import moment from 'moment'
 import Introduce from "../../components/Introduce.tsx"
 import FacilityCard from "../../components/FacilityCard.tsx"
 import { DatePicker } from '@mantine/dates';
@@ -43,6 +42,7 @@ export default function MyApp() {
   }
   useEffect(()=>{
     onClick()
+    setChoiceTime(false)
   },[value])
   useEffect(()=>{
     const maxday = new Date()
