@@ -17,7 +17,8 @@ export default function MyApp() {
   const [fourteen, setFourteen] = useState(true)
   const [sixteen, setSixteen] = useState(true)
   const [eightteen, setEightteen] = useState(true)
-
+  const availabletime = ["08:00 ~ 10:00","10:00 ~ 12:00", "12:00 ~ 14:00", "14:00 ~ 16:00", "16:00 ~ 18:00", "18:00 ~ 20:00" ]
+  const reservationstatus = [eight, ten, twelve,fourteen,sixteen,eightteen]
   const onClick = async ()=> {
     await axios.post("/api/reservation/bigground",{
       method : "POST",
@@ -75,30 +76,12 @@ export default function MyApp() {
       <div className = "divide-y-2 divide-solid divide-black ">
             <h2 className = " mt-5 ml-[35px] mr-[35px] md-[10px] left-9 top-5 font-mono text-left text-xl font-semibold">예약 현황 확인</h2>
             <div className = "grid grid-cols-2 mt-4 ml-[35px] mr-[35px]">
-                <ReserveTime 
-                  time = "08:00 ~ 10:00"
-                  status = {eight}
-                />
-                <ReserveTime 
-                  time = "10:00 ~ 12:00"
-                  status = {ten}
-                />
-                <ReserveTime 
-                  time = "12:00 ~ 14:00"
-                  status = {twelve}
-                />
-                <ReserveTime 
-                  time = "14:00 ~ 16:00"
-                  status = {fourteen}
-                />
-                <ReserveTime 
-                  time = "16:00 ~ 18:00"
-                  status = {sixteen}
-                />
-                <ReserveTime 
-                  time = "18:00 ~ 20:00"
-                  status = {eightteen}
-                />
+                {availabletime.map((time, index)=>(
+                  <ReserveTime key = {index}
+                    time = {time}
+                    status = {reservationstatus[index]}
+                    />
+                ))}
                 </div>
         </div>
       </div>
