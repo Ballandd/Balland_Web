@@ -10,7 +10,6 @@ export default function MyApp() {
   const [value, setValue] = useState(new Date());
   const [mindate, setMindate] = useState(new Date())
   const [maxdate, setmaxDate] = useState(new Date())
-  // const maxday = new Date(maxdate.setDate(maxdate.getDate() + 14))
   const [choiceTime, setChoiceTime] = useState('')
   const [eight, setEight] = useState(true)
   const [ten, setTen] = useState(true)
@@ -27,6 +26,7 @@ export default function MyApp() {
         date : value,
       }
     }).then(response => {
+        console.log(response)
         setEight(response.data[8])
         setTen(response.data[10])
         setTwelve(response.data[12])
