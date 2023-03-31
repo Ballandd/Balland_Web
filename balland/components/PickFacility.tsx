@@ -9,7 +9,7 @@ export interface PickFacilityProps {
 
 const PickFacility = (props: PickFacilityProps) => {
     return (
-      <div className = "w-96 h-3/5 rounded border-2 bg-white">
+      <div className = "w-[350px] h-[487px] rounded border-2 bg-white">
           <div className = "mt-5 ml-5 mr-5 left-9 top-5">
                     <h2 className = "font-mono text-left text-2xl">선택한 운동장</h2>
                     <img className="mt-8 rounded-xl" src={props.picture} width="100%"></img>
