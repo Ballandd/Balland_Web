@@ -10,7 +10,7 @@ export default function MyApp() {
   const [value, setValue] = useState(new Date());
   const [mindate, setMindate] = useState(new Date())
   const [maxdate, setmaxDate] = useState(new Date())
-  const maxday = new Date(maxdate.setDate(maxdate.getDate() + 14))
+  // const maxday = new Date(maxdate.setDate(maxdate.getDate() + 14))
   const [choiceTime, setChoiceTime] = useState('')
   const [eight, setEight] = useState(true)
   const [ten, setTen] = useState(true)
@@ -38,6 +38,12 @@ export default function MyApp() {
   useEffect(()=>{
     onClick()
   },[value])
+  useEffect(()=>{
+    const maxday = new Date()
+    maxday.setDate(maxday.getDate()+14)
+    console.log(maxday)
+    setmaxDate(maxday)
+  },[])
 
   return (
     <div className = "grid justify-items-center">
@@ -61,7 +67,7 @@ export default function MyApp() {
           size = "lg"
           defaultDate={value}
           minDate={mindate}
-          maxDate={maxday}
+          maxDate={maxdate}
           />
       </Group>
       </div>
