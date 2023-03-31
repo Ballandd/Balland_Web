@@ -6,9 +6,11 @@ export interface CompetitionInformationProps {
     period: string;
     part: string;
     prize : string;
+    status: boolean;
   }
 
 const CompetitionInformation = (props: CompetitionInformationProps) => {
+    const isStatus = props.status;
     return (
       <div className = "w-96 h-48 rounded border-2 bg-white">
           <div className = "mt-5 ml-5 mr-5 left-9 top-5">
@@ -18,9 +20,13 @@ const CompetitionInformation = (props: CompetitionInformationProps) => {
                             className = "h-28"
                             src={props.picture}
                         />
+                        {isStatus ? 
                         <div className = "mt-3 border rounded border-sky-600">
-                            <h2 className = "text-center text-sky-700"> 진행중</h2>
-                        </div>
+                            <h2 className = "text-center text-sky-700"> 진행중</h2></div>
+                        : 
+                        <div className = "mt-3 border rounded border-red-600">
+                            <h2 className = "text-center text-red-600"> 진행완료</h2></div>
+                        }
                     </div>
                     <div>
                     <div className = "divide-y-2 divide-solid divide-black">
