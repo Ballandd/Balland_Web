@@ -8,7 +8,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.log();
     const db = client.db('balland');
     const reservationInfo = await db.collection('reservationInfo').insertOne(info);
-    // const readdatereservation = await db.collection('reservationperdate').findOne();
     res.status(200)
     res.send("Success!")
   } else {
