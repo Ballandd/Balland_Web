@@ -1,11 +1,11 @@
-import { ArrowRightIcon, EyeIcon, ChatIcon } from "@heroicons/react/outline";
-import Link from "next/link";
+import { ArrowRightIcon, EyeIcon, ChatIcon } from "@heroicons/react/outline"
+import Link from "next/link"
 
 export interface CardProps {
-  imageSrc: string;
-  title: string;
-  desc: string;
-  link: string;
+  imageSrc: string
+  title: string
+  desc: string
+  link: string
 }
 
 const Card = (props: CardProps) => {
@@ -21,7 +21,10 @@ const Card = (props: CardProps) => {
           <h1 className="text-2xl font-semibold mb-3">{props.title}</h1>
           <p className="leading-relaxed mb-3">{props.desc}</p>
           <div className="flex items-center flex-wrap ">
-            <Link href={props.link} className="text-indigo-300 inline-flex items-center md:mb-2 lg:mb-0">
+            <Link
+              href={props.link}
+              className="text-indigo-300 inline-flex items-center md:mb-2 lg:mb-0"
+            >
               이동하기
               <ArrowRightIcon className="w-4 h-4 ml-2" />
             </Link>
@@ -29,7 +32,7 @@ const Card = (props: CardProps) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

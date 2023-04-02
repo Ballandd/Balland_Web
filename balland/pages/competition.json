@@ -1,37 +1,38 @@
 [
-    {
-        "id" : 1,
-        "picture" : "/BallandLogo.png",
-        "name" : "AFC배 축구대회",
-        "period" : "2023.03.31~2023.04.12",
-        "part" : "아주대학교 축구 동아리 AFC",
-        "prize" : "20만원",
-        "status" : 1
-    },
-     {
-         "id" : 2,
-        "picture" : "/BallandLogo.png",
-        "name" : "정소대 축구대회",
-        "period" : "2023.06.31~2023.07.12",
-        "part" : "소프트웨어 융합대학 학생회",
-        "prize" : "20만원",
-        "status" : 1
-    },{
-        "id" : 3,
-        "picture" : "/BallandLogo.png",
-        "name" : "아주체전",
-        "period" : "2023.06.31~2023.07.12",
-        "part" : "총학생회",
-        "prize" : "20만원",
-        "status" : 0
-    },{
-        "id" : 4,
-        "picture" : "/BallandLogo.png",
-        "name" : "처장배 축구대회",
-        "period" : "2023.06.31~2023.07.12",
-        "part" : "학생처장",
-        "prize" : "20만원",
-        "status" : 0
-    }
+  {
+    "id": 1,
+    "picture": "/BallandLogo.png",
+    "name": "AFC배 축구대회",
+    "period": "2023.03.31~2023.04.12",
+    "part": "아주대학교 축구 동아리 AFC",
+    "prize": "20만원",
+    "status": 1
+  },
+  {
+    "id": 2,
+    "picture": "/BallandLogo.png",
+    "name": "정소대 축구대회",
+    "period": "2023.06.31~2023.07.12",
+    "part": "소프트웨어 융합대학 학생회",
+    "prize": "20만원",
+    "status": 1
+  },
+  {
+    "id": 3,
+    "picture": "/BallandLogo.png",
+    "name": "아주체전",
+    "period": "2023.06.31~2023.07.12",
+    "part": "총학생회",
+    "prize": "20만원",
+    "status": 0
+  },
+  {
+    "id": 4,
+    "picture": "/BallandLogo.png",
+    "name": "처장배 축구대회",
+    "period": "2023.06.31~2023.07.12",
+    "part": "학생처장",
+    "prize": "20만원",
+    "status": 0
+  }
 ]
-   

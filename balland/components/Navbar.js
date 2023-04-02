@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import classNames from "classnames";
+import React, { useState } from "react"
+import classNames from "classnames"
 import { signOut, useSession } from "next-auth/react"
 const Navbar = () => {
-  const [menuToggle, setMenuToggle] = useState(false);
-    const {data:session, status} = useSession();
+  const [menuToggle, setMenuToggle] = useState(false)
+  const { data: session, status } = useSession()
   return (
     <nav className="bg-white">
       <div className="max-w-6xl mx-auto px-4">
@@ -50,24 +50,25 @@ const Navbar = () => {
           </div>
 
           {/* 메뉴2 */}
-    {status === "authenticated" ?(
-        <div className="hidden md:flex items-center space-x-1">
-        <button className="py-5 px-3" onClick={() => signOut()}>Log out</button>
-      </div>
-    ):
-    (
-          <div className="hidden md:flex items-center space-x-1">
-            <a href="/auth/signin" className="py-5 px-3">
-              Login
-            </a>
-            <a
-              href="/auth/signup"
-              className="py-2 px-3 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 hover:text-yellow-800 rounded transition duration-300"
-            >
-              Signup
-            </a>
-          </div>
-    )}
+          {status === "authenticated" ? (
+            <div className="hidden md:flex items-center space-x-1">
+              <button className="py-5 px-3" onClick={() => signOut()}>
+                Log out
+              </button>
+            </div>
+          ) : (
+            <div className="hidden md:flex items-center space-x-1">
+              <a href="/auth/signin" className="py-5 px-3">
+                Login
+              </a>
+              <a
+                href="/auth/signup"
+                className="py-2 px-3 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 hover:text-yellow-800 rounded transition duration-300"
+              >
+                Signup
+              </a>
+            </div>
+          )}
           {/* mobile menu */}
           <div className="md:hidden flex items-center">
             <button onClick={() => setMenuToggle(!menuToggle)}>
@@ -109,27 +110,47 @@ const Navbar = () => {
 
       {/* mobile menu items */}
       <div className={classNames("md:hidden", { hidden: !menuToggle })}>
-        <a href="/reservation" className="block py-2 px-4 text-sm hover:bg-gray-200">
+        <a
+          href="/reservation"
+          className="block py-2 px-4 text-sm hover:bg-gray-200"
+        >
           운동장 예약
         </a>
-        <a href="/competition" className="block py-2 px-4 text-sm hover:bg-gray-200">
+        <a
+          href="/competition"
+          className="block py-2 px-4 text-sm hover:bg-gray-200"
+        >
           대회 정보
         </a>
         <a href="/club" className="block py-2 px-4 text-sm hover:bg-gray-200">
           동아리 정보
         </a>
-        {status === "authenticated" ?(
-        <button className="block py-2 px-4 text-sm hover:bg-gray-200" onClick={() => signOut()}>로그아웃</button>
-    ):(
-        <><a href="/auth/signin" className="block py-2 px-4 text-sm hover:bg-gray-200">
+        {status === "authenticated" ? (
+          <button
+            className="block py-2 px-4 text-sm hover:bg-gray-200"
+            onClick={() => signOut()}
+          >
+            로그아웃
+          </button>
+        ) : (
+          <>
+            <a
+              href="/auth/signin"
+              className="block py-2 px-4 text-sm hover:bg-gray-200"
+            >
               로그인
-            </a><a href="/auth/signup" className="block py-2 px-4 text-sm hover:bg-gray-200">
-                회원가입
-              </a></>
-    )}
+            </a>
+            <a
+              href="/auth/signup"
+              className="block py-2 px-4 text-sm hover:bg-gray-200"
+            >
+              회원가입
+            </a>
+          </>
+        )}
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

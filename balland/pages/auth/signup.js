@@ -1,51 +1,52 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import axios from "axios"
+import React, { useEffect, useState } from "react"
+import { useRouter } from "next/router"
 
 export default function Register() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-  const [error, setError] = useState('');
-  const [errormessage, setErrormessage] = useState('');
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [name, setName] = useState("")
+  const [error, setError] = useState("")
+  const [errormessage, setErrormessage] = useState("")
   const router = useRouter()
-  const onEmailHandler = (event) =>{
+  const onEmailHandler = (event) => {
     setEmail(event.currentTarget.value)
   }
-  const onPasswordHandler = (event) =>{
+  const onPasswordHandler = (event) => {
     setPassword(event.currentTarget.value)
   }
-  const onNameHandler = (event) =>{
+  const onNameHandler = (event) => {
     setName(event.currentTarget.value)
   }
-  const onClick = async ()=> {
-    await axios.post("/api/auth/signup",{
-      method : "POST",
-      Headers:{"Content-Type": "application/json" },
-      body : {
-        email : email,
-        password : password,
-        name : name
-      }
-    }).then(response => {
-      console.log(response)
-      console.log(response.data.result)
-      console.log(response.data.message)
-      setError(response.data.result)
-      setErrormessage(response.data.message)
-    })
+  const onClick = async () => {
+    await axios
+      .post("/api/auth/signup", {
+        method: "POST",
+        Headers: { "Content-Type": "application/json" },
+        body: {
+          email: email,
+          password: password,
+          name: name,
+        },
+      })
+      .then((response) => {
+        console.log(response)
+        console.log(response.data.result)
+        console.log(response.data.message)
+        setError(response.data.result)
+        setErrormessage(response.data.message)
+      })
   }
   useEffect(() => {
-    if (errormessage == 'Account already signed up') {
-      alert('이미 가입된 계정이에요!');
-      setErrormessage('')
-    }
-    else if (errormessage == 'User created') {
-      alert("회원가입이 완료 되었습니다. 로그인을 진행 해 주세요");
+    if (errormessage == "Account already signed up") {
+      alert("이미 가입된 계정이에요!")
+      setErrormessage("")
+    } else if (errormessage == "User created") {
+      alert("회원가입이 완료 되었습니다. 로그인을 진행 해 주세요")
       router.push("/auth/signin")
-      setErrormessage('')
+      setErrormessage("")
     }
-  }, [errormessage]);
+  }, [errormessage])
 
   return (
     <>
@@ -165,5 +166,5 @@ export default function Register() {
         </div>
       </div>
     </>
-  );
+  )
 }
