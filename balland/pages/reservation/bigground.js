@@ -114,7 +114,9 @@ export default function MyApp() {
       </div>
       <div className="flex mt-[21px]">
         <div className="w-[570px] h-[60px]"></div>
-        <Link href={`/reservation/bigground/${linktime}`}>
+        <Link href={{
+          pathname : "/reservation/bigground/[time]",
+          query : {time : linktime, date : String(value)},}}>
           <button className="w-[350px] h-[60px] ml-[20px] bg-blue-600 rounded-lg text-white text-[20px]">
             예약 하기
           </button>

@@ -6,7 +6,7 @@ import PickFacility from "../../../components/PickFacility"
 const Reservationtime = () => {
   const [reservationTime, setReservationTime] = useState("")
   const router = useRouter()
-  const { time } = router.query
+  const { time,date } = router.query || []
   const {
     register,
     handleSubmit,
@@ -35,6 +35,7 @@ const Reservationtime = () => {
       })
   }
   useEffect(() => {
+    console.log(router)
     const maxtime = Number(time) + 2
     setReservationTime(`${time}:00 ~ ${maxtime}:00`)
   }, [])
@@ -230,7 +231,7 @@ const Reservationtime = () => {
           <PickFacility
             facilityname="대운동장"
             picture="/groud.jpeg"
-            date="2023-04-13"
+            date={date.slice(0,15)}
             time={reservationTime}
           />
           <button
