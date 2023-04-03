@@ -98,8 +98,9 @@ const Reservationtime = () => {
                       이메일
                     </label>
                   </div>
-                  <div className="ml-[50px]">
-                    <input
+                  <div className="ml-[47px]">
+                    <input       
+                     aria-invalid={!isDirty ? undefined : errors.email ? "true" : "false"}
                       {...register("email", {
                         required: "이메일은 필수 입력입니다.",
                         pattern: {
@@ -112,7 +113,9 @@ const Reservationtime = () => {
                       type="text"
                       placeholder="이메일 입력"
                     />
-                    {/* {errors.email && <small role="alert">{errors.email.message}</small>} */}
+                    <div className = "text-red-600 px-2">
+                    {errors.email && <small role="alert">{errors.email.message}</small>}
+                    </div>
                   </div>
                 </div>
                 <div className="flex flex-row mt-[10px]">
