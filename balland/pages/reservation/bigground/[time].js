@@ -1,21 +1,51 @@
 import React, { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import { useForm } from "react-hook-form"
+import axios from "axios"
 import PickFacility from "../../../components/PickFacility"
 const Reservationtime = () => {
   const [reservationTime, setReservationTime] = useState("")
   const router = useRouter()
   const { time } = router.query
-  const { register } = useForm()
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting, isDirty, errors },
+  } = useForm()
+  const reservationInfoRegister = async (data) => {
+    await axios
+      .post("/api/reservation/creatReservation", {
+        method: "POST",
+        Headers: { "Content-Type": "application/json" },
+        body: {
+          name : data.username,
+          contact : data.phonenumber,
+          email: data.email,
+          studentId: data.studentid,
+          userCnt : data.totalnumber,
+          purpose : data.purpose,
+          eventContent : data.content,
+          etc : data.etc,
+          reservationDate : "2023-04-13",
+          userId : "641022b7c1908749c5d41308"
+        },
+      })
+      .then((response) => {
+        alert("예약완료")
+      })
+  }
   useEffect(() => {
     const maxtime = Number(time) + 2
     setReservationTime(`${time}:00 ~ ${maxtime}:00`)
   }, [])
   return (
     <div className="grid justify-items-center">
-      <div className="flex">
+      <form
+        onSubmit={handleSubmit(reservationInfoRegister)}
+        className="flex"
+      >
         <div className="grid grid-row">
-          <form className="w-[570px] h-[283px] bg-white">
+          <div className="w-[570px] h-[283px] bg-white">
             <div className="divide-y-2 divide-solid divide-black">
               <h2 className=" mt-5 ml-[35px] mr-[35px] left-9 top-5 font-mono text-left text-[20px] font-bold">
                 예약하기
@@ -68,14 +98,21 @@ const Reservationtime = () => {
                       이메일
                     </label>
                   </div>
-                  <div className="ml-[47px]">
+                  <div className="ml-[50px]">
                     <input
-                      {...register("email", { required: true })}
+                      {...register("email", {
+                        required: "이메일은 필수 입력입니다.",
+                        pattern: {
+                          value: /\S+@\S+\.\S+/,
+                          message: "이메일 형식에 맞지 않습니다.",
+                        },
+                      })}
                       className="shadow appearance-none border rounded w-[400px] h-[34px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
                       id="email"
                       type="text"
                       placeholder="이메일 입력"
                     />
+                    {/* {errors.email && <small role="alert">{errors.email.message}</small>} */}
                   </div>
                 </div>
                 <div className="flex flex-row mt-[10px]">
@@ -99,8 +136,8 @@ const Reservationtime = () => {
                 </div>
               </div>
             </div>
-          </form>
-          <form className="w-[570px] h-[333px] bg-white mt-[20px]">
+          </div>
+          <div className="w-[570px] h-[333px] bg-white mt-[20px]">
             <div className="divide-y-2 divide-solid divide-black">
               <h2 className=" mt-5 ml-[35px] mr-[35px] left-9 top-5 font-mono text-left text-[20px] font-bold">
                 사용목적
@@ -184,7 +221,7 @@ const Reservationtime = () => {
                 </div>
               </div>
             </div>
-          </form>
+          </div>
         </div>
         <div className="grid grid-row">
           <PickFacility
@@ -193,14 +230,17 @@ const Reservationtime = () => {
             date="2023-04-13"
             time={reservationTime}
           />
-          <button className="w-[350px] h-[60px] ml-[20px] bg-blue-600 rounded-lg text-white text-[20px]">
+          <button
+            type="submit"
+            className="w-[350px] h-[60px] ml-[20px] bg-blue-600 rounded-lg text-white text-[20px]"
+          >
             예약 하기
           </button>
           <button className="w-[350px] h-[60px] ml-[20px] bg-slate-600 rounded-lg text-white text-[20px]">
             취소 하기
           </button>
         </div>
-      </div>
+      </form>
     </div>
   )
 }
