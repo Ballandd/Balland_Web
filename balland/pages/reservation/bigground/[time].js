@@ -284,11 +284,11 @@ const Reservationtime = () => {
           />
           <button
             type="submit"
-            className="w-[350px] h-[60px] ml-[20px] bg-blue-600 rounded-lg text-white text-[20px]"
+            className="w-[350px] h-[60px] mt-[24px] ml-[20px] bg-blue-600 rounded-lg text-white text-[20px]"
           >
             예약 하기
           </button>
-          <button className="w-[350px] h-[60px] ml-[20px] bg-slate-600 rounded-lg text-white text-[20px]">
+          <button className="w-[350px] h-[60px] mt-[24px] ml-[20px] bg-slate-600 rounded-lg text-white text-[20px]">
             취소 하기
           </button>
         </div>
