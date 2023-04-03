@@ -6,7 +6,7 @@ import PickFacility from "../../../components/PickFacility"
 const Reservationtime = () => {
   const [reservationTime, setReservationTime] = useState("")
   const router = useRouter()
-  const { time,date } = router.query || []
+  const { time, date } = router.query || []
   const {
     register,
     handleSubmit,
@@ -18,16 +18,16 @@ const Reservationtime = () => {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
-          name : data.username,
-          contact : data.phonenumber,
+          name: data.username,
+          contact: data.phonenumber,
           email: data.email,
           studentId: data.studentid,
-          userCnt : data.totalnumber,
-          purpose : data.purpose,
-          eventContent : data.content,
-          etc : data.etc,
-          reservationDate : "2023-04-13",
-          userId : "641022b7c1908749c5d41308"
+          userCnt: data.totalnumber,
+          purpose: data.purpose,
+          eventContent: data.content,
+          etc: data.etc,
+          reservationDate: new Date(date),
+          userId: "641022b7c1908749c5d41308",
         },
       })
       .then((response) => {
@@ -41,69 +41,83 @@ const Reservationtime = () => {
   }, [])
   return (
     <div className="grid justify-items-center">
-      <form
-        onSubmit={handleSubmit(reservationInfoRegister)}
-        className="flex"
-      >
+      <form onSubmit={handleSubmit(reservationInfoRegister)} className="flex">
         <div className="grid grid-row">
-          <div className="w-[570px] h-[283px] bg-white">
+          <div className="w-[570px] h-[330px] bg-white">
             <div className="divide-y-2 divide-solid divide-black">
               <h2 className=" mt-5 ml-[35px] mr-[35px] left-9 top-5 font-mono text-left text-[20px] font-bold">
                 예약하기
               </h2>
               <div className="mt-5 ml-[35px] mr-[35px]">
                 <div className="flex flex-row mt-[10px]">
-                  <div className="w-[53px] self-center">
+                  <div className="w-[53px]">
                     <label
-                      className="block text-gray-700 text-[13px] font-bold"
+                      className="block mt-[8px] text-gray-700 text-[13px] font-bold"
                       for="username"
                     >
                       신청자명
                     </label>
                   </div>
-                  <div className="ml-[47px]">
+                  <div className="ml-[47px] h-[50px]">
                     <input
-                      {...register("username", { required: true })}
+                      {...register("username", {
+                        required: "신청자명은 필수 입력사항입니다.",
+                      })}
                       className="shadow appearance-none border rounded w-[400px] h-[34px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
                       id="username"
                       type="text"
                       placeholder="신청자명 입력"
                     />
+                    <div className="text-red-600 px-2">
+                      {errors.username && (
+                        <small role="alert">{errors.username.message}</small>
+                      )}
+                    </div>
                   </div>
                 </div>
                 <div className="flex flex-row mt-[10px]">
-                  <div className="w-[53px] self-center">
+                  <div className="w-[53px]">
                     <label
-                      className="block text-gray-700 text-[13px] font-bold"
+                      className="block mt-[8px] text-gray-700 text-[13px] font-bold"
                       for="phonenumber"
                     >
                       연락처
                     </label>
                   </div>
-                  <div className="ml-[47px]">
+                  <div className="ml-[47px] h-[50px]">
                     <input
-                      {...register("phonenumber", { required: true })}
+                      {...register("phonenumber", {
+                        required: "전화번호는 필수 입력사항입니다.",
+                        pattern: {
+                          value: /\d{3}-\d{4}-\d{4}/,
+                          message: "전화번호 형식에 맞지 않습니다.",
+                        },
+                      })}
                       className="shadow appearance-none border rounded w-[400px] h-[34px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
                       id="phonenumber"
                       type="text"
                       placeholder="연락처 입력 (010-1234-5678)"
                     />
+                    <div className="text-red-600 px-2">
+                      {errors.phonenumber && (
+                        <small role="alert">{errors.phonenumber.message}</small>
+                      )}
+                    </div>
                   </div>
                 </div>
                 <div className="flex flex-row mt-[10px]">
-                  <div className="w-[53px] self-center">
+                  <div className="w-[53px]">
                     <label
-                      className="block text-gray-700 text-[13px] font-bold"
+                      className="block mt-[8px] text-gray-700 text-[13px] font-bold"
                       for="email"
                     >
                       이메일
                     </label>
                   </div>
-                  <div className="ml-[47px]">
-                    <input       
-                     aria-invalid={!isDirty ? undefined : errors.email ? "true" : "false"}
+                  <div className="ml-[47px] h-[50px]">
+                    <input
                       {...register("email", {
-                        required: "이메일은 필수 입력입니다.",
+                        required: "이메일은 필수 입력사항입니다.",
                         pattern: {
                           value: /\S+@\S+\.\S+/,
                           message: "이메일 형식에 맞지 않습니다.",
@@ -114,100 +128,134 @@ const Reservationtime = () => {
                       type="text"
                       placeholder="이메일 입력"
                     />
-                    <div className = "text-red-600 px-2">
-                    {errors.email && <small role="alert">{errors.email.message}</small>}
+                    <div className="text-red-600 px-2">
+                      {errors.email && (
+                        <small role="alert">{errors.email.message}</small>
+                      )}
                     </div>
                   </div>
                 </div>
                 <div className="flex flex-row mt-[10px]">
-                  <div className="w-[53px] self-center">
+                  <div className="w-[53px]">
                     <label
-                      className="block text-gray-700 text-[13px] font-bold"
+                      className="block mt-[8px] text-gray-700 text-[13px] font-bold"
                       for="studentid"
                     >
                       학번
                     </label>
                   </div>
-                  <div className="ml-[47px]">
+                  <div className="ml-[47px] h-[50px]">
                     <input
-                      {...register("studentid", { required: true })}
+                      {...register("studentid", {
+                        required: "학번은 필수 입력사항입니다.",
+                        pattern: {
+                          value: /\d{9}/,
+                          message: "학번 형식에 맞지 않습니다.",
+                        },
+                      })}
                       className="shadow appearance-none border rounded w-[400px] h-[34px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
                       id="studentid"
                       type="text"
                       placeholder="학번 입력"
                     />
+                    <div className="text-red-600 px-2">
+                      {errors.studentid && (
+                        <small role="alert">{errors.studentid.message}</small>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="w-[570px] h-[333px] bg-white mt-[20px]">
+          <div className="w-[570px] h-[373px] bg-white mt-[20px]">
             <div className="divide-y-2 divide-solid divide-black">
               <h2 className=" mt-5 ml-[35px] mr-[35px] left-9 top-5 font-mono text-left text-[20px] font-bold">
                 사용목적
               </h2>
               <div className="mt-5 ml-[35px] mr-[35px]">
                 <div className="flex flex-row mt-[10px]">
-                  <div className="w-[53px] self-center">
+                  <div className="w-[53px]">
                     <label
-                      className="block text-gray-700 text-[13px] font-bold"
+                      className="block mt-[8px] text-gray-700 text-[13px] font-bold"
                       for="totalnumber"
                     >
                       인원
                     </label>
                   </div>
-                  <div className="ml-[47px]">
+                  <div className="ml-[47px] h-[50px]">
                     <input
-                      {...register("totalnumber", { required: true })}
+                      {...register("totalnumber", {
+                        required: "사용 인원은 필수 입력사항입니다.",
+                      })}
                       className="shadow appearance-none border rounded w-[400px] h-[34px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
                       id="totalnumber"
                       type="text"
                       placeholder="총 사용 인원 수 입력"
                     />
-                  </div>
-                </div>
-                <div className="flex flex-row mt-[10px]">
-                  <div className="w-[53px] self-center">
-                    <label
-                      className="block text-gray-700 text-[13px] font-bold"
-                      for="purpose"
-                    >
-                      사용목적
-                    </label>
-                  </div>
-                  <div className="ml-[47px]">
-                    <input
-                      {...register("purpose", { required: true })}
-                      className="shadow appearance-none border rounded w-[400px] h-[34px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
-                      id="purpose"
-                      type="text"
-                      placeholder="사용 목적 입력 "
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-row mt-[10px]">
-                  <div className="w-[53px] self-center">
-                    <label
-                      className="block text-gray-700 text-[13px] font-bold"
-                      for="content"
-                    >
-                      행사내용
-                    </label>
-                  </div>
-                  <div className="ml-[47px]">
-                    <input
-                      {...register("content", { required: true })}
-                      className="shadow appearance-none border rounded w-[400px] h-[34px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
-                      id="content"
-                      type="text"
-                      placeholder="행사 내용 입력"
-                    />
+                    <div className="text-red-600 px-2">
+                      {errors.totalnumber && (
+                        <small role="alert">{errors.totalnumber.message}</small>
+                      )}
+                    </div>
                   </div>
                 </div>
                 <div className="flex flex-row mt-[10px]">
                   <div className="w-[53px]">
                     <label
-                      className="block text-gray-700 text-[13px] font-bold"
+                      className="block mt-[8px] text-gray-700 text-[13px] font-bold"
+                      for="purpose"
+                    >
+                      사용목적
+                    </label>
+                  </div>
+                  <div className="ml-[47px] h-[50px]">
+                    <input
+                      {...register("purpose", {
+                        required: "사용 목적은 필수 입력사항입니다.",
+                      })}
+                      className="shadow appearance-none border rounded w-[400px] h-[34px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
+                      id="purpose"
+                      type="text"
+                      placeholder="사용 목적 입력 "
+                    />
+                    <div className="text-red-600 px-2">
+                      {errors.purpose && (
+                        <small role="alert">{errors.purpose.message}</small>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-row mt-[10px]">
+                  <div className="w-[53px]">
+                    <label
+                      className="block mt-[8px] text-gray-700 text-[13px] font-bold"
+                      for="content"
+                    >
+                      행사내용
+                    </label>
+                  </div>
+                  <div className="ml-[47px] h-[50px]">
+                    <input
+                      {...register("content", {
+                        required: "행사 내용은 필수 입력사항입니다.",
+                      })}
+                      className="shadow appearance-none border rounded w-[400px] h-[34px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
+                      id="content"
+                      type="text"
+                      placeholder="행사 내용 입력"
+                    />
+                    <div className="text-red-600 px-2">
+                      {errors.content && (
+                        <small role="alert">{errors.content.message}</small>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-row mt-[10px]">
+                  <div className="w-[53px]">
+                    <label
+                      className="block mt-[8px] text-gray-700 text-[13px] font-bold"
                       for="etc"
                     >
                       기타사항
@@ -231,7 +279,7 @@ const Reservationtime = () => {
           <PickFacility
             facilityname="대운동장"
             picture="/groud.jpeg"
-            date={date.slice(0,15)}
+            date={date.slice(0, 15)}
             time={reservationTime}
           />
           <button
