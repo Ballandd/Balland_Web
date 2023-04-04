@@ -3,9 +3,14 @@ import { useRouter } from "next/router"
 import { useForm } from "react-hook-form"
 import axios from "axios"
 import PickFacility from "../../../components/PickFacility"
+import useModal from "../../../components/Modal/useModal"
+import Modal from "../../../components/Modal"
 const Reservationtime = () => {
   const [reservationTime, setReservationTime] = useState("")
   const router = useRouter()
+  const [dialog, setDialog] = useState(null);
+  const [reservestate, setReservestate] = useState(false)
+  const [reservedate, setReservedate] = useState('')
   const { time, date } = router.query || []
   const {
     register,
@@ -32,16 +37,39 @@ const Reservationtime = () => {
       })
       .then((response) => {
         alert("예약완료")
+        router.push('/')
       })
   }
+  const { openModal } = useModal(dialog);
+  const openModalfunction = async (data) => {
+    openModal()
+    setReservedate(data)
+  }
+  const modalState = () => {
+    setReservestate(true)
+  }
   useEffect(() => {
-    console.log(router)
     const maxtime = Number(time) + 2
     setReservationTime(`${time}:00 ~ ${maxtime}:00`)
   }, [])
+  useEffect(() => {
+    setDialog(document.querySelector('dialog'));
+  }, []);
+  useEffect(() => {
+    if (reservestate == true){
+    reservationInfoRegister(reservedate)
+    setReservestate(false)
+    }
+  }, [reservestate]);
   return (
     <div className="grid justify-items-center">
-      <form onSubmit={handleSubmit(reservationInfoRegister)} className="flex">
+      <Modal
+          title="예약 정보가 맞나요?"
+          date={date}
+          time={reservationTime}
+          selected = {()=>modalState()}
+        />
+      <form onSubmit={handleSubmit(openModalfunction)} className="flex">
         <div className="grid grid-row">
           <div className="w-[570px] h-[330px] bg-white">
             <div className="divide-y-2 divide-solid divide-black">
