@@ -11,17 +11,17 @@ export default async function handler(
     const { date } = req.body.body
     const clone = new Date(date)
     clone.setDate(clone.getDate() + 1)
-    // if(await db.collection('reservationperdate').findOne({date:clone})== null){
-    //   const status = await db.collection('reservationperdate').insertOne({
-    //     8:true,
-    //     10:true,
-    //     12:true,
-    //     14:true,
-    //     16:true,
-    //     18:true,
-    //     date: clone
-    //   });
-    // }
+    if(await db.collection('reservationperdate').findOne({date:clone})== null){
+      const status = await db.collection('reservationperdate').insertOne({
+        8:true,
+        10:true,
+        12:true,
+        14:true,
+        16:true,
+        18:true,
+        date: clone
+      });
+    }
     const readdatereservation = await db
       .collection("reservationperdate")
       .findOne({ date: clone })

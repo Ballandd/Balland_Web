@@ -12,12 +12,15 @@ const Reservationtime = () => {
   const [reservestate, setReservestate] = useState(false)
   const [reservedate, setReservedate] = useState('')
   const { time, date } = router.query || []
+  const [viewDate, setViewDate] = useState('')
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, isDirty, errors },
   } = useForm()
   const reservationInfoRegister = async (data) => {
+    const clone = new Date(date)
+    clone.setDate(clone.getDate() + 1)
     await axios
       .post("/api/reservation/creatReservation", {
         method: "POST",
@@ -31,7 +34,8 @@ const Reservationtime = () => {
           purpose: data.purpose,
           eventContent: data.content,
           etc: data.etc,
-          reservationDate: new Date(date),
+          time : time,
+          reservationDate: clone,
           userId: "641022b7c1908749c5d41308",
         },
       })
@@ -307,7 +311,7 @@ const Reservationtime = () => {
           <PickFacility
             facilityname="대운동장"
             picture="/groud.jpeg"
-            date={date.slice(0, 15)}
+            date={date}
             time={reservationTime}
           />
           <button
