@@ -23,7 +23,7 @@ const Reservationtime = () => {
     console.log(clone.toISOString())
     clone.setDate(clone.getDate() + 1)
     await axios
-      .post("/api/reservation/creatReservation", {
+      .post("http://54.180.8.70:5001/reservation/createReservation", {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
@@ -86,7 +86,7 @@ const Reservationtime = () => {
                   <div className="w-[53px]">
                     <label
                       className="block mt-[8px] text-gray-700 text-[13px] font-bold"
-                      for="username"
+                      htmlFor="username"
                     >
                       신청자명
                     </label>
@@ -112,7 +112,7 @@ const Reservationtime = () => {
                   <div className="w-[53px]">
                     <label
                       className="block mt-[8px] text-gray-700 text-[13px] font-bold"
-                      for="phonenumber"
+                      htmlFor="phonenumber"
                     >
                       연락처
                     </label>
@@ -142,7 +142,7 @@ const Reservationtime = () => {
                   <div className="w-[53px]">
                     <label
                       className="block mt-[8px] text-gray-700 text-[13px] font-bold"
-                      for="email"
+                      htmlFor="email"
                     >
                       이메일
                     </label>
@@ -172,7 +172,7 @@ const Reservationtime = () => {
                   <div className="w-[53px]">
                     <label
                       className="block mt-[8px] text-gray-700 text-[13px] font-bold"
-                      for="studentid"
+                      htmlFor="studentid"
                     >
                       학번
                     </label>
@@ -211,7 +211,7 @@ const Reservationtime = () => {
                   <div className="w-[53px]">
                     <label
                       className="block mt-[8px] text-gray-700 text-[13px] font-bold"
-                      for="totalnumber"
+                      htmlFor="totalnumber"
                     >
                       인원
                     </label>
@@ -237,7 +237,7 @@ const Reservationtime = () => {
                   <div className="w-[53px]">
                     <label
                       className="block mt-[8px] text-gray-700 text-[13px] font-bold"
-                      for="purpose"
+                      htmlFor="purpose"
                     >
                       사용목적
                     </label>
@@ -263,7 +263,7 @@ const Reservationtime = () => {
                   <div className="w-[53px]">
                     <label
                       className="block mt-[8px] text-gray-700 text-[13px] font-bold"
-                      for="content"
+                      htmlFor="content"
                     >
                       행사내용
                     </label>
@@ -289,7 +289,7 @@ const Reservationtime = () => {
                   <div className="w-[53px]">
                     <label
                       className="block mt-[8px] text-gray-700 text-[13px] font-bold"
-                      for="etc"
+                      htmlFor="etc"
                     >
                       기타사항
                     </label>

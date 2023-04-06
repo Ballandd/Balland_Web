@@ -26,14 +26,20 @@ export default function MyApp() {
     "16:00 ~ 18:00",
     "18:00 ~ 20:00",
   ]
+  // 54.180.8.70
   const reservationstatus = [eight, ten, twelve, fourteen, sixteen, eightteen]
   const onClick = async () => {
+    var year = value.getFullYear();
+    var month = ('0' + (value.getMonth() + 1)).slice(-2);
+    var day = ('0' + (value.getDate())).slice(-2);
+    var dateString = new Date(`${year}-${month}-${day}T15:00:00.000Z`)
+    dateString.setDate(dateString.getDate()-1)
     await axios
       .post("http://54.180.8.70:5001/reservation/bigground", {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
-          date: value.setDate(value.getDate() + 1)
+          date: dateString
         },
       })
       .then((response) => {
@@ -55,7 +61,6 @@ export default function MyApp() {
   useEffect(() => {
     onClick()
     setChoiceTime(false)
-    console.log(value)
   }, [value])
 
   useEffect(() => {
