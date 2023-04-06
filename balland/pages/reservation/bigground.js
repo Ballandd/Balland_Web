@@ -29,20 +29,21 @@ export default function MyApp() {
   const reservationstatus = [eight, ten, twelve, fourteen, sixteen, eightteen]
   const onClick = async () => {
     await axios
-      .post("/api/reservation/bigground", {
+      .post("http://54.180.8.70:5001/reservation/bigground", {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
-          date: value,
+          date: value.setDate(value.getDate() + 1)
         },
       })
       .then((response) => {
-        setEight(response.data[8])
-        setTen(response.data[10])
-        setTwelve(response.data[12])
-        setFourteen(response.data[14])
-        setSixteen(response.data[16])
-        setEightteen(response.data[18])
+        console.log(response.data)
+        setEight(response.data.data[8])
+        setTen(response.data.data[10])
+        setTwelve(response.data.data[12])
+        setFourteen(response.data.data[14])
+        setSixteen(response.data.data[16])
+        setEightteen(response.data.data[18])
       })
   }
   const timeClick = (idx) => {
@@ -54,6 +55,7 @@ export default function MyApp() {
   useEffect(() => {
     onClick()
     setChoiceTime(false)
+    console.log(value)
   }, [value])
 
   useEffect(() => {

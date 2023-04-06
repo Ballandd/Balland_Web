@@ -8,11 +8,11 @@ import Modal from "../../../components/Modal"
 const Reservationtime = () => {
   const [reservationTime, setReservationTime] = useState("")
   const router = useRouter()
-  const [dialog, setDialog] = useState(null);
+  const [dialog, setDialog] = useState(null)
   const [reservestate, setReservestate] = useState(false)
-  const [reservedate, setReservedate] = useState('')
+  const [reservedate, setReservedate] = useState("")
   const { time, date } = router.query || []
-  const [viewDate, setViewDate] = useState('')
+  const [viewDate, setViewDate] = useState("")
   const {
     register,
     handleSubmit,
@@ -20,6 +20,7 @@ const Reservationtime = () => {
   } = useForm()
   const reservationInfoRegister = async (data) => {
     const clone = new Date(date)
+    console.log(clone.toISOString())
     clone.setDate(clone.getDate() + 1)
     await axios
       .post("/api/reservation/creatReservation", {
@@ -34,17 +35,17 @@ const Reservationtime = () => {
           purpose: data.purpose,
           eventContent: data.content,
           etc: data.etc,
-          time : time,
-          reservationDate: clone,
+          time: time,
+          reservationDate: clone.toISOString(),
           userId: "641022b7c1908749c5d41308",
         },
       })
       .then((response) => {
         alert("예약완료")
-        router.push('/')
+        router.push("/")
       })
   }
-  const { openModal } = useModal(dialog);
+  const { openModal } = useModal(dialog)
   const openModalfunction = async (data) => {
     openModal()
     setReservedate(data)
@@ -57,22 +58,22 @@ const Reservationtime = () => {
     setReservationTime(`${time}:00 ~ ${maxtime}:00`)
   }, [])
   useEffect(() => {
-    setDialog(document.querySelector('dialog'));
-  }, []);
+    setDialog(document.querySelector("dialog"))
+  }, [])
   useEffect(() => {
-    if (reservestate == true){
-    reservationInfoRegister(reservedate)
-    setReservestate(false)
+    if (reservestate == true) {
+      reservationInfoRegister(reservedate)
+      setReservestate(false)
     }
-  }, [reservestate]);
+  }, [reservestate])
   return (
     <div className="grid justify-items-center">
       <Modal
-          title="예약 정보가 맞나요?"
-          date={date}
-          time={reservationTime}
-          selected = {()=>modalState()}
-        />
+        title="예약 정보가 맞나요?"
+        date={date}
+        time={reservationTime}
+        selected={() => modalState()}
+      />
       <form onSubmit={handleSubmit(openModalfunction)} className="flex">
         <div className="grid grid-row">
           <div className="w-[570px] h-[330px] bg-white">

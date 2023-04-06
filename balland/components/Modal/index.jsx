@@ -1,17 +1,17 @@
-import { useState,useEffect } from 'react';
-import useModal from './useModal';
+import { useState, useEffect } from "react"
+import useModal from "./useModal"
 
 export default function Modal(props) {
-  const { title, date, time, selected } = props;
-  const [dialog, setDialog] = useState('')
-  const { closeModal } = useModal(dialog);
+  const { title, date, time, selected } = props
+  const [dialog, setDialog] = useState("")
+  const { closeModal } = useModal(dialog)
   useEffect(() => {
-    setDialog(document.querySelector('dialog'))
-  }, []);
+    setDialog(document.querySelector("dialog"))
+  }, [])
 
   const confirmAction = () => {
     selected()
-    closeModal();
+    closeModal()
   }
 
   return (
@@ -21,10 +21,13 @@ export default function Modal(props) {
       <h3 className="font-400 text-[26px]">{time}</h3>
       <h3 className="font-400 text-gray-400 text-[16px]">{time}</h3>
       <div className="flex text-[17px] justify-around w-full pt-8">
-        <button className="font-light" onClick={closeModal}>취소</button>
-        <button className="text-primary-main font-bold" onClick={confirmAction}>확인</button>
+        <button className="font-light" onClick={closeModal}>
+          취소
+        </button>
+        <button className="text-primary-main font-bold" onClick={confirmAction}>
+          확인
+        </button>
       </div>
     </dialog>
   )
 }
-
