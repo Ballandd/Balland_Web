@@ -5,14 +5,18 @@ import axios from "axios"
 import PickFacility from "../../../components/PickFacility"
 import useModal from "../../../components/Modal/useModal"
 import Modal from "../../../components/Modal"
+import { useSession } from "next-auth/react"
 const Reservationtime = () => {
+  const {data : session, status } = useSession()
   const [reservationTime, setReservationTime] = useState("")
   const router = useRouter()
   const [dialog, setDialog] = useState(null)
   const [reservestate, setReservestate] = useState(false)
   const [reservedate, setReservedate] = useState("")
   const { time, date } = router.query || []
-  const [viewDate, setViewDate] = useState("")
+  const [viewyear, setviewYear] = useState("")
+  const [viewmonth, setviewMonth] = useState("")
+  const [viewdate, setviewDate] = useState("")
   const {
     register,
     handleSubmit,
@@ -20,10 +24,9 @@ const Reservationtime = () => {
   } = useForm()
   const reservationInfoRegister = async (data) => {
     const clone = new Date(date)
-    console.log(clone.toISOString())
     clone.setDate(clone.getDate() + 1)
     await axios
-      .post("http://54.180.8.70:5001/reservation/createReservation", {
+      .post("http://localhost:5001/reservation/createReservation", {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
@@ -37,7 +40,7 @@ const Reservationtime = () => {
           etc: data.etc,
           time: time,
           reservationDate: clone.toISOString(),
-          userId: "641022b7c1908749c5d41308",
+          userId: session.user.email,
         },
       })
       .then((response) => {
@@ -56,6 +59,10 @@ const Reservationtime = () => {
   useEffect(() => {
     const maxtime = Number(time) + 2
     setReservationTime(`${time}:00 ~ ${maxtime}:00`)
+    const viewdate = new Date(date)
+    setviewYear(viewdate.getFullYear())
+    setviewMonth(viewdate.getMonth()+1)
+    setviewDate(viewdate.getDate())
   }, [])
   useEffect(() => {
     setDialog(document.querySelector("dialog"))
@@ -70,7 +77,7 @@ const Reservationtime = () => {
     <div className="grid justify-items-center">
       <Modal
         title="예약 정보가 맞나요?"
-        date={date}
+        date={`${viewyear}년 ${viewmonth}월 ${viewdate}일`}
         time={reservationTime}
         selected={() => modalState()}
       />
@@ -312,7 +319,7 @@ const Reservationtime = () => {
           <PickFacility
             facilityname="대운동장"
             picture="/groud.jpeg"
-            date={date}
+            date={`${viewyear}년 ${viewmonth}월 ${viewdate}일`}
             time={reservationTime}
           />
           <button
