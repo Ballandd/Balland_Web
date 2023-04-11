@@ -46,6 +46,12 @@ const Navbar = () => {
               >
                 동아리 정보
               </a>
+              <a
+                href="/checkreservation"
+                className="py-5 px-3 text-gray-700 hover:text-gray-900"
+              >
+                예약정보 확인
+              </a>
             </div>
           </div>
 
