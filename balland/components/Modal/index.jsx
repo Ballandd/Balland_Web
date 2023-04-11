@@ -20,10 +20,10 @@ export default function Modal(props) {
       <h2 className="font-bold text-primary-dark text-[24px]">{date}</h2>
       <h3 className="font-400 text-[26px]">{time}</h3>
       <div className="flex text-[17px] justify-around w-full pt-8">
-        <button className="font-light" onClick={closeModal}>
+        <button className="font-bold text-red-600" onClick={closeModal}>
           취소
         </button>
-        <button className="text-primary-main font-bold" onClick={confirmAction}>
+        <button className="text-primary-main font-bold text-blue-600" onClick={confirmAction}>
           확인
         </button>
       </div>
