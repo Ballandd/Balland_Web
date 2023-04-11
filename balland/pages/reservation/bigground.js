@@ -6,6 +6,7 @@ import { DatePicker } from "@mantine/dates"
 import { Group } from "@mantine/core"
 import ReserveTime from "../../components/ReserveTime.tsx"
 import Link from "next/link"
+import { Router } from "next/router"
 export default function MyApp() {
   const [value, setValue] = useState(new Date())
   const [mindate, setMindate] = useState(new Date())
@@ -43,7 +44,6 @@ export default function MyApp() {
         },
       })
       .then((response) => {
-        console.log(response.data)
         setEight(response.data.data[8])
         setTen(response.data.data[10])
         setTwelve(response.data.data[12])
@@ -124,10 +124,13 @@ export default function MyApp() {
         <Link
           href={{
             pathname: "/reservation/bigground/[time]",
-            query: { time: linktime, date: String(value) },
+            query: { viewtime : linktime, time: linktime, date: String(value) },
+            
           }}
+          as = "/reservation/bigground/reservationdetail"
         >
-          <button className="w-[350px] h-[60px] ml-[20px] bg-blue-600 rounded-lg text-white text-[20px]">
+          <button 
+            className="w-[350px] h-[60px] ml-[20px] bg-blue-600 rounded-lg text-white text-[20px]">
             예약 하기
           </button>
         </Link>

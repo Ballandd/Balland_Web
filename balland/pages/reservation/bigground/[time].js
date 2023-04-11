@@ -6,14 +6,15 @@ import PickFacility from "../../../components/PickFacility"
 import useModal from "../../../components/Modal/useModal"
 import Modal from "../../../components/Modal"
 import { useSession } from "next-auth/react"
-const Reservationtime = () => {
+import Link from "next/link"
+const Reservationtime = (props) => {
   const {data : session, status } = useSession()
   const [reservationTime, setReservationTime] = useState("")
   const router = useRouter()
   const [dialog, setDialog] = useState(null)
   const [reservestate, setReservestate] = useState(false)
   const [reservedate, setReservedate] = useState("")
-  const { time, date } = router.query || []
+  const { viewtime, date } = router.query || []
   const [viewyear, setviewYear] = useState("")
   const [viewmonth, setviewMonth] = useState("")
   const [viewdate, setviewDate] = useState("")
@@ -57,8 +58,8 @@ const Reservationtime = () => {
     setReservestate(true)
   }
   useEffect(() => {
-    const maxtime = Number(time) + 2
-    setReservationTime(`${time}:00 ~ ${maxtime}:00`)
+    const maxtime = Number(viewtime) + 2
+    setReservationTime(`${viewtime}:00 ~ ${maxtime}:00`)
     const viewdate = new Date(date)
     setviewYear(viewdate.getFullYear())
     setviewMonth(viewdate.getMonth()+1)
@@ -79,7 +80,7 @@ const Reservationtime = () => {
         title="예약 정보가 맞나요?"
         date={`${viewyear}년 ${viewmonth}월 ${viewdate}일`}
         time={reservationTime}
-        name = {session.user.email}
+        name = {session?.user.email}
         selected={() => modalState()}
       />
       <form onSubmit={handleSubmit(openModalfunction)} className="flex">
@@ -329,9 +330,13 @@ const Reservationtime = () => {
           >
             예약 하기
           </button>
-          <button className="w-[350px] h-[60px] mt-[24px] ml-[20px] bg-slate-600 rounded-lg text-white text-[20px]">
-            취소 하기
-          </button>
+          <Link
+            href = "/reservation/bigground"
+            className="w-[350px] h-[60px] mt-[24px] ml-[20px] bg-slate-600 rounded-lg text-white text-[20px] "
+          >
+            <h2 className = "">취소 하기</h2>
+            
+          </Link>
         </div>
       </form>
     </div>
