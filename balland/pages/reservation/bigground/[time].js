@@ -334,8 +334,7 @@ const Reservationtime = (props) => {
             href = "/reservation/bigground"
             className="w-[350px] h-[60px] mt-[24px] ml-[20px] bg-slate-600 rounded-lg text-white text-[20px] "
           >
-            <h2 className = "">취소 하기</h2>
-            
+            <p className = "mt-[14px] text-center">취소 하기</p>
           </Link>
         </div>
       </form>
