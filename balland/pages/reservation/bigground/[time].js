@@ -79,6 +79,7 @@ const Reservationtime = () => {
         title="예약 정보가 맞나요?"
         date={`${viewyear}년 ${viewmonth}월 ${viewdate}일`}
         time={reservationTime}
+        name = {session.user.email}
         selected={() => modalState()}
       />
       <form onSubmit={handleSubmit(openModalfunction)} className="flex">
