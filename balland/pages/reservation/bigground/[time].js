@@ -39,7 +39,7 @@ const Reservationtime = (props) => {
           purpose: data.purpose,
           eventContent: data.content,
           etc: data.etc,
-          time: time,
+          time: viewtime,
           reservationDate: clone.toISOString(),
           userId: session.user.email,
         },
