@@ -15,7 +15,7 @@ const CompetitionInformation = (props: CompetitionInformationProps) => {
     <div className="static w-[460px] h-[190px] rounded border-2 bg-white">
       <div className="mt-[20px] ml-[20px] mr-[20px] left-9 top-5">
         <div className="flex flex-row">
-          <div className="w-[160px] flex flex-col">
+          <div className="w-[130px] flex flex-col">
             <img className="h-[110px]" src={props.picture} />
             {isStatus === 2 ? (
               <div className="mt-3 border rounded border-sky-600">
@@ -53,9 +53,9 @@ const CompetitionInformation = (props: CompetitionInformationProps) => {
                   </h2>
                 </div>
                 <div className="flex flex-row mt-3 left-9 top-5 ">
-                  <Icon icon="material-symbols:location-on" width="15" />
+                  <Icon icon="material-symbols:attach-money" width="15" />
                   <h2 className="ml-2 font-mono text-left text-[12px]">
-                    {props.prize}
+                    {props.prize}원
                   </h2>
                 </div>
               </div>

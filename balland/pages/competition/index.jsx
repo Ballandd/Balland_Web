@@ -27,7 +27,7 @@ export default function Competition(props) {
                   name={compete.title}
                   period={
                     `${String(compete.startdate).substring(0, 10)}` +
-                    "~" +
+                    " ~ " +
                     `${String(compete.enddate).substring(0, 10)}`
                   }
                   part={compete.host}
