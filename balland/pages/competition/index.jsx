@@ -21,7 +21,13 @@ export default function Competition(props) {
                   : "grid justify-items-end"
               }`}
             >
-              <Link href={`/competition/${compete._id}`}>
+              <Link 
+                href={{
+                  pathname : "/competition/[id]",
+                  query : {id : compete._id, viewid : compete._id}
+                }}
+                as="/competition/competitiondetail"
+              >
                 <CompetitionInformation
                   picture={compete.picture}
                   name={compete.title}
