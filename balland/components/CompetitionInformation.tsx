@@ -12,11 +12,11 @@ export interface CompetitionInformationProps {
 const CompetitionInformation = (props: CompetitionInformationProps) => {
   const isStatus = props.status
   return (
-    <div className="w-96 h-48 rounded border-2 bg-white">
-      <div className="mt-5 ml-5 mr-5 left-9 top-5">
+    <div className="static w-[460px] h-[190px] rounded border-2 bg-white">
+      <div className="mt-[20px] ml-[20px] mr-[20px] left-9 top-5">
         <div className="flex flex-row">
-          <div className="w-40 flex flex-col">
-            <img className="h-28" src={props.picture} />
+          <div className="w-[160px] flex flex-col">
+            <img className="h-[110px]" src={props.picture} />
             {isStatus === 2 ? (
               <div className="mt-3 border rounded border-sky-600">
                 <h2 className="text-center text-sky-700"> 진행중</h2>

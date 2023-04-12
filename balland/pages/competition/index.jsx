@@ -11,12 +11,12 @@ export default function Competition(props) {
         <title>대회 정보</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="w-full h-full left-1/2 top-1/2 ">
         <div className="grid gap-4 grid-flow-row grid-cols-2">
-          {producs.map((compete) => (
+          {producs.map((compete,index) => ( 
             <div
+              key = {index}
               className={`${
-                compete.id % 2 == 0
+                index % 2 == 1
                   ? "grid justify-items-start"
                   : "grid justify-items-end"
               }`}
@@ -39,7 +39,6 @@ export default function Competition(props) {
           ))}
         </div>
       </div>
-    </div>
   )
 }
 export async function getStaticProps(context) {
