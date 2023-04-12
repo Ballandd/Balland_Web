@@ -21,7 +21,8 @@
     "**/*.tsx",
     "pages/_app.js",
     "pages/index.js",
-    "middleware.js"
-, "pages/competition/index.jsx"  ],
+    "middleware.js",
+    "pages/competition/index.jsx"
+  ],
   "exclude": ["node_modules"]
 }

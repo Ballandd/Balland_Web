@@ -23,7 +23,10 @@ export default function Modal(props) {
         <button className="font-bold text-red-600" onClick={closeModal}>
           취소
         </button>
-        <button className="text-primary-main font-bold text-blue-600" onClick={confirmAction}>
+        <button
+          className="text-primary-main font-bold text-blue-600"
+          onClick={confirmAction}
+        >
           확인
         </button>
       </div>

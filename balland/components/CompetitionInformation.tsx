@@ -17,21 +17,19 @@ const CompetitionInformation = (props: CompetitionInformationProps) => {
         <div className="flex flex-row">
           <div className="w-40 flex flex-col">
             <img className="h-28" src={props.picture} />
-            {
-            isStatus === 2 ? (
+            {isStatus === 2 ? (
               <div className="mt-3 border rounded border-sky-600">
                 <h2 className="text-center text-sky-700"> 진행중</h2>
               </div>
-            ) : ( isStatus === 3?
+            ) : isStatus === 3 ? (
               <div className="mt-3 border rounded border-red-600">
                 <h2 className="text-center text-red-600"> 진행완료</h2>
               </div>
-              :
+            ) : (
               <div className="mt-3 border rounded border-green-600">
                 <h2 className="text-center text-green-600"> 진행예정</h2>
               </div>
-            )
-            }
+            )}
           </div>
           <div>
             <div className="divide-y-2 divide-solid divide-black">

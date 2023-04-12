@@ -30,17 +30,17 @@ export default function MyApp() {
   // 54.180.8.70
   const reservationstatus = [eight, ten, twelve, fourteen, sixteen, eightteen]
   const onClick = async () => {
-    var year = value.getFullYear();
-    var month = ('0' + (value.getMonth() + 1)).slice(-2);
-    var day = ('0' + (value.getDate())).slice(-2);
+    var year = value.getFullYear()
+    var month = ("0" + (value.getMonth() + 1)).slice(-2)
+    var day = ("0" + value.getDate()).slice(-2)
     var dateString = new Date(`${year}-${month}-${day}T15:00:00.000Z`)
-    dateString.setDate(dateString.getDate()-1)
+    dateString.setDate(dateString.getDate() - 1)
     await axios
       .post("http://localhost:5001/reservation/bigground", {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
-          date: dateString
+          date: dateString,
         },
       })
       .then((response) => {
@@ -124,13 +124,11 @@ export default function MyApp() {
         <Link
           href={{
             pathname: "/reservation/bigground/[time]",
-            query: { viewtime : linktime, time: linktime, date: String(value) },
-            
+            query: { viewtime: linktime, time: linktime, date: String(value) },
           }}
-          as = "/reservation/bigground/reservationdetail"
+          as="/reservation/bigground/reservationdetail"
         >
-          <button 
-            className="w-[350px] h-[60px] ml-[20px] bg-blue-600 rounded-lg text-white text-[20px]">
+          <button className="w-[350px] h-[60px] ml-[20px] bg-blue-600 rounded-lg text-white text-[20px]">
             예약 하기
           </button>
         </Link>

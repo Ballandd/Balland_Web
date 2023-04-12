@@ -25,7 +25,11 @@ export default function Competition(props) {
                 <CompetitionInformation
                   picture={compete.picture}
                   name={compete.title}
-                  period={`${String(compete.startdate).substring(0,10)}`+"~"+`${String(compete.enddate).substring(0,10)}`}
+                  period={
+                    `${String(compete.startdate).substring(0, 10)}` +
+                    "~" +
+                    `${String(compete.enddate).substring(0, 10)}`
+                  }
                   part={compete.host}
                   prize={compete.prize}
                   status={compete.condition}
@@ -38,13 +42,12 @@ export default function Competition(props) {
     </div>
   )
 }
-export async function getStaticProps(context){
+export async function getStaticProps(context) {
   const res = await fetch("http://localhost:5001/competition/getall")
   const data = await res.json()
-  return { 
-    props : {
-      data
-    }
+  return {
+    props: {
+      data,
+    },
   }
 }
-

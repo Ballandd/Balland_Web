@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import clientPromise from "../../../lib/mongodb"
-import express , {Request, Response, NextFunction} from "express"
+import express, { Request, Response, NextFunction } from "express"
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
@@ -30,8 +30,10 @@ export default async function handler(
     //   .insertOne(body)
     // db.collection("reservationInfo").insertOne(body)
     // res.send("Success!")
-    const checkDate = await db.collection("reservationperdate").findOne({date : finddate})
-    if (checkDate){
+    const checkDate = await db
+      .collection("reservationperdate")
+      .findOne({ date: finddate })
+    if (checkDate) {
       console.log(checkDate)
       return res.send(200)
     }

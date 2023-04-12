@@ -10,7 +10,11 @@ export async function middleware(request: NextRequest, event: NextFetchEvent) {
     secret: process.env.AUTH_SECRET,
   })
   const { pathname } = request.nextUrl
-  if (pathname.startsWith("/login") || pathname.startsWith("/reservation") || pathname.startsWith("/checkreservation")) {
+  if (
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/reservation") ||
+    pathname.startsWith("/checkreservation")
+  ) {
     if (!session) {
       return NextResponse.redirect(new URL("/", request.url))
     }

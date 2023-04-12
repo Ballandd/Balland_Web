@@ -8,7 +8,7 @@ import Modal from "../../../components/Modal"
 import { useSession } from "next-auth/react"
 import Link from "next/link"
 const Reservationtime = (props) => {
-  const {data : session, status } = useSession()
+  const { data: session, status } = useSession()
   const [reservationTime, setReservationTime] = useState("")
   const router = useRouter()
   const [dialog, setDialog] = useState(null)
@@ -62,7 +62,7 @@ const Reservationtime = (props) => {
     setReservationTime(`${viewtime}:00 ~ ${maxtime}:00`)
     const viewdate = new Date(date)
     setviewYear(viewdate.getFullYear())
-    setviewMonth(viewdate.getMonth()+1)
+    setviewMonth(viewdate.getMonth() + 1)
     setviewDate(viewdate.getDate())
   }, [])
   useEffect(() => {
@@ -80,7 +80,7 @@ const Reservationtime = (props) => {
         title="예약 정보가 맞나요?"
         date={`${viewyear}년 ${viewmonth}월 ${viewdate}일`}
         time={reservationTime}
-        name = {session?.user.email}
+        name={session?.user.email}
         selected={() => modalState()}
       />
       <form onSubmit={handleSubmit(openModalfunction)} className="flex">
@@ -331,10 +331,10 @@ const Reservationtime = (props) => {
             예약 하기
           </button>
           <Link
-            href = "/reservation/bigground"
+            href="/reservation/bigground"
             className="w-[350px] h-[60px] mt-[24px] ml-[20px] bg-slate-600 rounded-lg text-white text-[20px] "
           >
-            <p className = "mt-[14px] text-center">취소 하기</p>
+            <p className="mt-[14px] text-center">취소 하기</p>
           </Link>
         </div>
       </form>
