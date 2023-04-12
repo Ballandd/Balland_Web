@@ -1,10 +1,10 @@
 import Head from "next/head"
+import axios from "axios"
 import CompetitionInformation from "../../components/CompetitionInformation.tsx"
-import posts from "../competition.json"
 import Link from "next/link"
-export default function Competition() {
-  const producs = posts
-  console.log(producs[1].id % 2)
+
+export default function Competition(props) {
+  const producs = props.data.data
   return (
     <div>
       <Head>
@@ -21,14 +21,14 @@ export default function Competition() {
                   : "grid justify-items-end"
               }`}
             >
-              <Link href={`/competition/${compete.id}`}>
+              <Link href={`/competition/${compete._id}`}>
                 <CompetitionInformation
                   picture={compete.picture}
-                  name={compete.name}
-                  period={compete.period}
-                  part={compete.part}
+                  name={compete.title}
+                  period={`${String(compete.startdate).substring(0,10)}`+"~"+`${String(compete.enddate).substring(0,10)}`}
+                  part={compete.host}
                   prize={compete.prize}
-                  status={compete.status}
+                  status={compete.condition}
                 />
               </Link>
             </div>
@@ -38,3 +38,13 @@ export default function Competition() {
     </div>
   )
 }
+export async function getStaticProps(context){
+  const res = await fetch("http://localhost:5001/competition/getall")
+  const data = await res.json()
+  return { 
+    props : {
+      data
+    }
+  }
+}
+
