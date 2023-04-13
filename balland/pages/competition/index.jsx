@@ -11,7 +11,8 @@ export default function Competition(props) {
         <title>대회 정보</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-        <div className="grid gap-4 grid-flow-row grid-cols-2">
+      <div className = "w-[1200px] lg:w-[100%] grid justify-items-center ">
+        <div className=" grid grid-cols-2 gap-4">
           {producs.map((compete,index) => ( 
             <div
               key = {index}
@@ -24,9 +25,9 @@ export default function Competition(props) {
               <Link 
                 href={{
                   pathname : "/competition/[id]",
-                  query : {id : compete._id, viewid : compete._id}
+                  query : {id : compete._id}
                 }}
-                as="/competition/competitiondetail"
+                // as="/competition/competitiondetail"
               >
                 <CompetitionInformation
                   picture={compete.picture}
@@ -44,6 +45,7 @@ export default function Competition(props) {
             </div>
           ))}
         </div>
+      </div>
       </div>
   )
 }

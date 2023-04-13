@@ -4,9 +4,8 @@ import GroupRank from "../../components/GroupRank.tsx"
 import Tournament from "../../components/Tournament.tsx"
 import { useRouter } from "next/router"
 
-const CompetitionDetail = () => {
-  const router = useRouter()
-  const { id } = router.query
+export default function CompetitionDetail({props}) {
+  console.log(props)
 
   const grouplist = [
     "A조",
@@ -16,7 +15,7 @@ const CompetitionDetail = () => {
   ]
  
   return (
-    <div classNaem="flex flex-col mt-5 justify-items-center">
+    <div className="flex flex-col mt-5 justify-items-center">
       <div className="flex flex-row">
         {grouplist.map((group) => (
           <div className="mr-2.5">
@@ -69,4 +68,22 @@ const CompetitionDetail = () => {
     </div>
   )
 }
-export default CompetitionDetail
+export async function getStaticPaths() {
+	const res = await fetch('http://localhost:3000/competition/')
+  const posts = await res.json()
+  console.log(posts)
+	return {
+		paths : posts,
+		fallback: false,
+	};
+}
+// export async function getStaticProps(context) {
+//   console.log(context)
+//   // const res = await fetch(`http://localhost:5001/competition/detail?id=${params.id}`)
+//   // const data = await res.json()
+//   return {
+//     props: {
+//       context,
+//     },
+//   }
+// }
