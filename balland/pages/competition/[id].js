@@ -1,6 +1,7 @@
 import CompetitionResult from "../../components/CompetitionResult.tsx"
 import GroupRank from "../../components/GroupRank.tsx"
 import Tournament from "../../components/Tournament.tsx"
+import Image from 'next/image'
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import axios from "axios"
@@ -14,6 +15,9 @@ export default function CompetitionDetail() {
   const [duringdate, setDuringdate] = useState(null)
   const [selectedDate, setselectedDate] = useState(null)
   const [gamedetailinfobydate, setGamedatailinfobydate] = useState(null)
+  const [grouplist, setGrouplist] = useState([])
+  const [isCategorySelect, setIsCategorySelect] = useState(false);
+
   const {viewid} = router.query || []
   function getDatesStartToLast(startDate, lastDate) {
     var result = [];
@@ -53,12 +57,20 @@ export default function CompetitionDetail() {
         setGamedatailinfobydate(response.data.data)
       })
   }
-  const grouplist = [
-    "A조",
-    "B조",
-    "C조",
-  ]
-  const [isCategorySelect, setIsCategorySelect] = useState(false);
+  const getgrouplist = async() => {
+    await axios
+      .post("http://localhost:5001/groupinfo/getbycompetitionid", {
+        method: "POST",
+        Headers: { "Content-Type": "application/json" },
+        body: {
+          id: viewid,
+        },
+      })
+      .then((response) => {
+        setGrouplist(response.data.data)
+      })
+
+  }
 
   const handleClick = (idx) => {
 	  const newArr = Array(duringdate.length).fill(false);
@@ -67,6 +79,7 @@ export default function CompetitionDetail() {
   };
   useEffect(() => {
     competitiondetail()
+    getgrouplist()
   },[])
   useEffect(() => {
     if(startdate != ''){
@@ -83,25 +96,30 @@ export default function CompetitionDetail() {
   useEffect(() => {
     gameinfobydate()
   },[selectedDate])
+
   return (
-    <div className="flex flex-col mt-5 justify-items-center">
-      <div className="flex flex-row">
-        {grouplist.map((group) => (
+    <div className="flex flex-col mt-5 items-center">
+      <div className={`${grouplist.length >4 ? "w-[940px]" : null} flex justify-items-center overflow-x-auto overflow-y-hidden`}>
+        {grouplist.map((group,index) => (
           <div className="mr-2.5">
             <GroupRank
-              group={group}
-              teamOne="아주대학교"
-              teamTwo="홍익대학교"
-              teamThree="중앙대학교"
+              group={group.name}
+              teamOne={group.rank[1]}
+              teamTwo={group.rank[2]}
+              teamThree={group.rank[3]}
               key = {index}
             />
           </div>
         ))}
       </div>
       <div className="mt-5">
-        <Tournament
-        team="토너먼트"
-        />
+        <Image 
+          src={`https://balland.s3.ap-northeast-2.amazonaws.com/competition/${viewid}.png`}
+          alt="" 
+          width="940"
+          height="410"
+          unoptimized={true}
+          />
       </div>
       <div className="w-[940px] h-full mt-[46px] text-2xl font-extrabold">
         <button className = "w-[940px] flex overflow-x-auto">
