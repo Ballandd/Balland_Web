@@ -5,33 +5,6 @@ import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import axios from "axios"
 import Gamedate from "../../components/Gamedate.tsx"
-let list = [
-  { name: "item1" },
-  { name: "item2" },
-  { name: "item3" },
-  { name: "item4" },
-  { name: "item5" },
-  { name: "item6" },
-  { name: "item7" },
-  { name: "item8" },
-  { name: "item9" },
-  { name: "item10" },
-  { name: "item11" },
-  { name: "item12" },
-  { name: "item13" },
-  { name: "item14" },
-  { name: "item15" },
-  { name: "item16" },
-  { name: "item17" },
-  { name: "item18" },
-  { name: "item19" },
-  { name: "item20" },
-  { name: "item21" },
-  { name: "item22" },
-  { name: "item23" },
-  { name: "item24" },
-  { name: "item25" }
-]; // 임시데이터 선언
 
 export default function CompetitionDetail() {
   const router = useRouter()
@@ -39,6 +12,8 @@ export default function CompetitionDetail() {
   const [startdate, setStartdate] = useState('')
   const [enddate, setEnddate] = useState('')
   const [duringdate, setDuringdate] = useState(null)
+  const [selectedDate, setselectedDate] = useState(null)
+  const [gamedetailinfobydate, setGamedatailinfobydate] = useState(null)
   const {viewid} = router.query || []
   function getDatesStartToLast(startDate, lastDate) {
     var result = [];
@@ -65,20 +40,50 @@ export default function CompetitionDetail() {
         setEnddate(response.data.data.enddate)
       })
   }
+  const gameinfobydate = async () => {
+    await axios
+      .post("http://localhost:5001/gameinfo/getByDate", {
+        method: "POST",
+        Headers: { "Content-Type": "application/json" },
+        body: {
+          date: selectedDate,
+        },
+      })
+      .then((response) => {
+        setGamedatailinfobydate(response.data.data)
+      })
+  }
   const grouplist = [
     "A조",
     "B조",
     "C조",
     "D조",
   ]
+  const [isCategorySelect, setIsCategorySelect] = useState(false);
+
+  const handleClick = (idx) => {
+	  const newArr = Array(duringdate.length).fill(false);
+    newArr[idx] = true;
+	  setIsCategorySelect(newArr);
+  };
   useEffect(() => {
     competitiondetail()
   },[])
   useEffect(() => {
     if(startdate != ''){
-      console.log(getDatesStartToLast(startdate,enddate))
+      getDatesStartToLast(startdate,enddate)
     }
   },[startdate])
+  useEffect(()=>{
+    console.log(isCategorySelect)
+    if(isCategorySelect !=false){
+      const selectedDate = Array.from(isCategorySelect).indexOf(true)
+      setselectedDate(duringdate[selectedDate])
+    }
+  },[isCategorySelect])
+  useEffect(() => {
+    gameinfobydate()
+  },[selectedDate])
   return (
     <div className="flex flex-col mt-5 justify-items-center">
       <div className="flex flex-row">
@@ -98,43 +103,37 @@ export default function CompetitionDetail() {
           team="토너먼트"
         />
       </div>
-      <div className="w-[940px] h-[69px] mt-5 bg-white content-center">
-        <h2 className="font-bold text-[24px] text-center">날짜</h2>
-      </div>
       <div className="w-[940px] h-full mt-[46px] text-2xl font-extrabold">
-      <div className = "w-[940px] flex overflow-x-auto">
-        {duringdate && duringdate.map((item,index) => {
-          return  <Gamedate key = {index} date = {item}/>
-        })} 
-      </div>
+        <button className = "w-[940px] flex overflow-x-auto">
+          {duringdate && duringdate.map((item,index) => {
+            return  <Gamedate 
+                      key = {index} 
+                      date = {item}
+                      isSelected={isCategorySelect[index]}
+                      handleClick={handleClick}
+                      elementIndex={index}
+                      />
+          })} 
+        </button>
       </div>
       <div className="mt-[46px] flex flex-col">
         <div className="pb-2.5">
-          <CompetitionResult
-            Round="32강"
-            Time="17:00"
-            facility="대운동장"
-            status={1}
-            teamA="프라임"
-            teamB="카리스마"
-            scoreA={1}
-            scoreB={0}
-          />
-        </div>
-        <div className="pb-2.5">
-          <CompetitionResult
-            Round="32강"
-            Time="18:00"
-            facility="대운동장"
-            status={1}
-            teamA="줄리메"
-            teamB="오프사이드B"
-            scoreA={0}
-            scoreB={3}
-          />
-        </div>
+          {gamedetailinfobydate && gamedetailinfobydate.map((item,index)=>{
+            return <CompetitionResult
+                      Round = {item.phase}
+                      Time = {item.time}
+                      facility = {item.facility}
+                      status = {item.status}
+                      teamA = {item.team1}
+                      teamB = {item.team2}
+                      scoreA = {item.team1_score}
+                      scoreB = {item.team2_score}
+                      key = {index}
+                      />
+          })}
       </div>
     </div>
+  </div>
   )
 }
 // export async function getStaticPaths() {
