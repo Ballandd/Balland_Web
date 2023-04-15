@@ -117,7 +117,7 @@ const Reservationtime = (props) => {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-row mt-[10px]">
+                <div cla ssName="flex flex-row mt-[10px]">
                   <div className="w-[53px]">
                     <label
                       className="block mt-[8px] text-gray-700 text-[13px] font-bold"
