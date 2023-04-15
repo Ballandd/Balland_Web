@@ -57,7 +57,6 @@ export default function CompetitionDetail() {
     "A조",
     "B조",
     "C조",
-    "D조",
   ]
   const [isCategorySelect, setIsCategorySelect] = useState(false);
 
@@ -94,13 +93,14 @@ export default function CompetitionDetail() {
               teamOne="아주대학교"
               teamTwo="홍익대학교"
               teamThree="중앙대학교"
+              key = {index}
             />
           </div>
         ))}
       </div>
       <div className="mt-5">
         <Tournament
-          team="토너먼트"
+        team="토너먼트"
         />
       </div>
       <div className="w-[940px] h-full mt-[46px] text-2xl font-extrabold">
