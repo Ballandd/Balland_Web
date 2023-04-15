@@ -14,7 +14,7 @@ export default function Layout({ children }: Props) {
           body > div:first-child,
           div#__next,
           div#__next > div {
-            height: 1020px;
+            height: 1500px;
           }
         `}</style>
         {children}

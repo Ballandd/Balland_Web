@@ -23,11 +23,13 @@ export default function Competition(props) {
               }`}
             >
               <Link 
-                href={{
+                href= 
+                {
+                  {
                   pathname : "/competition/[id]",
-                  query : {id : compete._id}
-                }}
-                // as="/competition/competitiondetail"
+                  query : {id : compete._id,viewid : compete._id}
+                }
+              }
               >
                 <CompetitionInformation
                   picture={compete.picture}
