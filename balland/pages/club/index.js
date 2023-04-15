@@ -1,7 +1,7 @@
 import Head from "next/head"
 export default function Club() {
   return (
-    <div>
+    <div className = "h-screen">
       <Head>
         <title>동아리정보</title>
         <link rel="icon" href="/favicon.ico" />

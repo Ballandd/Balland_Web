@@ -12,8 +12,8 @@ export interface infoResultProps {
 const CompetitionResult = (props: infoResultProps) => {
   const isStatus = props.status
   return (
-    <div className="w-[940px] h-[160px] mt-[10px] flex items-center bg-white">
-      <h1 className="text-[24px] font-extrabold basis-[30%] justify-center flex">
+    <div className="xxs:w-[208px] xxs:h-[35px] xs:w-[234px] xs:h-[40px] s:w-[312px] s:h-[53px] sm:w-[416px] sm:h-[70px] md:w-[500px] md:h-[85px] lg:w-[665px] lg:h-[113px] xl:w-[832px] xl:h-[141px] 2xl:w-[940px] 2xl:h-[160px]  mt-[10px] flex items-center bg-white">
+      <h1 className="sm:text-[10px] md:text-[12px] lg:text-[17px] xl:text-[21px] text-[24px] font-extrabold basis-[30%] justify-center flex">
         {props.teamA}
       </h1>
       <h1 className="text-6xl font-extrabold text-[#FF0000] basis-[10%] justify-center flex">
@@ -28,7 +28,7 @@ const CompetitionResult = (props: infoResultProps) => {
           {props.facility}
         </h2>
         {isStatus ? (
-          <div className="w-[120px] h-[30px] py-[5px] text-[13px] font-semibold text-[#555555] bg-[#F2F5F7] mt-2">
+          <div className="w-32 h-[30px] py-[5px] text-[13px] font-semibold text-[#555555] bg-[#F2F5F7] mt-2">
             종료
           </div>
         ) : (

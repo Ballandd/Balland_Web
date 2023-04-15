@@ -12,11 +12,11 @@ export interface CompetitionInformationProps {
 const CompetitionInformation = (props: CompetitionInformationProps) => {
   const isStatus = props.status
   return (
-    <div className="sticky w-[460px] h-[190px] rounded border-2 bg-white">
-      <div className="mt-[20px] ml-[20px] mr-[20px]">
+    <div className="sticky w-[100%] h-[190px] rounded border-2 bg-white">
+      <div className="mt-5 ml-5 mr-5">
         <div className="flex flex-row">
-          <div className="w-[130px] flex flex-col">
-            <img className="h-[110px]" src={props.picture} />
+          <div className="w-32 flex flex-col">
+            <img className="h-28" src={props.picture} />
             {isStatus === 2 ? (
               <div className="mt-3 border rounded border-sky-600">
                 <h2 className="text-center text-sky-700"> 진행중</h2>
@@ -33,13 +33,13 @@ const CompetitionInformation = (props: CompetitionInformationProps) => {
           </div>
           <div>
             <div className="divide-y-2 divide-solid divide-black">
-              <h2 className=" ml-5 left-9 top-5 font-mono text-left text-[20px] font-bold">
+              <h2 className=" ml-5 left-9 top-5 font-mono text-left text-lg font-bold">
                 {props.name}
               </h2>
               <div className="flex flex-col mt-4 ml-5 mr-5 ">
                 <div className="flex flex-row mt-3 left-9 top-5 ">
                   <Icon icon="material-symbols:calendar-today" width="15" />
-                  <h2 className="ml-2 font-mono text-left text-[12px]">
+                  <h2 className="ml-2 font-mono text-left text-xs">
                     {props.period}
                   </h2>
                 </div>
@@ -48,13 +48,13 @@ const CompetitionInformation = (props: CompetitionInformationProps) => {
                     icon="material-symbols:flag-outline-rounded"
                     width="15"
                   />
-                  <h2 className="ml-2 font-mono text-left text-[12px]">
+                  <h2 className="ml-2 font-mono text-left text-xs">
                     {props.part}
                   </h2>
                 </div>
                 <div className="flex flex-row mt-3 left-9 top-5 ">
                   <Icon icon="material-symbols:attach-money" width="15" />
-                  <h2 className="ml-2 font-mono text-left text-[12px]">
+                  <h2 className="ml-2 font-mono text-left text-xs">
                     {props.prize}원
                   </h2>
                 </div>

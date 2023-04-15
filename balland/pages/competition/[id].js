@@ -14,7 +14,7 @@ export default function CompetitionDetail() {
   const [enddate, setEnddate] = useState('')
   const [duringdate, setDuringdate] = useState(null)
   const [selectedDate, setselectedDate] = useState(null)
-  const [gamedetailinfobydate, setGamedatailinfobydate] = useState(null)
+  const [gamedetailinfobydate, setGamedatailinfobydate] = useState([])
   const [grouplist, setGrouplist] = useState([])
   const [isCategorySelect, setIsCategorySelect] = useState(false);
 
@@ -98,8 +98,8 @@ export default function CompetitionDetail() {
   },[selectedDate])
 
   return (
-    <div className="flex flex-col mt-5 items-center">
-      <div className={`${grouplist.length >4 ? "w-[940px]" : null} flex justify-items-center overflow-x-auto overflow-y-hidden`}>
+    <div className={`${gamedetailinfobydate.length == 0 ? "h-screen":"h-full"} flex flex-col mt-5 items-center`}>
+      <div className={`${grouplist.length >4 ? "w-8/12" : null} flex justify-items-center overflow-x-auto overflow-y-hidden`}>
         {grouplist.map((group,index) => (
           <div className="mr-2.5">
             <GroupRank
@@ -116,13 +116,13 @@ export default function CompetitionDetail() {
         <Image 
           src={`https://balland.s3.ap-northeast-2.amazonaws.com/competition/${viewid}.png`}
           alt="" 
-          width="940"
+          width= "940"
           height="410"
           unoptimized={true}
           />
       </div>
-      <div className="w-[940px] h-full mt-[46px] text-2xl font-extrabold">
-        <button className = "w-[940px] flex overflow-x-auto">
+      <div className="xxs:w-[300px] xs:w-[350px] s:w-[400px] sm:w-[500px] md:w-[650px] lg:w-[800px] xl:w-[940px] h-full mt-11 text-2xl font-extrabold">
+        <button className = "w-[100%] flex overflow-x-auto overflow-y-hidden">
           {duringdate && duringdate.map((item,index) => {
             return  <Gamedate 
                       key = {index} 
@@ -134,7 +134,7 @@ export default function CompetitionDetail() {
           })} 
         </button>
       </div>
-      <div className="mt-[46px] flex flex-col">
+      <div className="mt-11 flex flex-col">
         <div className="pb-2.5">
           {gamedetailinfobydate && gamedetailinfobydate.map((item,index)=>{
             return <CompetitionResult

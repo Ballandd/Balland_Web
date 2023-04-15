@@ -6,17 +6,18 @@ import Link from "next/link"
 export default function Competition(props) {
   const producs = props.data.data
   return (
-    <div>
+    <div className = "h-screen">
       <Head>
         <title>대회 정보</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className = "w-[1200px] lg:w-[100%] grid justify-items-center ">
-        <div className=" grid grid-cols-2 gap-4">
+    <div className = "h-inherit bg-slate-100">
+      <div className = "w-[100%] grid justify-items-center ">
+        <div className=" grid grid-cols-1  md:grid-cols-2 gap-4">
           {producs.map((compete,index) => ( 
             <div
               key = {index}
-              className={`${
+              className={`grid justify-items-center md:${
                 index % 2 == 1
                   ? "grid justify-items-start"
                   : "grid justify-items-end"
@@ -47,6 +48,7 @@ export default function Competition(props) {
             </div>
           ))}
         </div>
+      </div>
       </div>
       </div>
   )

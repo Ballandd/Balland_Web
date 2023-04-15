@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export default function Reservation() {
   return (
-    <div>
+    <div className="h-screen"> 
       <Head>
         <title>Reservation Main</title>
         <link rel="icon" href="/favicon.ico" />

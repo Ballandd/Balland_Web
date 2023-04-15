@@ -3,7 +3,7 @@ import { SessionProvider } from "next-auth/react"
 import Layout from "../components/AppLyout"
 function MyApp({ Component, pageProps }) {
   return (
-    <div className="bg-slate-100">
+    <div className="h-inherit bg-slate-100">
       <SessionProvider session={pageProps.session}>
         <Layout>
           <Component {...pageProps} />
