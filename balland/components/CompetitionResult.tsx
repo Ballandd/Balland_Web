@@ -12,7 +12,7 @@ export interface infoResultProps {
 const CompetitionResult = (props: infoResultProps) => {
   const isStatus = props.status
   return (
-    <div className="w-[940px] h-[160px] flex items-center bg-white">
+    <div className="w-[940px] h-[160px] mt-[10px] flex items-center bg-white">
       <h1 className="text-[24px] font-extrabold basis-[30%] justify-center flex">
         {props.teamA}
       </h1>

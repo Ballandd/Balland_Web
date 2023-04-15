@@ -12,8 +12,8 @@ export interface CompetitionInformationProps {
 const CompetitionInformation = (props: CompetitionInformationProps) => {
   const isStatus = props.status
   return (
-    <div className="static w-[460px] h-[190px] rounded border-2 bg-white">
-      <div className="mt-[20px] ml-[20px] mr-[20px] left-9 top-5">
+    <div className="sticky w-[460px] h-[190px] rounded border-2 bg-white">
+      <div className="mt-[20px] ml-[20px] mr-[20px]">
         <div className="flex flex-row">
           <div className="w-[130px] flex flex-col">
             <img className="h-[110px]" src={props.picture} />
