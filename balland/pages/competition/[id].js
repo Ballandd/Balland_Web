@@ -1,4 +1,3 @@
-import React from "react"
 import CompetitionResult from "../../components/CompetitionResult.tsx"
 import GroupRank from "../../components/GroupRank.tsx"
 import Tournament from "../../components/Tournament.tsx"
@@ -12,26 +11,26 @@ const CompetitionDetail = () => {
     "A조",
     "B조",
     "C조",
-    "D조",
   ]
- 
+  
   return (
-    <div classNaem="flex flex-col mt-5 justify-items-center">
-      <div className="flex flex-row">
-        {grouplist.map((group) => (
+    <div className="flex flex-col items-center">
+      <div className="w-[940px] overflow-x-auto overflow-y-hidden flex flex-row">
+        {grouplist.map((group, index) => (
           <div className="mr-2.5">
             <GroupRank
               group={group}
               teamOne="아주대학교"
               teamTwo="홍익대학교"
               teamThree="중앙대학교"
+              key = {index}
             />
           </div>
         ))}
       </div>
       <div className="mt-5">
         <Tournament
-          team="토너먼트"
+        team="토너먼트"
         />
       </div>
       <div className="w-[940px] h-[69px] mt-5 bg-white content-center">
