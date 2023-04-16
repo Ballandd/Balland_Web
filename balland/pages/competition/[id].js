@@ -121,7 +121,7 @@ export default function CompetitionDetail() {
           unoptimized={true}
           />
       </div>
-      <div className="xxs:w-[300px] xs:w-[350px] s:w-[400px] sm:w-[500px] md:w-[650px] lg:w-[800px] xl:w-[940px] h-full mt-11 text-2xl font-extrabold">
+      <div className="w-[100%] xl:w-[940px] mt-11 text-2xl font-extrabold ">
         <button className = "w-[100%] flex overflow-x-auto overflow-y-hidden">
           {duringdate && duringdate.map((item,index) => {
             return  <Gamedate 

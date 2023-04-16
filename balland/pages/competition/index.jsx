@@ -13,7 +13,7 @@ export default function Competition(props) {
       </Head>
     <div className = "h-inherit bg-slate-100">
       <div className = "w-[100%] grid justify-items-center ">
-        <div className=" grid grid-cols-1  md:grid-cols-2 gap-4">
+        <div className=" grid grid-cols-1  lg:grid-cols-2 gap-4">
           {producs.map((compete,index) => ( 
             <div
               key = {index}
