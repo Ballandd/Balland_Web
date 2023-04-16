@@ -98,7 +98,7 @@ export default function CompetitionDetail() {
   },[selectedDate])
 
   return (
-    <div className={`${gamedetailinfobydate.length == 0 ? "h-screen":"h-full"} flex flex-col mt-5 items-center`}>
+    <div className={`${gamedetailinfobydate.length == 0 ? "h-screen":"h-[100vh]"} flex flex-col mt-5 items-center`}>
       <div className={`${grouplist.length >4 ? "w-8/12" : null} flex justify-items-center overflow-x-auto overflow-y-hidden`}>
         {grouplist.map((group,index) => (
           <div className="mr-2.5">
@@ -134,7 +134,7 @@ export default function CompetitionDetail() {
           })} 
         </button>
       </div>
-      <div className="mt-11 flex flex-col">
+      <div className="mt-3 lg:mt-11 flex flex-col">
         <div className="pb-2.5">
           {gamedetailinfobydate && gamedetailinfobydate.map((item,index)=>{
             return <CompetitionResult
