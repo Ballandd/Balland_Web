@@ -75,6 +75,7 @@ const Reservationtime = (props) => {
     }
   }, [reservestate])
   return (
+    <div className = "h-screen">
     <div className="grid justify-items-center">
       <Modal
         title="예약 정보가 맞나요?"
@@ -338,6 +339,7 @@ const Reservationtime = (props) => {
           </Link>
         </div>
       </form>
+    </div>
     </div>
   )
 }
