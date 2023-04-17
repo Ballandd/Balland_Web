@@ -5,9 +5,12 @@ import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import axios from "axios"
 import Gamedate from "../../components/Gamedate.tsx"
+import { idState } from "../recoil/state.js"
+import {useRecoilState} from 'recoil'
 
 export default function CompetitionDetail() {
   const router = useRouter()
+  const id = useRecoilState(idState)
   const [competitionId, setcompetitionId] = useState('');
   const [startdate, setStartdate] = useState('')
   const [enddate, setEnddate] = useState('')
@@ -16,8 +19,7 @@ export default function CompetitionDetail() {
   const [gamedetailinfobydate, setGamedatailinfobydate] = useState([])
   const [grouplist, setGrouplist] = useState([])
   const [isCategorySelect, setIsCategorySelect] = useState(false);
-
-  const {viewid} = router.query || []
+  const [isSSR, setIsSSR] = useState(true);
   function getDatesStartToLast(startDate, lastDate) {
     var result = [];
     var curDate = new Date(startDate);
@@ -35,7 +37,7 @@ export default function CompetitionDetail() {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
-          id: viewid,
+          id: id[0],
         },
       })
       .then((response) => {
@@ -62,7 +64,7 @@ export default function CompetitionDetail() {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
-          id: viewid,
+          id: id[0],
         },
       })
       .then((response) => {
@@ -77,6 +79,7 @@ export default function CompetitionDetail() {
 	  setIsCategorySelect(newArr);
   };
   useEffect(() => {
+    setIsSSR(false);
     competitiondetail()
     getgrouplist()
   },[])
@@ -94,33 +97,33 @@ export default function CompetitionDetail() {
   useEffect(() => {
     gameinfobydate()
   },[selectedDate])
-
+if(!isSSR){
   return (
     <div className={`${gamedetailinfobydate.length == 0 ? "h-screen":"h-[100vh]"} flex flex-col mt-5 items-center`}>
       <div className={`${grouplist.length >4 ? "w-8/12" : null} flex justify-items-center overflow-x-auto overflow-y-hidden`}>
         {grouplist.map((group,index) => (
           <div className="mr-2.5">
             <GroupRank
+              key = {index}
               group={group.name}
               teamOne={group.rank[1]}
               teamTwo={group.rank[2]}
               teamThree={group.rank[3]}
-              key = {index}
             />
           </div>
         ))}
       </div>
       <div className="mt-5">
-        <Image 
-          src={`https://balland.s3.ap-northeast-2.amazonaws.com/competition/${viewid}.png`}
+        {id[0] != '' && <Image 
+          src={`https://balland.s3.ap-northeast-2.amazonaws.com/competition/${id[0]}.png`}
           alt="" 
           width= "940"
           height="410"
           unoptimized={true}
-          />
+          />}
       </div>
       <div className="w-[100%] xl:w-[940px] mt-11 text-2xl font-extrabold ">
-        <button className = "w-[100%] flex overflow-x-auto overflow-y-hidden">
+        <div className = "w-[100%] flex overflow-x-auto overflow-y-hidden">
           {duringdate && duringdate.map((item,index) => {
             return  <Gamedate 
                       key = {index} 
@@ -130,7 +133,7 @@ export default function CompetitionDetail() {
                       elementIndex={index}
                       />
           })} 
-        </button>
+        </div>
       </div>
       <div className="mt-3 lg:mt-11 flex flex-col">
         <div className="pb-2.5">
@@ -151,6 +154,7 @@ export default function CompetitionDetail() {
     </div>
   </div>
   )
+}
 }
 // export async function getStaticPaths() {
 //   return {

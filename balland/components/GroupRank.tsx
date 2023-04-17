@@ -17,7 +17,7 @@ const GroupRank = (props: infoRankProps) => {
             <span className="font-bold text-[12px] xs:text-sm s:text-base md:text-lg text-[#57667E]">1</span>
             <span className="font-semibold text-[8px] sm:text-sm text-[#57667E]">st</span>
           </div>
-          <span className="font-bold text-[10px] xs:text-xs s:text-[14px] md:text-lg">{"최강유노윤호비더"}</span>
+          <span className="font-bold text-[10px] xs:text-xs s:text-[14px] md:text-lg">{props.teamOne}</span>
         </div>
         <div className="mb-2 s:mb-4">
           <div className="w-9 inline-block">

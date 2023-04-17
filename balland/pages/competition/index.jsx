@@ -2,9 +2,13 @@ import Head from "next/head"
 import axios from "axios"
 import CompetitionInformation from "../../components/CompetitionInformation.tsx"
 import Link from "next/link"
-
+import { idState } from "../recoil/state.js"
+import { useRecoilState } from 'recoil';
+import { useRouter } from "next/router"
 export default function Competition(props) {
+  const router = useRouter()
   const producs = props.data.data
+  const [id, setidState] = useRecoilState(idState);
   return (
     <div className = "h-screen">
       <Head>
@@ -23,14 +27,15 @@ export default function Competition(props) {
                   : "grid justify-items-end"
               }`}
             >
-              <Link 
-                href= 
-                {
-                  {
-                  pathname : "/competition/[id]",
-                  query : {id : compete._id,viewid : compete._id}
-                }
-              }
+              <button
+                onClick = {() =>{
+                  setidState(compete._id)
+                  router.push({
+                    pathname : "/competition/[id]",
+                    query : {id : compete._id,viewid : compete._id}
+                  })
+                }} 
+                
               >
                 <CompetitionInformation
                   picture={compete.picture}
@@ -44,7 +49,7 @@ export default function Competition(props) {
                   prize={compete.prize}
                   status={compete.condition}
                 />
-              </Link>
+              </button>
             </div>
           ))}
         </div>
