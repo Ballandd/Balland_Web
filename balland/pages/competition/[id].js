@@ -1,6 +1,5 @@
 import CompetitionResult from "../../components/CompetitionResult.tsx"
 import GroupRank from "../../components/GroupRank.tsx"
-import Tournament from "../../components/Tournament.tsx"
 import Image from 'next/image'
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
@@ -32,7 +31,7 @@ export default function CompetitionDetail() {
   const competitiondetail = async () =>{
     setcompetitionId('hello')
     await axios
-      .post("http://localhost:5001/competition/detail", {
+      .post("http://54.180.8.70:5001/competition/detail", {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
@@ -46,7 +45,7 @@ export default function CompetitionDetail() {
   }
   const gameinfobydate = async () => {
     await axios
-      .post("http://localhost:5001/gameinfo/getByDate", {
+      .post("http://54.180.8.70:5001/gameinfo/getByDate", {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
@@ -59,7 +58,7 @@ export default function CompetitionDetail() {
   }
   const getgrouplist = async() => {
     await axios
-      .post("http://localhost:5001/groupinfo/getbycompetitionid", {
+      .post("http://54.180.8.70:5001/groupinfo/getbycompetitionid", {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
@@ -87,7 +86,6 @@ export default function CompetitionDetail() {
     }
   },[startdate])
   useEffect(()=>{
-    console.log(isCategorySelect)
     if(isCategorySelect !=false){
       const selectedDate = Array.from(isCategorySelect).indexOf(true)
       setselectedDate(duringdate[selectedDate])

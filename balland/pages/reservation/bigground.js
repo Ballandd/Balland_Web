@@ -36,7 +36,7 @@ export default function MyApp() {
     var dateString = new Date(`${year}-${month}-${day}T15:00:00.000Z`)
     dateString.setDate(dateString.getDate() - 1)
     await axios
-      .post("http://localhost:5001/reservation/bigground", {
+      .post("http://54.180.8.70:5001/reservation/bigground", {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {

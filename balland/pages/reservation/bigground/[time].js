@@ -27,7 +27,7 @@ const Reservationtime = (props) => {
     const clone = new Date(date)
     clone.setDate(clone.getDate() + 1)
     await axios
-      .post("http://localhost:5001/reservation/createReservation", {
+      .post("http://54.180.8.70:5001/reservation/createReservation", {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
