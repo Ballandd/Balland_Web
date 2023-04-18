@@ -38,7 +38,7 @@ export default function Competition(props) {
                 
               >
                 <CompetitionInformation
-                  picture={compete.picture}
+                  picture={compete._id}
                   name={compete.title}
                   period={
                     `${String(compete.startdate).substring(0, 10)}` +

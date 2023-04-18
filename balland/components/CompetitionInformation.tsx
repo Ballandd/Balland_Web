@@ -16,7 +16,7 @@ const CompetitionInformation = (props: CompetitionInformationProps) => {
       <div className="mt-5 ml-5 mr-5">
         <div className="flex flex-row">
           <div className="w-32 flex flex-col">
-            <img className="h-28" src={props.picture} />
+            <img className="h-28" src={`https://balland.s3.ap-northeast-2.amazonaws.com/Logo/${props.picture}.png`} />
             {isStatus === 2 ? (
               <div className="mt-3 border rounded border-sky-600">
                 <h2 className="text-center text-sky-700"> 진행중</h2>
