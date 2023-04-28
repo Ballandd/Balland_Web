@@ -6,7 +6,16 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    fontFamily:{
+      sans : ["AjouTTF"],
+      mono :  ["AjouTTF"]
+    },
+    extend: {
+      fontFamily:{
+        sans : ["AjouTTF"],
+        mono :  ["AjouTTF"]
+      }
+    },
     screens:{
       'xxs': '320px',
       'xs': '360px',
