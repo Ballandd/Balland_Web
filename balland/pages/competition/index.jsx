@@ -59,7 +59,7 @@ export default function Competition(props) {
   )
 }
 export async function getStaticProps(context) {
-  const res = await fetch("http://54.180.8.70:5001/competition/getall")
+  const res = await fetch(`${process.env.API_URL}/competition/getall`)
   const data = await res.json()
   return {
     props: {

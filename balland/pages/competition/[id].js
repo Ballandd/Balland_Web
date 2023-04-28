@@ -33,7 +33,7 @@ export default function CompetitionDetail() {
   const competitiondetail = async () =>{
     setcompetitionId('hello')
     await axios
-      .post("http://54.180.8.70:5001/competition/detail", {
+      .post(`${process.env.API_URL}/competition/detail`, {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
@@ -47,7 +47,7 @@ export default function CompetitionDetail() {
   }
   const gameinfobydate = async () => {
     await axios
-      .post("http://54.180.8.70:5001/gameinfo/getByDate", {
+      .post(`${process.env.API_URL}/gameinfo/getByDate`, {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
@@ -60,7 +60,7 @@ export default function CompetitionDetail() {
   }
   const getgrouplist = async() => {
     await axios
-      .post("http://54.180.8.70:5001/groupinfo/getbycompetitionid", {
+      .post(`${process.env.API_URL}/groupinfo/getbycompetitionid`, {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
@@ -115,7 +115,7 @@ if(!isSSR){
       </div>
       <div className="mt-5">
         {id[0] != '' && <Image 
-          src={`https://balland.s3.ap-northeast-2.amazonaws.com/competition/${id[0]}.png`}
+          src={`${process.env.IMAGE_URL}/competition/${id[0]}.png`}
           alt="" 
           width= "940"
           height="410"
