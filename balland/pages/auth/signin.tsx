@@ -45,6 +45,7 @@ const SignIn = () => {
   }, [session])
 
   return (
+    <div className = "h-screen">
     <form onSubmit={handleSubmit(login)}>
       <div className="flex flex-col items-center justify-center">
         <div className="mb-4">
@@ -114,6 +115,7 @@ const SignIn = () => {
         </div>
       </div>
     </form>
+    </div>
   )
 }
 

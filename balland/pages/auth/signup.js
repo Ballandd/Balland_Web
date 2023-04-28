@@ -53,6 +53,7 @@ export default function Register() {
   }, [errormessage])
 
   return (
+    <div className = "h-screen">
       <div className="flex flex-col items-center justify-center">
         <div className="mb-4">
           <a className="flex items-center text-4xl font-semibold">
@@ -158,6 +159,7 @@ export default function Register() {
             </div>
           </div>
         </form>
+      </div>
       </div>
     // <>
     //   <div className="container mx-auto px-4 h-full">
