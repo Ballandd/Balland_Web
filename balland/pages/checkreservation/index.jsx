@@ -1,5 +1,7 @@
 import Head from "next/head"
 import Link from "next/link"
+import WaitingService from "../../components/WaitingService.tsx"
+
 
 export default function Reservation() {
   return (
@@ -8,9 +10,10 @@ export default function Reservation() {
         <title>Reservation Main</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <WaitingService/>
 
       {/* content goes here */}
-      <div className="py-32 text-center">
+      {/* <div className="py-32 text-center">
         <div className="text-4xl font-extrabold">reservation page </div>
       </div>
       <div className="flex justify-center">
@@ -18,7 +21,7 @@ export default function Reservation() {
       </div>
       <div className="flex justify-center mt-20">
         <Link href="/reservation/smallground">소운동장 예약</Link>
-      </div>
+      </div> */}
     </div>
   )
 }
