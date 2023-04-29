@@ -45,8 +45,9 @@ const SignIn = () => {
   }, [session])
 
   return (
+    <div className = "h-screen">
     <WaitingService />
-    // <div className = "h-screen">
+    </div>
     // <form onSubmit={handleSubmit(login)}>
     //   <div className="flex flex-col items-center justify-center">
     //     <div className="mb-4">

@@ -20,7 +20,7 @@ export default function Competition(props) {
         <div className=" grid grid-cols-1  lg:grid-cols-2 gap-4">
           {producs.map((compete,index) => ( 
             <div
-              key = {index}
+              key = {compete._id}
               className={`grid justify-items-center md:${
                 index % 2 == 1
                   ? "grid justify-items-start"

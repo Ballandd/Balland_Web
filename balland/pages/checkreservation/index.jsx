@@ -10,8 +10,9 @@ export default function Reservation() {
         <title>Reservation Main</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <WaitingService/>
-
+      <div className = "h-screen">
+        <WaitingService />
+      </div>
       {/* content goes here */}
       {/* <div className="py-32 text-center">
         <div className="text-4xl font-extrabold">reservation page </div>
