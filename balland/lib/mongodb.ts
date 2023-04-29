@@ -7,21 +7,25 @@ const options = {
   useNewUrlParser: true,
 }
 
-let client
-let clientPromise
+let client: MongoClient;
+let clientPromise: Promise<MongoClient>;
 
 if (!process.env.NEXT_PUBLIC_MONGODB_URI) {
   throw new Error("Add Mongo URI to .env.local")
 }
 
 if (process.env.NODE_ENV === "development") {
-  if (!global._mongoClientPromise) {
-    client = new MongoClient(uri, options)
-    global._mongoClientPromise = client.connect()
+  let globalWithMongoClientPromise = global as typeof globalThis & {
+    _mongoClientPromise: Promise<MongoClient>;
+  };
+
+  if (!globalWithMongoClientPromise._mongoClientPromise) {
+    client = new MongoClient(uri)
+    globalWithMongoClientPromise._mongoClientPromise = client.connect()
   }
-  clientPromise = global._mongoClientPromise
+  clientPromise = globalWithMongoClientPromise._mongoClientPromise
 } else {
-  client = new MongoClient(uri, options)
+  client = new MongoClient(uri)
   clientPromise = client.connect()
 }
 
