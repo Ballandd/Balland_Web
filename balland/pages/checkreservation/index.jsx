@@ -1,5 +1,7 @@
 import Head from "next/head"
 import Link from "next/link"
+import WaitingService from "../../components/WaitingService.tsx"
+
 
 export default function Reservation() {
   return (
@@ -8,9 +10,9 @@ export default function Reservation() {
         <title>Reservation Main</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      {/* content goes here */}
-      
+      <div className = "h-screen">
+        <WaitingService />
+      </div>
     </div>
   )
 }
