@@ -5,7 +5,7 @@ import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import axios from "axios"
 import Gamedate from "../../components/Gamedate.tsx"
-import { idState } from "../recoil/state.js"
+import { idState } from "../../components/recoil/state.js"
 import {useRecoilState} from 'recoil'
 
 export default function CompetitionDetail() {

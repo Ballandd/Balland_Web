@@ -2,7 +2,7 @@ import Head from "next/head"
 import axios from "axios"
 import CompetitionInformation from "../../components/CompetitionInformation.tsx"
 import Link from "next/link"
-import { idState } from "../recoil/state.js"
+import { idState } from "../../components/recoil/state.js"
 import { useRecoilState } from 'recoil';
 import { useRouter } from "next/router"
 export default function Competition(props) {
