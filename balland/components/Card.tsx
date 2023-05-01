@@ -12,11 +12,13 @@ const Card = (props: CardProps) => {
   return (
     <div className="p-4 sm:w-1/2 lg:w-1/3">
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-        <img
-          className="lg:h-72 md:h-48 w-full object-cover object-center"
-          src={props.imageSrc}
-          alt="blog"
-        />
+        <div className="bg-gray-300">
+          <img
+            className="lg:h-72 md:h-48 w-full object-contain object-center"
+            src={props.imageSrc}
+            alt="blog"
+          />
+        </div>
         <div className="p-6 hover:bg-indigo-600 hover:text-white transition duration-300 ease-in">
           <h1 className="text-2xl font-semibold mb-3">{props.title}</h1>
           <p className="leading-relaxed mb-3">{props.desc}</p>
