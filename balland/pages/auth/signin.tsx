@@ -46,7 +46,7 @@ const SignIn = () => {
 
   return (
     <div className = "h-screen">
-    <WaitingService />
+      <WaitingService />
     </div>
     // <form onSubmit={handleSubmit(login)}>
     //   <div className="flex flex-col items-center justify-center">
