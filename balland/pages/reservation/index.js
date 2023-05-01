@@ -6,7 +6,7 @@ export default function Reservation() {
     <div className="h-screen"> 
       <Head>
         <title>Reservation Main</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/AU.png" />
       </Head>
       <WaitingService />
       {/* <div className="py-32 text-center">

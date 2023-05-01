@@ -8,7 +8,7 @@ export default function Reservation() {
     <div>
       <Head>
         <title>Reservation Main</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/AU.png" />
       </Head>
       <div className = "h-screen">
         <WaitingService />
