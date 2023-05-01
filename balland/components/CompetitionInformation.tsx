@@ -11,6 +11,7 @@ export interface CompetitionInformationProps {
 
 const CompetitionInformation = (props: CompetitionInformationProps) => {
   const isStatus = props.status
+  const prize_unit = props.prize.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   return (
     <div className="sticky w-[100%] h-[190px] rounded border-2 bg-white">
       <div className="mt-5 ml-5 mr-5">
@@ -54,8 +55,8 @@ const CompetitionInformation = (props: CompetitionInformationProps) => {
                 </div>
                 <div className="flex flex-row mt-3 left-9 top-5 ">
                   <Icon icon="material-symbols:attach-money" width="15" />
-                  <h2 className="ml-2 font-mono text-left text-xs">
-                    {props.prize}원
+                  <h2 className="ml-2 font-mono text-left text-xs"> 
+                    {prize_unit}원
                   </h2>
                 </div>
               </div>

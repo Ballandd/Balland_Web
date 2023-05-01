@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form"
 import { useRouter } from "next/router"
 import classNames from "classnames"
 import WaitingService from "../../components/WaitingService.tsx"
+import Head from "next/head"
+
 export default function Register() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -54,6 +56,10 @@ export default function Register() {
 
   return (
     <div className = "h-screen">
+      <Head>
+       <title>Balland</title>
+        <link rel="icon" href="/AU.png" />
+      </Head>
       <WaitingService />
     </div>    // <div className = "h-screen">
     //   <div className="flex flex-col items-center justify-center">
