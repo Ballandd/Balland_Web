@@ -13,8 +13,8 @@ const Navbar = () => {
             <div>
               <a href="/" className="flex items-center py-5 px-2 text-gray-700">
                 <img
-                className="h-5 w-5 mr-2"
-                src="AU2.png"
+                  className="h-5 mr-2"
+                  src="/AU2.png"
                 />
                 {/* <svg
                   xmlns="/BallandLogo.png"

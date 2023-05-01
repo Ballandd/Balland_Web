@@ -3,6 +3,7 @@ import { signIn, useSession, getProviders, getSession } from "next-auth/react"
 import { useRouter } from "next/router"
 import { useForm } from "react-hook-form"
 import WaitingService from "../../components/WaitingService"
+import Head from "next/head"
 const SignIn = () => {
   const { data: session } = useSession()
   const [errormessage, setErrormessage] = useState("")
@@ -46,6 +47,10 @@ const SignIn = () => {
 
   return (
     <div className = "h-screen">
+      <Head>
+       <title>Balland</title>
+        <link rel="icon" href="/AU.png" />
+      </Head>
       <WaitingService />
     </div>
     // <form onSubmit={handleSubmit(login)}>

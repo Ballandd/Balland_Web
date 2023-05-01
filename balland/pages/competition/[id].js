@@ -102,7 +102,7 @@ if(!isSSR){
     <div className={`${gamedetailinfobydate.length == 0 ? "h-screen":"h-[100vh] lg:h-full"}  flex flex-col mt-5 items-center`}>
       <div className={`${grouplist.length >4 ? "w-8/12" : null} flex justify-items-center overflow-x-auto overflow-y-hidden`}>
         {grouplist.map((group,index) => (
-          <div className="mr-2.5" key = {index}>
+          <div className="mr-1.5" key = {index}>
             <GroupRank
               key = {index}
               group={group.name}
@@ -137,8 +137,11 @@ if(!isSSR){
       </div>
       <div className="mt-3 lg:mt-11 flex flex-col">
         <div className="pb-2.5">
-          {gamedetailinfobydate && gamedetailinfobydate.map((item,index)=>{
-            return <CompetitionResult
+          {gamedetailinfobydate.length === 0 ? (
+            <h1 className="mt-10 text-[15px] sm:text-[18px] lg:text-[20px] xl:text-[25px] 2xl:text-[30px]">해당 날짜에는 경기 진행이 없습니다.</h1>
+          ) : (
+            gamedetailinfobydate.map((item,index)=>{
+              return <CompetitionResult
                       Round = {item.phase}
                       Time = {item.time}
                       facility = {item.facility}
@@ -149,7 +152,8 @@ if(!isSSR){
                       scoreB = {item.team2_score}
                       key = {index}
                       />
-          })}
+          }))
+          }
       </div>
     </div>
   </div>
