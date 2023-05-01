@@ -9,7 +9,7 @@ export default function Home() {
         <link rel="icon" href="/AU.png" />
       </Head>
 
-      <div className="container px-5 py-10 mx-auto">
+      <div className="container px-5 py-10 mx-auto h-screen">
         {/* Cards Page - Title */}
         <div className="text-center mb-12">
           <h1 className="text-xl sm:text-lg md:text-6xl text-gray-700 font-semibold ">

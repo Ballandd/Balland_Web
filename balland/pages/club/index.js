@@ -5,7 +5,7 @@ export default function Club() {
     <div className = "h-screen">
       <Head>
         <title>동아리정보</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/AU.png"/>
       </Head>
       <WaitingService/>
     </div>

@@ -13,7 +13,7 @@ export default function Competition(props) {
     <div className = "h-screen">
       <Head>
         <title>대회 정보</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/AU.png" />
       </Head>
     <div className = "h-inherit bg-slate-100">
       <div className = "w-[100%] grid justify-items-center ">
