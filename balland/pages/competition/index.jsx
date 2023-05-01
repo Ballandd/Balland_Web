@@ -28,6 +28,7 @@ export default function Competition(props) {
               }`}
             >
               <button
+                disabled = {compete.condition == 1}
                 onClick = {() =>{
                   setidState(compete._id)
                   router.push({
