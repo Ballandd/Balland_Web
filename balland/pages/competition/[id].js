@@ -123,7 +123,7 @@ if(!isSSR){
           />}
       </div>
       <div className="w-[100%] xl:w-[940px] mt-11 text-2xl font-extrabold ">
-        <div className = "w-[100%] flex overflow-x-auto overflow-y-hidden">
+        <div className = "w-[100%] flex overflow-x-auto overflow-y-hidden scrollbar-hide">
           {duringdate && duringdate.map((item,index) => {
             return  <Gamedate 
                       key = {index} 

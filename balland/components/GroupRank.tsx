@@ -9,7 +9,7 @@ const GroupRank = (props: infoRankProps) => {
   return (
     <div className="flex flex-col w-[120px] h-[160px] xs:w-[140px] xs:h-[160px] s:w-[160px] s:h-[170px] sm:w-[180px] sm:h-[170px] md:w-[200px] md:h-[180px] lg:w-[224px] lg:h-[192px] bg-white">
       <div className="basis-[25%] border-b-[1px] border-[#DDDDDD] py-1 sm:py-2">
-        <h1 className="font-bold text-lg text-center">{props.group}</h1>
+        <h1 className="font-bold text-lg text-center">{props.group}조</h1>
       </div>
       <div className="basis-[75%] flex flex-col py-2 pl-3 s:py-4 s:pl-5">
         <div className="basis-[33%]">

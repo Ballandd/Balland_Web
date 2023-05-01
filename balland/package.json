@@ -31,7 +31,8 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
     "recoil": "^0.7.7",
-    "recoil-persist": "^4.2.0"
+    "recoil-persist": "^4.2.0",
+    "tailwind-scrollbar-hide": "^1.1.7"
   },
   "devDependencies": {
     "@iconify/react": "^4.1.0",
