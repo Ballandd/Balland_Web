@@ -14,7 +14,7 @@ const CompetitionInformation = (props: CompetitionInformationProps) => {
   const prize_unit = props.prize.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 
   return (
-    <div className="sticky xs:w-[330px] s:w-[350px] h-[140px] xxs:h-[140px] xs:h-[150px] s:h-[190px] rounded border-2 bg-white">
+    <div className="sticky xs:w-[300px] s:w-[350px] h-[140px] xxs:h-[140px] xs:h-[150px] s:h-[190px] rounded border-2 bg-white">
       <div className="mt-5 ml-5 mr-5">
         <div className="flex flex-row">
           <div className="w-32 flex flex-col">
@@ -38,23 +38,23 @@ const CompetitionInformation = (props: CompetitionInformationProps) => {
               <h2 className=" ml-5 left-9 top-5 font-mono text-left text-xs xxs:text-sm xs:text-base s:text-lg font-bold">
                 {props.name}
               </h2>
-              <div className="flex flex-col mt-1 ml-5 mr-5 ">
-                <div className="flex flex-row mt-1 xxs:mt-1 s:mt-3 left-9 top-5 ">
+              <div className="h-full flex flex-col mt-1 ml-5 ">
+                <div className="flex flex-row mt-1 xxs:mt-2 s:mt-3 left-9 top-5 ">
                   <Icon icon="material-symbols:calendar-today" width="15" />
-                  <h2 className="ml-2 font-mono text-left text-[4px] xxs:text-[6px] xs:text-[4px] s:text-xs">
+                  <h2 className="ml-2 font-mono text-left text-[4px] xxs:text-[6px] xs:text-[6px] s:text-xs">
                     {props.period.slice(5,7)+"/"+props.period.slice(8,10)+" ~ "+props.period.slice(18,20)+"/"+props.period.slice(21,23)}
                   </h2>
                 </div>
-                <div className="flex flex-row mt-1 xxs:mt-1 s:mt-3 left-9 top-5 ">
+                <div className="flex flex-row mt-1 xxs:mt-2 s:mt-3 left-9 top-5 ">
                   <Icon
                     icon="material-symbols:flag-outline-rounded"
                     width="15"
                   />
-                  <h2 className="ml-2 font-mono text-left text-[4px] xxs:text-[6px] xs:text-[8px] s:text-xs">
+                  <h2 className="ml-2 font-mono text-left text-[4px] xxs:text-[8px] xs:text-[10px] s:text-xs">
                     {props.part}
                   </h2>
                 </div>
-                <div className="flex flex-row mt-1 xxs:mt-1 s:mt-3 left-9 top-5 ">
+                <div className="flex flex-row mt-1 xxs:mt-2 s:mt-3 left-9 top-5 ">
                   <Icon icon="material-symbols:attach-money" width="15" />
                   <h2 className="ml-2 font-mono text-left text-[4px] xxs:text-[6px] xs:text-[8px] s:text-xs">
                     {prize_unit}원
