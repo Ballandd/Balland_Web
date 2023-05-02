@@ -10,53 +10,53 @@ export default function Competition(props) {
   const producs = props.data.data
   const [id, setidState] = useRecoilState(idState);
   return (
-    <div className = "h-screen">
+    <div>
       <Head>
         <title>대회 정보</title>
         <link rel="icon" href="/AU.png" />
       </Head>
-    <div className = "h-inherit bg-slate-100">
-      <div className = "w-[100%] grid justify-items-center ">
-        <div className=" grid grid-cols-1  lg:grid-cols-2 gap-4">
-          {producs.map((compete,index) => ( 
-            <div
-              key = {compete._id}
-              className={`grid justify-items-center md:${
-                index % 2 == 1
-                  ? "grid justify-items-start"
-                  : "grid justify-items-end"
-              }`}
-            >
-              <button
-                disabled = {compete.condition == 1}
-                onClick = {() =>{
-                  setidState(compete._id)
-                  router.push({
-                    pathname : "/competition/[id]",
-                    query : {id : compete._id,viewid : compete._id}
-                  })
-                }} 
-                
+      <div className = "h-max lg:h-screen bg-slate-100">
+        <div className = "w-[100%] grid justify-items-center ">
+          <div className=" grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {producs.map((compete,index) => ( 
+              <div
+                key = {compete._id}
+                className={`grid justify-items-center md:${
+                  index % 2 == 1
+                    ? "grid justify-items-start"
+                    : "grid justify-items-end"
+                }`}
               >
-                <CompetitionInformation
-                  picture={compete._id}
-                  name={compete.title}
-                  period={
-                    `${String(compete.startdate).substring(0, 10)}` +
-                    " ~ " +
-                    `${String(compete.enddate).substring(0, 10)}`
-                  }
-                  part={compete.host}
-                  prize={compete.prize}
-                  status={compete.condition}
-                />
-              </button>
-            </div>
-          ))}
+                <button
+                  disabled = {compete.condition == 1}
+                  onClick = {() =>{
+                    setidState(compete._id)
+                    router.push({
+                      pathname : "/competition/[id]",
+                      query : {id : compete._id,viewid : compete._id}
+                    })
+                  }} 
+                  
+                >
+                  <CompetitionInformation
+                    picture={compete._id}
+                    name={compete.title}
+                    period={
+                      `${String(compete.startdate).substring(0, 10)}` +
+                      " ~ " +
+                      `${String(compete.enddate).substring(0, 10)}`
+                    }
+                    part={compete.host}
+                    prize={compete.prize}
+                    status={compete.condition}
+                  />
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      </div>
-      </div>
+    </div>
   )
 }
 export async function getStaticProps(context) {
