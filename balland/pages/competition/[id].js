@@ -99,7 +99,7 @@ export default function CompetitionDetail() {
   },[selectedDate])
 if(!isSSR){
   return (
-    <div className={`${gamedetailinfobydate.length == 0 ? "h-screen lg:h-full" :"h-[100vh] lg:h-full"}  flex flex-col mt-5 md-5 items-center`}>
+    <div className= "h-screen lg:h-full flex flex-col mt-5 items-center">
       <div className={`${grouplist.length >4 ? "w-8/12" : null} flex justify-items-center overflow-x-auto overflow-y-hidden`}>
         {grouplist.map((group,index) => (
           <div className="mr-1.5" key = {index}>
