@@ -7,7 +7,6 @@ export default function Club() {
         <title>동아리정보</title>
         <link rel="icon" href="/AU.png"/>
       </Head>
-      <WaitingService/>
     </div>
   )
 }

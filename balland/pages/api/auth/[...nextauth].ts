@@ -32,14 +32,13 @@ export default NextAuth({
         const client = await clientPromise
         const userDocument = await client.db("balland").collection("balland").findOne(
           {email: email},
-          {projection:{_id:0}}
         )
         if (!userDocument) {
           throw new Error("존재하지 않는 아이디입니다")
         }
         const user: User = {
           id: userDocument._id.toString(),
-          name: userDocument.name,
+          name: userDocument.email,
           email: userDocument.email,
         };
       
