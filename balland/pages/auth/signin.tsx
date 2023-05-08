@@ -4,7 +4,7 @@ import { useRouter } from "next/router"
 import { useForm } from "react-hook-form"
 import WaitingService from "../../components/WaitingService"
 import Head from "next/head"
-const SignIn = () => {
+const SignIn = () =>  {
   const { data: session } = useSession()
   const [errormessage, setErrormessage] = useState("")
   const router = useRouter()
@@ -85,7 +85,7 @@ const SignIn = () => {
               />
               <label className="text-red-600 font-semibold">
                   {errors.email && (
-                    <small role="alert">{errors.email.message}</small>
+                    <small role="alert">{errors.email.message?.toString()}</small>
                   )}
               </label>
             </div>
@@ -107,7 +107,7 @@ const SignIn = () => {
               />
               <label className="text-red-600 font-semibold">
                 {errors.password && (
-                  <small role="alert">{errors.password.message}</small>
+                  <small role="alert">{errors.password.message?.toString()}</small>
                 )}
               </label>
             </div>
