@@ -77,7 +77,7 @@ export default function MyApp() {
 
   return (
     <div className="grid justify-items-center">
-      <div className="flex ">
+      <div className="flex">
         <FacilityCard picture="/groud.jpeg" />
         <Introduce
           facilityname="대운동장"
@@ -100,11 +100,11 @@ export default function MyApp() {
           </Group>
         </div>
         <div className="w-[350px] h-[398px] bg-white ml-[20px]">
-          <div className="divide-y-2 divide-solid divide-black ">
-            <h2 className=" mt-5 ml-[35px] mr-[35px] md-[10px] left-9 top-5 font-mono text-left text-xl font-semibold">
+          <div className="divide-y-2 divide-solid divide-black ml-[35px] mr-[35px]">
+            <h2 className=" mt-5 md-[10px] left-9 top-5 text-left text-xl font-semibold">
               예약 현황 확인
             </h2>
-            <div className="grid grid-cols-2 mt-4 ml-[35px] mr-[35px]">
+            <div className="grid grid-cols-2 mt-4 ">
               {availabletime.map((time, index) => (
                 <ReserveTime
                   key={index}

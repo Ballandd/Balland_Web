@@ -7,6 +7,8 @@ import useModal from "../../../components/Modal/useModal"
 import Modal from "../../../components/Modal"
 import { useSession } from "next-auth/react"
 import Link from "next/link"
+import Head from "next/head"
+
 const Reservationtime = (props) => {
   const { data: session, status } = useSession()
   const [reservationTime, setReservationTime] = useState("")
@@ -76,6 +78,10 @@ const Reservationtime = (props) => {
   }, [reservestate])
   return (
     <div className = "h-screen">
+      <Head>
+       <title>Balland</title>
+        <link rel="icon" href="/AU.png" />
+      </Head>
     <div className="grid justify-items-center">
       <Modal
         title="예약 정보가 맞나요?"
@@ -118,7 +124,7 @@ const Reservationtime = (props) => {
                     </div>
                   </div>
                 </div>
-                <div cla ssName="flex flex-row mt-[10px]">
+                <div className="flex flex-row mt-[10px]">
                   <div className="w-[53px]">
                     <label
                       className="block mt-[8px] text-gray-700 text-[13px] font-bold"
