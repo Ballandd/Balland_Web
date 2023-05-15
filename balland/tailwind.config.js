@@ -14,6 +14,9 @@ module.exports = {
       fontFamily:{
         sans : ["AjouTTF"],
         mono :  ["AjouTTF"]
+      },
+      fontSize: {
+        '2xs': '0.625rem', // 2px
       }
     },
     screens:{

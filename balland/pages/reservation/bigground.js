@@ -6,6 +6,7 @@ import { DatePicker } from "@mantine/dates"
 import { Group } from "@mantine/core"
 import ReserveTime from "../../components/ReserveTime.tsx"
 import Link from "next/link"
+import { useMediaQuery } from '@mantine/hooks';
 import { Router } from "next/router"
 export default function MyApp() {
   const [value, setValue] = useState(new Date())
@@ -57,6 +58,12 @@ export default function MyApp() {
     newArr[idx] = true
     setChoiceTime(newArr)
   }
+  
+  const xlsize = useMediaQuery('(min-width: 1280px)');
+  const lgsize = useMediaQuery('(min-width: 1024px)');
+  const mdsize = useMediaQuery('(min-width: 768px)');
+  const smsize = useMediaQuery('(min-width: 640px)');
+  const ssize = useMediaQuery('(min-width: 480px)');
 
   useEffect(() => {
     onClick()
@@ -77,7 +84,7 @@ export default function MyApp() {
 
   return (
     <div className="grid justify-items-center">
-      <div className="flex">
+      <div className="md:flex space-y-4 md:space-y-0">
         <FacilityCard picture="/groud.jpeg" />
         <Introduce
           facilityname="대운동장"
@@ -85,26 +92,26 @@ export default function MyApp() {
           location="수원시"
         />
       </div>
-      <div className="flex mt-[21px]">
-        <div className="w-[570px] h-[398px] bg-white">
+      <div className=" md:flex mt-[21px] space-y-4 md:space-y-0">
+        <div className="xxs:w-[232px] xs:w-[290px] s:w-[337px] sm:w-[450px] md:w-[342px] lg:w-[456px] xl:w-[570px] xxs:h-[220px] sm:h-[220px] md:h-[228px] lg:h-[304px] xl:h-[398px] bg-white">
           <Group position="center">
             <DatePicker
               hideOutsideDates
               value={value}
               onChange={setValue}
-              size="lg"
               defaultDate={value}
               minDate={mindate}
               maxDate={maxdate}
-            />
+              size = {xlsize ? 'lg' : lgsize ? 'sm' : 'xs'}
+              />
           </Group>
         </div>
-        <div className="w-[350px] h-[398px] bg-white ml-[20px]">
+        <div className="xxs:w-[232px] xs:w-[290px] s:w-[337px] sm:w-[450px] md:w-[210px] lg:w-[280px] xl:w-[350px] xxs:h-[165px] sm:h-[220px] md:h-[228px] lg:h-[304px] xl:h-[398px]  bg-white md:ml-[20px] overflow-auto">
           <div className="divide-y-2 divide-solid divide-black ml-[35px] mr-[35px]">
-            <h2 className=" mt-5 md-[10px] left-9 top-5 text-left text-xl font-semibold">
+            <h2 className="mt-5 left-9 top-5 text-left xs:text-[14px] sm:text-[16px] md:text-[18px] lg:text-[24px] xl:text-[30px] font-semibold">
               예약 현황 확인
             </h2>
-            <div className="grid grid-cols-2 mt-4 ">
+            <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-1 md:items-center lg:grid-cols-2 xxs:mt-2 sm:mt-4 md:mt-3 lg:mt-5">
               {availabletime.map((time, index) => (
                 <ReserveTime
                   key={index}
@@ -120,7 +127,7 @@ export default function MyApp() {
         </div>
       </div>
       <div className="flex mt-[21px]">
-        <div className="w-[570px] h-[60px]"></div>
+        <div className="md:w-[342px] lg:w-[456px] xl:w-[570px] md:h-[228px] lg:h-[304px] xl:h-[398px]"></div>
         <Link
           href={{
             pathname: "/reservation/bigground/[time]",
@@ -128,7 +135,7 @@ export default function MyApp() {
           }}
           as="/reservation/bigground/reservationdetail"
         >
-          <button className="w-[350px] h-[60px] ml-[20px] bg-blue-600 rounded-lg text-white text-[20px]">
+          <button className="xxs:w-[232px] xs:w-[290px] s:w-[337px] sm:w-[450px] md:w-[210px] lg:w-[280px] xl:w-[350px] xxs:h-[40px] s:h-[40px] sm:h-[40px] md:h-[38px] lg:h-[50px] xl:h-[60px] md:ml-[20px] bg-blue-600 rounded-lg text-white xs:text-[13px] s:text-[15px] lg:text-[20px]">
             예약 하기
           </button>
         </Link>
