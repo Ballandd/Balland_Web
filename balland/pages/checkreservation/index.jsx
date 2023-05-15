@@ -13,9 +13,9 @@ export default function Reservation() {
   const [currentTab, setCurrentTab] = useState(0)
 
   const tabMenu = [
-    { title: "tab1", content: <div>tab1</div> },
-    { title: "tab2", content: <div>tab2</div> },
-    { title: "tab3", content: <div>tab3</div> },
+    { title: "전체보기", content: <div>전체보기</div> },
+    { title: "예약ing", content: <div>예약ing</div> },
+    { title: "예약ed", content: <div>예약ed</div> },
   ]
 
   const getreservationinfo = async () => {
@@ -55,14 +55,16 @@ export default function Reservation() {
           <link rel="icon" href="/AU.png" />
         </Head>
         <div className="h-screen">
-          <div className="divide-y-2 divide-black divide-solid">
+          <div className="border-b">
             {tabMenu.map((item, index) => {
               return (
                 <button
                   key={index}
                   className={`${
-                    currentTab === index ? "text-red-900" : ""
-                  } mr-10`}
+                    currentTab === index
+                      ? "text-sky-600 border-sky-600"
+                      : "border-transparent hover:border-gray-200"
+                  } py-2 border-b-4 transition-colors duration-300 mr-8`}
                   onClick={() => {
                     setCurrentTab(index)
                   }}
