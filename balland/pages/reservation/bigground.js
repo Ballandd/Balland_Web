@@ -37,7 +37,7 @@ export default function MyApp() {
     var dateString = new Date(`${year}-${month}-${day}T15:00:00.000Z`)
     dateString.setDate(dateString.getDate() - 1)
     await axios
-      .post(`${process.env.API_URL}/reservation/bigground`, {
+      .post("/api/reservation/bigground", {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
@@ -45,12 +45,12 @@ export default function MyApp() {
         },
       })
       .then((response) => {
-        setEight(response.data.data[8])
-        setTen(response.data.data[10])
-        setTwelve(response.data.data[12])
-        setFourteen(response.data.data[14])
-        setSixteen(response.data.data[16])
-        setEightteen(response.data.data[18])
+        setEight(response.data[8])
+        setTen(response.data[10])
+        setTwelve(response.data[12])
+        setFourteen(response.data[14])
+        setSixteen(response.data[16])
+        setEightteen(response.data[18])
       })
   }
   const timeClick = (idx) => {
