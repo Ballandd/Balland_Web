@@ -11,15 +11,13 @@ export default async function handler(
         const email = req.body.body.email;
         const today = new Date();
         const findUserReservation = {email : email}
-        reservationinfo.find(findUserReservation).then(function(obj){
-            const filterData = obj.filter((reservation)=> {
-                const reservationDate = new Date(reservation.reservationDate)
-                    return reservationDate < today
-            })
-            res.json({
-                type : true,
-                data : filterData
-            })
+        const filterData = await (await reservationinfo.find(findUserReservation)).filter((reservation)=> {
+            const reservationDate = new Date(reservation.reservationDate)
+            return reservationDate < today
+        });
+        res.json({
+            type : true,
+            data : filterData
         })
     }
 }
