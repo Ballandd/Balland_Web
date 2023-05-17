@@ -1,21 +1,23 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import clientPromise from "../../../lib/mongodb";
-import { ObjectId } from "mongodb";
+import connect from "../../../lib/config.js"
+import competition from "../../../lib/model/competition.js"
 
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse,
 ) {
-    const client = await clientPromise;
-    const db = client.db("balland")
-    if(req.method === "POST"){
-        const {competitionid} = req.body;
-        const objectId = new ObjectId(competitionid);
-        const findcompetition = {_id : objectId};
-        const data = await db.collection("competition").findOne(findcompetition);
-        res.status(200).json({
-            type : true,
-            data : data,
+    if (req.method === "POST") {
+        connect()
+        const competitionid = req.body.body.id
+        const findcompetition = { _id: competitionid }
+        res.json({
+            type: true,
+            data: await competition.findOne(findcompetition)
+        })
+    }
+    else{
+        res.json({
+            type : 500
         })
     }
 }

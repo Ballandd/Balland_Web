@@ -33,7 +33,7 @@ export default function CompetitionDetail() {
   const competitiondetail = async () =>{
     setcompetitionId('hello')
     await axios
-      .post(`${process.env.API_URL}/competition/detail`, {
+      .post("/api/competition/detail", {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
