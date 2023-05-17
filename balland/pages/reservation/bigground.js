@@ -45,12 +45,12 @@ export default function MyApp() {
         },
       })
       .then((response) => {
-        setEight(response.data[8])
-        setTen(response.data[10])
-        setTwelve(response.data[12])
-        setFourteen(response.data[14])
-        setSixteen(response.data[16])
-        setEightteen(response.data[18])
+        setEight(response.data.data[8])
+        setTen(response.data.data[10])
+        setTwelve(response.data.data[12])
+        setFourteen(response.data.data[14])
+        setSixteen(response.data.data[16])
+        setEightteen(response.data.data[18])
       })
   }
   const timeClick = (idx) => {
