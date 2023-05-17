@@ -11,7 +11,6 @@ export default async function handler(
     const { date } = req.body.body
     const clone = new Date(date)
     clone.setDate(clone.getDate() + 1)
-    console.log(date, clone)
     if ((await db.collection("reservationperdate").findOne({ date: clone })) == null){
       const status = await db.collection("reservationperdate").insertOne({
         8: true,
