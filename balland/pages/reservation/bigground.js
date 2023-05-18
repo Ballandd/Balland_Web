@@ -88,7 +88,7 @@ export default function MyApp() {
         <FacilityCard picture="/groud.jpeg" />
         <Introduce
           facilityname="대운동장"
-          phonenumber="041-566-8775"
+          phonenumber="031-219-2034"
           location="수원시"
         />
       </div>
