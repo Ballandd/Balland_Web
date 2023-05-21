@@ -10,8 +10,6 @@ export interface CardProps {
     color: string
     handleClick: (value: number) => void
     elementIndex: number
-
-    link: string
 }
 
 const ClubCard = (props: CardProps) => {
@@ -21,7 +19,7 @@ const ClubCard = (props: CardProps) => {
             onClick={() => props.handleClick(props.elementIndex)}
         >
             {isStatus ? (
-                // 여기가 true가 온 480보다 큰 것
+                // 여기가 true, 화면이 480보다 큰 것
                 <div className="relative w-40 lg:w-44 xl:w-52 h-40 lg:h-44 xl:h-52 border-2 bg-white items-center">
                     <img
                         className="w-full h-1/2 object-cover z-0"
@@ -41,7 +39,7 @@ const ClubCard = (props: CardProps) => {
                     </div>
                 </div>
             ) : (
-                // 여기가 false가 온 480보다 작은 것
+                // 여기가 false, 화면이 480보다 작은 것
                 <div className="relative flex flex-row w-[80vw] h-10 bg-white">
                     <img
                         className="w-10 object-contain rounded-full mr-2 bg-gray-300"

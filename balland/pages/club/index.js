@@ -3,6 +3,7 @@ import Head from "next/head"
 import ClubCard from "../../components/ClubCard.tsx"
 import ClubInfo from "../../components/ClubInfo.tsx"
 
+// 화면 사이즈 구하는 함수
 export default function Club() {
   const getWindowSize = () => {
     const [windowSize, setWindowSize] = useState(0);
@@ -35,7 +36,7 @@ export default function Club() {
   const [clubPeople, setclubPeople] = useState('임형준, 우용운');
   const [clubPhonenumber, setclubPhonenumber] = useState('010-0000-0000');
   // 연혁 부분도 배열로 설정해서 map으로 보여지게 해야함
-  const [clubHistory, setclubHistory] = useState('2022년 정소대배 우승');
+  const [clubHistory, setclubHistory] = useState(['2022년 정소대배 우승']);
   const [selectClub, setselectClub] = useState(0)
 
   // Club 선택했을 때
@@ -62,7 +63,7 @@ export default function Club() {
       captain: "유정협",
       people: "임형준, 우용운",
       phonenumber: "010-0000-0000",
-      history: "2022 정통대배 우승"
+      history: ["2022 정소대배 우승", "2023년 정소대배 우승", "2023년 아주체전 우승", "2023년 처장배 우승"]
     },{
       name: "AFC",
       imageBack: "../bigground.jpg",
@@ -73,7 +74,7 @@ export default function Club() {
       captain: "회장",
       people: "부회장, 안치욱",
       phonenumber: "010-0000-0000",
-      history: "2022년 AFC배 우승"
+      history: ["2022년 AFC배 우승", "2023년 AFC배 우승"]
     },{
       name: "심볼",
       imageBack: "../bigground.jpg",
@@ -84,7 +85,7 @@ export default function Club() {
       captain: "유정협",
       people: "임형준, 우용운",
       phonenumber: "010-0000-0000",
-      history: "2022 정통대배 우승"
+      history: ["2022 정통대배 우승"]
     },{
       name: "오프사이드",
       imageBack: "../bigground.jpg",
@@ -95,7 +96,7 @@ export default function Club() {
       captain: "유정협",
       people: "임형준, 우용운",
       phonenumber: "010-0000-0000",
-      history: "2022 정통대배 우승"
+      history: ["2022 정통대배 우승"]
     },{
       name: "미디어FC",
       imageBack: "../bigground.jpg",
@@ -106,7 +107,7 @@ export default function Club() {
       captain: "유정협",
       people: "임형준, 우용운",
       phonenumber: "010-0000-0000",
-      history: "2022 정통대배 우승"
+      history: ["2022 정통대배 우승"]
     },{
       name: "단",
       imageBack: "../bigground.jpg",
@@ -117,7 +118,7 @@ export default function Club() {
       captain: "유정협",
       people: "임형준, 우용운",
       phonenumber: "010-0000-0000",
-      history: "2022 정통대배 우승"
+      history: ["2022 정통대배 우승"]
     },{
       name: "터뷸런스",
       imageBack: "../bigground.jpg",
@@ -128,7 +129,7 @@ export default function Club() {
       captain: "유정협",
       people: "임형준, 우용운",
       phonenumber: "010-0000-0000",
-      history: "2022 정통대배 우승"
+      history: ["2022 정통대배 우승"]
     },{
       name: "A2",
       imageBack: "../bigground.jpg",
@@ -139,7 +140,7 @@ export default function Club() {
       captain: "유정협",
       people: "임형준, 우용운",
       phonenumber: "010-0000-0000",
-      history: "2022 정통대배 우승"
+      history: ["2022 정통대배 우승"]
     },{
       name: "비더비즈",
       imageBack: "../bigground.jpg",
@@ -150,7 +151,7 @@ export default function Club() {
       captain: "유정협",
       people: "임형준, 우용운",
       phonenumber: "010-0000-0000",
-      history: "2022 정통대배 우승"
+      history: ["2022 정통대배 우승"]
     },{
       name: "볼랜드A",
       imageBack: "../bigground.jpg",
@@ -161,7 +162,7 @@ export default function Club() {
       captain: "유정협",
       people: "임형준, 우용운",
       phonenumber: "010-0000-0000",
-      history: "2022 정통대배 우승"
+      history: ["2022 정통대배 우승"]
     }
   ]
   return (
