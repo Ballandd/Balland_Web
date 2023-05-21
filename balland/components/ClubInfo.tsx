@@ -4,10 +4,11 @@ export interface CardProps {
     captain: string
     people: string
     phonenumber: string
-    history: string
+    history: any[]
 }
 
 const ClubInfo = (props:CardProps) => {
+  const historylist = props.history
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 w-10/12 mb-10 bg-white">
         <img
@@ -23,7 +24,6 @@ const ClubInfo = (props:CardProps) => {
               <div className="flex flex-row">
                 <span className="mr-1">연혁: </span>
                 <div className="flex flex-col">
-                  <span>{props.history}</span>
                   <span>{props.history}</span>
                 </div>
               </div> 
