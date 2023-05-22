@@ -20,6 +20,7 @@ export default function MyApp() {
   const [sixteen, setSixteen] = useState(true)
   const [eightteen, setEightteen] = useState(true)
   const [linktime, setLinktime] = useState(0)
+  const [choiceBucket, setChoiceBucket] = useState([])
   const availabletime = [
     "08:00 ~ 10:00",
     "10:00 ~ 12:00",
@@ -58,12 +59,33 @@ export default function MyApp() {
     newArr[idx] = true
     setChoiceTime(newArr)
   }
-  
+  const saveTimeToBucket = () => {
+    var year = value.getFullYear()
+    var month = ("0" + (value.getMonth() + 1)).slice(-2)
+    var day = ("0" + value.getDate()).slice(-2)
+    var dateString = `${year}-${month}-${day} ${linktime}:00~${linktime+2}:00`
+    if (choiceBucket.includes(dateString)) {
+      alert("이미 담은 시간입니다!");
+      return; 
+    }
+    setChoiceBucket([dateString, ...choiceBucket])
+  }
+
+  const handleDelete = (index) => {
+    const updatedSchedule = [...choiceBucket];
+    updatedSchedule.splice(index, 1);
+    setChoiceBucket(updatedSchedule);
+  };
+
+
   const xlsize = useMediaQuery('(min-width: 1280px)');
   const lgsize = useMediaQuery('(min-width: 1024px)');
   const mdsize = useMediaQuery('(min-width: 768px)');
   const smsize = useMediaQuery('(min-width: 640px)');
   const ssize = useMediaQuery('(min-width: 480px)');
+  useEffect(() => {
+    console.log(choiceBucket)
+  }, [choiceBucket])
 
   useEffect(() => {
     onClick()
@@ -126,19 +148,38 @@ export default function MyApp() {
           </div>
         </div>
       </div>
-      <div className="flex mt-[21px]">
-        <div className="md:w-[342px] lg:w-[456px] xl:w-[570px] md:h-[228px] lg:h-[304px] xl:h-[398px]"></div>
+      <div className="grid md:flex mt-[21px]">
+        <div className="xxs:w-[232px] xs:w-[290px] s:w-[337px] sm:w-[450px] md:w-[342px] lg:w-[456px] xl:w-[570px] bg-white flex flex-wrap overflow-y-auto	">
+          {choiceBucket.map((item, index) => (
+                  <div key={index} className = "mt-2 ml-2">
+                    <div className="flex text-[10px] s:text-[12px] sm:text-[14px] md:text-[11px] lg:text-[15px] xl:text-[20px] text-center rounded-lg border">
+                      <p className = "pr-4">{item}</p>
+                      <button
+                        onClick={() => handleDelete(index)}> X 
+                      </button>
+                    </div>
+                  </div>
+                ))}        
+      </div>
+        <div className="grid">
+        <button 
+          className="mt-[10px] xxs:w-[232px] xs:w-[290px] s:w-[337px] sm:w-[450px] md:w-[210px] lg:w-[280px] xl:w-[350px] xxs:h-[40px] s:h-[40px] sm:h-[40px] md:h-[38px] lg:h-[50px] xl:h-[60px] md:ml-[20px] bg-rose-600 rounded-lg text-white xs:text-[13px] s:text-[15px] lg:text-[20px]"
+          onClick = {saveTimeToBucket}
+        >
+            예약 담기
+          </button>
         <Link
           href={{
             pathname: "/reservation/bigground/[time]",
-            query: { viewtime: linktime, time: linktime, date: String(value) },
+            query: { viewtime: linktime, time: linktime, date: choiceBucket },
           }}
           as="/reservation/bigground/reservationdetail"
         >
-          <button className="xxs:w-[232px] xs:w-[290px] s:w-[337px] sm:w-[450px] md:w-[210px] lg:w-[280px] xl:w-[350px] xxs:h-[40px] s:h-[40px] sm:h-[40px] md:h-[38px] lg:h-[50px] xl:h-[60px] md:ml-[20px] bg-blue-600 rounded-lg text-white xs:text-[13px] s:text-[15px] lg:text-[20px]">
+          <button className="mt-[10px] xxs:w-[232px] xs:w-[290px] s:w-[337px] sm:w-[450px] md:w-[210px] lg:w-[280px] xl:w-[350px] xxs:h-[40px] s:h-[40px] sm:h-[40px] md:h-[38px] lg:h-[50px] xl:h-[60px] md:ml-[20px] bg-blue-600 rounded-lg text-white xs:text-[13px] s:text-[15px] lg:text-[20px]">
             예약 하기
           </button>
         </Link>
+      </div>
       </div>
     </div>
   )

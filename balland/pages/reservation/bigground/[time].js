@@ -16,19 +16,30 @@ const Reservationtime = (props) => {
   const [dialog, setDialog] = useState(null)
   const [reservestate, setReservestate] = useState(false)
   const [reservedate, setReservedate] = useState("")
-  const { viewtime, date } = router.query || []
+  var { viewtime, date } = router.query || []
   const [viewyear, setviewYear] = useState("")
   const [viewmonth, setviewMonth] = useState("")
   const [viewdate, setviewDate] = useState("")
+
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, isDirty, errors },
   } = useForm()
   const reservationInfoRegister = async (data) => {
-    const clone = new Date(date)
-    clone.setDate(clone.getDate() + 1)
-    await axios
+    if (date.length >= 22){
+      date = [date]
+    }
+    for (let i =0; i <date.length; i++){
+      const reservetime = parseInt(date[i].slice(11,13))
+      const clone = new Date(date[i].slice(0,10))
+      var year = clone.getFullYear()
+      var month = ("0" + (clone.getMonth() + 1)).slice(-2)
+      var day = ("0" + clone.getDate()).slice(-2)
+      var dateString = new Date(`${year}-${month}-${day}T15:00:00.000Z`)
+      console.log(dateString)
+      clone.setDate(clone.getDate() + 1)
+      await axios
       .post(`${process.env.API_URL}/reservation/createReservation`, {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
@@ -41,15 +52,14 @@ const Reservationtime = (props) => {
           purpose: data.purpose,
           eventContent: data.content,
           etc: data.etc,
-          time: viewtime,
-          reservationDate: clone.toISOString(),
+          time: reservetime,
+          reservationDate: dateString.toISOString(),
           userId: session.user.email,
-        },
-      })
-      .then((response) => {
-        alert("예약완료")
-        router.push("/")
-      })
+        }
+      })    
+    }
+      alert("예약완료")
+      router.push("/")
   }
   const { openModal } = useModal(dialog)
   const openModalfunction = async (data) => {
@@ -60,6 +70,9 @@ const Reservationtime = (props) => {
     setReservestate(true)
   }
   useEffect(() => {
+    if (date.length > 10){
+      date = [date]
+    }
     const maxtime = Number(viewtime) + 2
     setReservationTime(`${viewtime}:00 ~ ${maxtime}:00`)
     const viewdate = new Date(date)
@@ -91,12 +104,11 @@ const Reservationtime = (props) => {
         selected={() => modalState()}
       />
       <div className="lg:hidden">
-      <PickFacility
+        <PickFacility
             facilityname="대운동장"
             picture="/groud.jpeg"
-            date={`${viewyear}년 ${viewmonth}월 ${viewdate}일`}
-            time={reservationTime}
-          />
+            dates={date}
+        />
         </div>
       <form onSubmit={handleSubmit(openModalfunction)} className="flex mt-[13px] s:mt-[16px] sm:mt-[20px] lg:mt-0">
         <div className="grid grid-row">
@@ -358,8 +370,7 @@ const Reservationtime = (props) => {
           <PickFacility
             facilityname="대운동장"
             picture="/groud.jpeg"
-            date={`${viewyear}년 ${viewmonth}월 ${viewdate}일`}
-            time={reservationTime}
+            dates={date}
           />
           <button
             type="submit"
