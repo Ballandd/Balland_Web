@@ -12,6 +12,7 @@ const PickFacility = (props: PickFacilityProps) => {
   if (props.dates.length >= 22) {
     updatedDates = String(props.dates).split(',');
   }
+  updatedDates = updatedDates.sort()
   return (
     <div className="w-[250px] xs:w-[280px] s:w-[342px] sm:w-[456px] md:w-[570px] lg:w-[280px] xl:w-[350px] h-[110px] s:h-[130px] sm:h-[140px] md:h-[170px] lg:h-[440px] xl:h-[550px] rounded border-2 bg-white lg:ml-[20px] overflow-auto">
       <div className="mt-[20px] ml-[20px] mr-[20px] left-9 top-5">
