@@ -4,7 +4,8 @@ import ClubCard from "../../components/ClubCard.tsx"
 import ClubInfo from "../../components/ClubInfo.tsx"
 
 // 화면 사이즈 구하는 함수
-export default function Club() {
+export default function Club(props) {
+  const clublist = props.data.data
   const getWindowSize = () => {
     const [windowSize, setWindowSize] = useState(0);
 
@@ -53,118 +54,6 @@ export default function Club() {
     setclubHistory(clublist[selectClub].history);
   },[selectClub])
 
-  const clublist = [{
-      name: "Balland",
-      imageBack: "../bigground.jpg",
-      imageAmbler:"../BallandLogo.png",
-      imageteam: "../BallandTeam.jpg",
-      info: "#소웨 #사보",
-      color: "bg-red-500",
-      captain: "유정협",
-      people: "임형준, 우용운",
-      phonenumber: "010-0000-0000",
-      history: ["2022 정소대배 우승", "2023년 정소대배 우승", "2023년 아주체전 우승", "2023년 처장배 우승"]
-    },{
-      name: "AFC",
-      imageBack: "../bigground.jpg",
-      imageAmbler:"../AU2.png",
-      imageteam: "../AFCTeam.png",
-      info: "#중앙동아리",
-      color: "bg-yellow-300",
-      captain: "회장",
-      people: "부회장, 안치욱",
-      phonenumber: "010-0000-0000",
-      history: ["2022년 AFC배 우승", "2023년 AFC배 우승"]
-    },{
-      name: "심볼",
-      imageBack: "../bigground.jpg",
-      imageAmbler:"../AU2.png",
-      imageteam: "../BallandTeam.jpg",
-      info: "#심리",
-      color: "bg-white",
-      captain: "유정협",
-      people: "임형준, 우용운",
-      phonenumber: "010-0000-0000",
-      history: ["2022 정통대배 우승"]
-    },{
-      name: "오프사이드",
-      imageBack: "../bigground.jpg",
-      imageAmbler:"../AU2.png",
-      imageteam: "../BallandTeam.jpg",
-      info: "#기계",
-      color: "bg-white",
-      captain: "유정협",
-      people: "임형준, 우용운",
-      phonenumber: "010-0000-0000",
-      history: ["2022 정통대배 우승"]
-    },{
-      name: "미디어FC",
-      imageBack: "../bigground.jpg",
-      imageAmbler:"../AU2.png",
-      imageteam: "../BallandTeam.jpg",
-      info: "#미디어",
-      color: "bg-violet-500",
-      captain: "유정협",
-      people: "임형준, 우용운",
-      phonenumber: "010-0000-0000",
-      history: ["2022 정통대배 우승"]
-    },{
-      name: "단",
-      imageBack: "../bigground.jpg",
-      imageAmbler:"../AU2.png",
-      imageteam: "../BallandTeam.jpg",
-      info: "#의대",
-      color: "bg-blue-500",
-      captain: "유정협",
-      people: "임형준, 우용운",
-      phonenumber: "010-0000-0000",
-      history: ["2022 정통대배 우승"]
-    },{
-      name: "터뷸런스",
-      imageBack: "../bigground.jpg",
-      imageAmbler:"../AU2.png",
-      imageteam: "../BallandTeam.jpg",
-      info: "#화공",
-      color: "bg-green-500",
-      captain: "유정협",
-      people: "임형준, 우용운",
-      phonenumber: "010-0000-0000",
-      history: ["2022 정통대배 우승"]
-    },{
-      name: "A2",
-      imageBack: "../bigground.jpg",
-      imageAmbler:"../AU2.png",
-      imageteam: "../BallandTeam.jpg",
-      info: "#건축",
-      color: "bg-neutral-600",
-      captain: "유정협",
-      people: "임형준, 우용운",
-      phonenumber: "010-0000-0000",
-      history: ["2022 정통대배 우승"]
-    },{
-      name: "비더비즈",
-      imageBack: "../bigground.jpg",
-      imageAmbler:"../AU2.png",
-      imageteam: "../BallandTeam.jpg",
-      info: "#경영",
-      color: "bg-white",
-      captain: "유정협",
-      people: "임형준, 우용운",
-      phonenumber: "010-0000-0000",
-      history: ["2022 정통대배 우승"]
-    },{
-      name: "볼랜드A",
-      imageBack: "../bigground.jpg",
-      imageAmbler:"../AU2.png",
-      imageteam: "../BallandTeam.jpg",
-      info: "#우주최강",
-      color: "bg-red-500",
-      captain: "유정협",
-      people: "임형준, 우용운",
-      phonenumber: "010-0000-0000",
-      history: ["2022 정통대배 우승"]
-    }
-  ]
   return (
     <div className="h-max lg:h-full">
       <Head>
@@ -200,4 +89,14 @@ export default function Club() {
       </div>
     </div>
   )
+}
+
+export async function getStaticProps(context) {
+  const res = await fetch("http://localhost:3000/api/club")
+  const data = await res.json()
+  return {
+    props: {
+      data,
+    },
+  }
 }
