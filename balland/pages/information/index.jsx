@@ -99,7 +99,7 @@ export default function Information(props) {
 }
 
 export async function getStaticProps(context) {
-    const res = await fetch("http://localhost:3000/api/information")
+    const res = await fetch("http://localhost:3000/api/information/readall")
     const data = await res.json()
     return {
       props: {
