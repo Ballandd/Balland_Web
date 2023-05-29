@@ -23,7 +23,9 @@ export default function CompetitionDetail() {
   function getDatesStartToLast(startDate, lastDate) {
     var result = [];
     var curDate = new Date(startDate);
-    while(curDate <= new Date(lastDate)) {
+    var last = new Date(lastDate)
+    last.setDate(last.getDate() + 1)
+    while(curDate <= last) {
       result.push(curDate.toISOString().split("T")[0]);
       curDate.setDate(curDate.getDate() + 1);
     }
