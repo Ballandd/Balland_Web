@@ -25,7 +25,7 @@ export default function InformationDetail(props) {
             console.log(response)
             setDate(response.data.data.Date)
             setContent(response.data.data.content)
-            setTitle(response.data.data.writer)
+            setTitle(response.data.data.title)
             setWriter(response.data.data.writer)
           })
       }
