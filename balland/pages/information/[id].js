@@ -24,7 +24,7 @@ export default function InformationDetail(props) {
           })
           .then((response) => {
             console.log(response)
-            setDate(response.data.data.Date)
+            setDate((response.data.data.Date).slice(0,10))
             setContent(response.data.data.content)
             setTitle(response.data.data.title)
             setWriter(response.data.data.writer)
@@ -53,7 +53,7 @@ export default function InformationDetail(props) {
           <div className="inline-flex mt-4 w-full pl-4 sm:pl-6 text-sm">
             <p className="mr-2">Notice writer: {writer}</p>
             <div className="border-slate-300 border-l-2 mr-2"></div>
-            <p className="">Notice Date: {date.slice(0,10)}</p>
+            <p className="">Notice Date: {date}</p>
           </div>
           <div className="mt-8">Notice content: {content}</div>
           <img
