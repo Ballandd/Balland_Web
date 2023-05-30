@@ -22,7 +22,7 @@ const reservationinfoSchema = new Schema({
     eventContent : {
         type: String
     },
-    etc : {
+    file : {
         type: String
     },
     reservationCreateDate : {

@@ -30,6 +30,43 @@ const Reservationtime = (props) => {
     if (date.length >= 22){
       date = [date]
     }
+    if (data.etc[0] != null){
+      const files = new FormData()
+      files.append('files', data.etc[0])
+      axios.post(`${process.env.API_URL}/uploadfile`,files).then(res =>{
+        console.log(res.data.data)
+        for (let i =0; i <date.length; i++){
+          const reservetime = parseInt(date[i].slice(11,13))
+          const clone = new Date(date[i].slice(0,10))
+          var year = clone.getFullYear()
+          var month = ("0" + (clone.getMonth() + 1)).slice(-2)
+          var day = ("0" + clone.getDate()).slice(-2)
+          var dateString = new Date(`${year}-${month}-${day}T15:00:00.000Z`)
+          clone.setDate(clone.getDate() + 1)
+          axios
+          .post(`${process.env.API_URL}/reservation/createReservation`, {
+            method: "POST",
+            Headers: { "Content-Type": "application/json" },
+            body: {
+              name: data.username,
+              contact: data.phonenumber,
+              email: data.email,
+              studentId: data.studentid,
+              userCnt: data.totalnumber,
+              purpose: data.purpose,
+              eventContent: data.content,
+              file: res.data.data,
+              time: reservetime,
+              reservationDate: dateString.toISOString(),
+              userId: session.user.email,
+            }
+          })    
+        }
+      })
+      alert("예약완료")
+      router.push("/")
+    }
+    else{
     for (let i =0; i <date.length; i++){
       const reservetime = parseInt(date[i].slice(11,13))
       const clone = new Date(date[i].slice(0,10))
@@ -37,7 +74,6 @@ const Reservationtime = (props) => {
       var month = ("0" + (clone.getMonth() + 1)).slice(-2)
       var day = ("0" + clone.getDate()).slice(-2)
       var dateString = new Date(`${year}-${month}-${day}T15:00:00.000Z`)
-      console.log(dateString)
       clone.setDate(clone.getDate() + 1)
       await axios
       .post(`${process.env.API_URL}/reservation/createReservation`, {
@@ -51,7 +87,7 @@ const Reservationtime = (props) => {
           userCnt: data.totalnumber,
           purpose: data.purpose,
           eventContent: data.content,
-          etc: data.etc,
+          file: '',
           time: reservetime,
           reservationDate: dateString.toISOString(),
           userId: session.user.email,
@@ -61,6 +97,7 @@ const Reservationtime = (props) => {
       alert("예약완료")
       router.push("/")
   }
+}
   const { openModal } = useModal(dialog)
   const openModalfunction = async (data) => {
     openModal()
@@ -336,16 +373,17 @@ const Reservationtime = (props) => {
                       className="block mt-[8px] text-gray-700 text-[10px] sm:text-[11px] md:text-[13px] lg:text-[11px] xl:text-[13px] font-bold"
                       htmlFor="etc"
                     >
-                      기타사항
+                      행사파일
                     </label>
                   </div>
                   <div className="ml-[20px] h-[40px] xs:ml-[25px] xs:h-[45px] s:ml-[35px] s:h-[43px] sm:ml-[39px] sm:h-[40px] md:ml-[47px] md:h-[50px] lg:ml-[39px] lg:h-[40px] xl:ml-[47px] xl:h-[50px]">
                     <input
                       {...register("etc")}
-                      className="shadow appearance-none border rounded w-[180px] h-[25px] xs:w-[190px] xs:h-[27px] s:w-[250px] s:h-[27px] sm:w-[300px] sm:h-[27px] md:w-[400px] md:h-[34px] lg:w-[300px] xl:w-[400px] lg:h-[27px] xl:h-[34px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[10px] sm:text-[12px] md:text-[13px] lg:text-[12px] xl:text-[13px]"
-                      id="etc"
-                      type="text"
-                      placeholder="기타사항 입력"
+                      className="shadow appearance-none w-[180px] h-[25px] xs:w-[190px] xs:h-[27px] s:w-[250px] s:h-[27px] sm:w-[300px] sm:h-[27px] md:w-[400px] md:h-[34px] lg:w-[300px] xl:w-[400px] lg:h-[27px] xl:h-[34px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[10px] sm:text-[12px] md:text-[13px] lg:text-[12px] xl:text-[13px]"
+                      id="fileUpload"
+                      type="file"
+                      multiple = {true}
+                      placeholder="행사파일 제출(pdf)"
                     />
                   </div>
                 </div>
