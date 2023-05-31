@@ -109,7 +109,6 @@ export default function Club(props: ClubProps): JSX.Element {
     </div>
   )
 }
-
 export async function getStaticProps() {
   const res = await fetch("http://localhost:3000/api/club");
   const data = await res.json();

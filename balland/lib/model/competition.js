@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 const {Schema} = mongoose;
+const ObjectId = mongoose.Types.ObjectId
 const competitionSchema = new Schema({
+    _id:{
+        type : String
+    },
     titile:{
         type : String
     },

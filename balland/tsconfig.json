@@ -22,7 +22,7 @@
     "pages/_app.js",
     "pages/index.js",
     "middleware.js",
-    "pages/competition/index.jsx"
+    "pages/competition/index.tsx"
   ],
   "exclude": ["node_modules"]
 }
