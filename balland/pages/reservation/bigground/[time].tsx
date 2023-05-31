@@ -1,50 +1,59 @@
-import React, { useEffect, useState } from "react"
-import { useRouter } from "next/router"
-import { useForm } from "react-hook-form"
-import axios from "axios"
-import PickFacility from "../../../components/PickFacility"
-import useModal from "../../../components/Modal/useModal"
-import Modal from "../../../components/Modal"
-import { useSession } from "next-auth/react"
-import Link from "next/link"
-import Head from "next/head"
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import PickFacility from "../../../components/PickFacility";
+import useModal from "../../../components/Modal/useModal";
+import Modal from "../../../components/Modal";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
+import Head from "next/head";
 
-const Reservationtime = (props) => {
-  const { data: session, status } = useSession()
-  const [reservationTime, setReservationTime] = useState("")
-  const router = useRouter()
-  const [dialog, setDialog] = useState(null)
-  const [reservestate, setReservestate] = useState(false)
-  const [reservedate, setReservedate] = useState("")
-  var { viewtime, date } = router.query || []
-  const [viewyear, setviewYear] = useState("")
-  const [viewmonth, setviewMonth] = useState("")
-  const [viewdate, setviewDate] = useState("")
+interface ReservationFormData {
+  username: string;
+  phonenumber: string;
+  email: string;
+  studentid: string;
+  totalnumber: number;
+  purpose: string;
+  content: string;
+  etc: FileList;
+}
+
+const Reservationtime = (props: any) => {
+  const { data: session, status } = useSession();
+  const [reservationTime, setReservationTime] = useState("");
+  const router = useRouter();
+  const [dialog, setDialog] = useState<HTMLDialogElement | null>(null);
+  const [reservestate, setReservestate] = useState(false);
+  const [reservedate, setReservedate] = useState<ReservationFormData | undefined>(undefined);
+  let { viewtime, date } = router.query as { viewtime: string, date: string[] };
+  const [viewyear, setviewYear] = useState<string>("");
+  const [viewmonth, setviewMonth] = useState<string>("");
+  const [viewdate, setviewDate] = useState<string>("");
 
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, isDirty, errors },
-  } = useForm()
-  const reservationInfoRegister = async (data) => {
-    if (date.length >= 22){
-      date = [date]
-    }
-    if (data.etc[0] != null){
-      const files = new FormData()
-      files.append('files', data.etc[0])
-      axios.post(`${process.env.API_URL}/uploadfile`,files).then(res =>{
-        console.log(res.data.data)
-        for (let i =0; i <date.length; i++){
-          const reservetime = parseInt(date[i].slice(11,13))
-          const clone = new Date(date[i].slice(0,10))
-          var year = clone.getFullYear()
-          var month = ("0" + (clone.getMonth() + 1)).slice(-2)
-          var day = ("0" + clone.getDate()).slice(-2)
-          var dateString = new Date(`${year}-${month}-${day}T15:00:00.000Z`)
-          clone.setDate(clone.getDate() + 1)
-          axios
-          .post(`${process.env.API_URL}/reservation/createReservation`, {
+  } = useForm<ReservationFormData>();
+
+  const reservationInfoRegister = async (data: ReservationFormData | undefined) => {
+    date = Array.isArray(date) ? date : [date];
+    if (data != undefined){
+    if (data.etc[0] != null) {
+      const files = new FormData();
+      files.append("files", data.etc[0]);
+      axios.post(`${process.env.API_URL}/uploadfile`, files).then((res) => {
+        for (let i = 0; i < date.length; i++) {
+          const reservetime = parseInt(date[i].slice(11, 13));
+          const clone = new Date(date[i].slice(0, 10));
+          const year = clone.getFullYear();
+          const month = ("0" + (clone.getMonth() + 1)).slice(-2);
+          const day = ("0" + clone.getDate()).slice(-2);
+          const dateString = new Date(`${year}-${month}-${day}T15:00:00.000Z`);
+          clone.setDate(clone.getDate() + 1);
+          axios.post(`${process.env.API_URL}/reservation/createReservation`, {
             method: "POST",
             Headers: { "Content-Type": "application/json" },
             body: {
@@ -58,94 +67,95 @@ const Reservationtime = (props) => {
               file: res.data.data,
               time: reservetime,
               reservationDate: dateString.toISOString(),
-              userId: session.user.email,
-            }
-          })    
+              userId: session?.user?.email,
+            },
+          });
         }
-      })
-      alert("예약완료")
-      router.push("/")
+      });
+      alert("예약완료");
+      router.push("/");
+    } else {
+      for (let i = 0; i < date.length; i++) {
+        const reservetime = parseInt(date[i].slice(11, 13));
+        const clone = new Date(date[i].slice(0, 10));
+        const year = clone.getFullYear();
+        const month = ("0" + (clone.getMonth() + 1)).slice(-2);
+        const day = ("0" + clone.getDate()).slice(-2);
+        const dateString = new Date(`${year}-${month}-${day}T15:00:00.000Z`);
+        clone.setDate(clone.getDate() + 1);
+        await axios.post(`${process.env.API_URL}/reservation/createReservation`, {
+          method: "POST",
+          Headers: { "Content-Type": "application/json" },
+          body: {
+            name: data.username,
+            contact: data.phonenumber,
+            email: data.email,
+            studentId: data.studentid,
+            userCnt: data.totalnumber,
+            purpose: data.purpose,
+            eventContent: data.content,
+            file: "",
+            time: reservetime,
+            reservationDate: dateString.toISOString(),
+            userId: session?.user?.email,
+          },
+        });
+      }
+      alert("예약완료");
+      router.push("/");
     }
-    else{
-    for (let i =0; i <date.length; i++){
-      const reservetime = parseInt(date[i].slice(11,13))
-      const clone = new Date(date[i].slice(0,10))
-      var year = clone.getFullYear()
-      var month = ("0" + (clone.getMonth() + 1)).slice(-2)
-      var day = ("0" + clone.getDate()).slice(-2)
-      var dateString = new Date(`${year}-${month}-${day}T15:00:00.000Z`)
-      clone.setDate(clone.getDate() + 1)
-      await axios
-      .post(`${process.env.API_URL}/reservation/createReservation`, {
-        method: "POST",
-        Headers: { "Content-Type": "application/json" },
-        body: {
-          name: data.username,
-          contact: data.phonenumber,
-          email: data.email,
-          studentId: data.studentid,
-          userCnt: data.totalnumber,
-          purpose: data.purpose,
-          eventContent: data.content,
-          file: '',
-          time: reservetime,
-          reservationDate: dateString.toISOString(),
-          userId: session.user.email,
-        }
-      })    
-    }
-      alert("예약완료")
-      router.push("/")
+  };
   }
-}
-  const { openModal } = useModal(dialog)
-  const openModalfunction = async (data) => {
-    openModal()
-    setReservedate(data)
-  }
+  const { openModal } = useModal(dialog);
+
+  const openModalfunction = async (data: ReservationFormData | undefined) => {
+    openModal();
+    setReservedate(data);
+  };
+
   const modalState = () => {
-    setReservestate(true)
-  }
+    setReservestate(true);
+  };
+
   useEffect(() => {
-    if (date.length > 10){
-      date = [date]
+    if (date.length > 10) {
+      date = [date[0]];
     }
-    const maxtime = Number(viewtime) + 2
-    setReservationTime(`${viewtime}:00 ~ ${maxtime}:00`)
-    const viewdate = new Date(date)
-    setviewYear(viewdate.getFullYear())
-    setviewMonth(viewdate.getMonth() + 1)
-    setviewDate(viewdate.getDate())
-  }, [])
+    const maxtime = Number(viewtime) + 2;
+    setReservationTime(`${viewtime}:00 ~ ${maxtime}:00`);
+    const viewdate = new Date(date[0]);
+    setviewYear(viewdate.getFullYear().toString());
+    setviewMonth((viewdate.getMonth() + 1).toString().padStart(2, "0"));
+    setviewDate(viewdate.getDate().toString().padStart(2, "0"));
+  }, []);
+
   useEffect(() => {
-    setDialog(document.querySelector("dialog"))
-  }, [])
+    setDialog(document.querySelector("dialog"));
+  }, []);
+
   useEffect(() => {
-    if (reservestate == true) {
-      reservationInfoRegister(reservedate)
-      setReservestate(false)
+    if (reservestate) {
+      reservationInfoRegister(reservedate);
+      setReservestate(false);
     }
-  }, [reservestate])
+  }, [reservestate]);
+
   return (
-    <div className = "h-full">
+    <div className="h-full">
       <Head>
-       <title>Balland</title>
+        <title>Balland</title>
         <link rel="icon" href="/AU.png" />
       </Head>
-    <div className="grid justify-items-center">
-      <Modal
-        title="예약 정보가 맞나요?"
-        date={`${viewyear}년 ${viewmonth}월 ${viewdate}일`}
-        time={reservationTime}
-        name={session?.user.email}
-        selected={() => modalState()}
-      />
-      <div className="lg:hidden">
-        <PickFacility
-            facilityname="대운동장"
-            picture="/groud.jpeg"
-            dates={date}
+      <div className="grid justify-items-center">
+        <Modal
+          title="예약 정보가 맞나요?"
+          date={`${viewyear}년 ${viewmonth}월 ${viewdate}일`}
+          time={reservationTime}
+          name={session?.user?.email}
+          selected={() => modalState()}
         />
+        <div className="lg:hidden">
+          <PickFacility facilityname="대운동장" picture="/groud.jpeg" dates={date} />
         </div>
       <form onSubmit={handleSubmit(openModalfunction)} className="flex mt-[13px] s:mt-[16px] sm:mt-[20px] lg:mt-0">
         <div className="grid grid-row">

@@ -1,6 +1,6 @@
 import Head from "next/head"
 import Link from "next/link"
-import Facilitychoice from "../../components/Facilitychoice.tsx"
+import Facilitychoice from "../../components/Facilitychoice"
 export default function Reservation() {
   return (
     <div className="h-screen"> 
