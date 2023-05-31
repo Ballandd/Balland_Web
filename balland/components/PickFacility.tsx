@@ -9,7 +9,7 @@ export interface PickFacilityProps {
 const PickFacility = (props: PickFacilityProps) => {
   let updatedDates: string[] = props.dates;
 
-  if (props.dates.length >= 22) {
+  if (props.dates.length >= 21) {
     updatedDates = String(props.dates).split(',');
   }
   updatedDates = updatedDates.sort()
