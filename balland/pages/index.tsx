@@ -1,5 +1,5 @@
 import Head from "next/head"
-import Card from "../components/Card.tsx"
+import Card from "../components/Card"
 import Image from "next/image"
 export default function Home() {
   return (

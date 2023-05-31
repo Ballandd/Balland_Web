@@ -4,24 +4,33 @@ export interface CardProps {
     captain: string
     people: string
     phonenumber: string
-    history: string
+    history: string[]
 }
 
 const ClubInfo = (props:CardProps) => {
     return (
-        <div className="flex w-10/12 h-60 md:h-96 xl:h-[450px] mb-10 bg-white">
-          <img
-            className="basis-2/5 h-full object-contain"
-            src={props.clubimage}
-          />
-          <div className="basis-3/5 flex flex-col pt-10 px-10">
-            <div className="text-[40px] border-b-[3px] border-black mb-4">{props.clubname}</div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 w-10/12 mb-10 bg-white">
+        <img
+        className="w-full s:h-[350px] sm:h-[250px] lg:h-[350px] xl:h-[450px] object-cover"
+        src={props.clubimage}
+        />
+        <div className="flex flex-col pt-2 sm:pt-4 lg:pt-3 px-2 sm:px-4 md:px-3 lg:px-5">
+          <div className="text-[20px] s:text-[30px] md:text-[40px] border-b-[3px] border-black mb-2 sm:mb-4">{props.clubname}</div>
+          <div className="text-[10px] xs:text-xs s:text-sm sm:text-sm md:text-[14px] lg:text-lg xl:text-xl mb-4 sm:mb-1">
             <div>회장: {props.captain}</div>
             <div>임원: {props.people}</div>
             <div>전화번호: {props.phonenumber}</div>
-            <div>연혁: {props.history}</div>  
+              <div className="flex flex-row">
+                <span className="mr-1">연혁: </span>
+                <div className="flex flex-col">
+                  {props.history.map((item, index) => (
+                    <span key={index}>{item}</span>
+                  ))}
+                </div>
+              </div> 
+            </div>
           </div>
-        </div>
+      </div>
     )
 }
 

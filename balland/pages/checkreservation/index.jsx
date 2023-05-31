@@ -8,7 +8,10 @@ import moment from "moment"
 
 export default function Reservation() {
   const { data: session, status } = useSession()
-  const [userReservation, setuserReservation] = useState([]) //유저의 reservation 정보 여기에 담겨있습니다
+  const [userReservation, setuserReservation] = useState([]) //유저의 전체 예약 정보 여기에 담겨있습니다
+  const [userlastReservation, setuserLastReservation] = useState([]) //유저의 지난 예약 정보가 담겨 있습니다
+  const [userfutureReservation, setuserfutureReservation] = useState([]) //유저의 앞으로의 예약 정보가 담겨 있습니다
+
   const [isSSR, setisSSR] = useState(true)
 
   const [currentTab, setCurrentTab] = useState(0)
@@ -51,14 +54,41 @@ export default function Reservation() {
         },
       })
       .then((response) => {
-        console.log(response)
         setuserReservation(response.data.data)
+      })
+  }
+  const getoldreservationinfo = async () => {
+    await axios
+      .post("/api/reservation/mylastreservation", {
+        method: "POST",
+        Headers: { "Content-Type": "application/json" },
+        body: {
+          email: session?.user?.name,
+        },
+      })
+      .then((response) => {
+        setuserLastReservation(response.data.data)
+      })
+  }
+  const getfuturereservationinfo = async () => {
+    await axios
+      .post("/api/reservation/myfuturereservation", {
+        method: "POST",
+        Headers: { "Content-Type": "application/json" },
+        body: {
+          email: session?.user?.name,
+        },
+      })
+      .then((response) => {
+        setuserfutureReservation(response.data.data)
       })
   }
   useEffect(() => {
     if (session) {
       // session 객체가 null이 아닐 때만 호출
       getreservationinfo()
+      getoldreservationinfo()
+      getfuturereservationinfo()
     }
   }, [session])
   useEffect(() => {

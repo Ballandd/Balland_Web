@@ -56,6 +56,12 @@ const Navbar = () => {
               >
                 예약정보 확인
               </a>
+              <a
+                href="/information"
+                className="py-5 px-3 text-gray-700 hover:text-gray-900"
+              >
+                공지사항
+              </a>
             </div>
           </div>
 
@@ -134,6 +140,12 @@ const Navbar = () => {
         </a>
         <a href="/club" className="block py-2 px-4 text-sm hover:bg-gray-200">
           동아리 정보
+        </a>
+        <a href="/checkreservation" className="block py-2 px-4 text-sm hover:bg-gray-200">
+          예약정보 확인
+        </a>
+        <a href="/information" className="block py-2 px-4 text-sm hover:bg-gray-200">
+          공지사항
         </a>
         {status === "authenticated" ? (
           <button
