@@ -6,26 +6,27 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    fontFamily:{
-      sans : ["AjouTTF"],
-      mono :  ["AjouTTF"]
+    fontFamily: {
+      sans: ["AjouTTF"],
+      mono: ["AjouTTF"],
+      table: ["Helvetica", "Arial", "sans-serif"],
     },
     extend: {
-      fontFamily:{
-        sans : ["AjouTTF"],
-        mono :  ["AjouTTF"]
-      }
+      fontFamily: {
+        sans: ["AjouTTF"],
+        mono: ["AjouTTF"],
+      },
     },
-    screens:{
-      'xxs': '320px',
-      'xs': '360px',
-      's': '480px',
-      'sm': '640px',
-      'md' : '768px',
-      'lg' : '1024px',
-      'xl' : '1280px',
-      '2xl' : '1536px'
-    }
+    screens: {
+      xxs: "320px",
+      xs: "360px",
+      s: "480px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+    },
   },
   plugins: [require("tailwind-scrollbar-hide")],
 }
