@@ -1,23 +1,42 @@
-import React, { useEffect, useState } from "react"
-import Head from "next/head"
-import ClubCard from "../../components/ClubCard.tsx"
-import ClubInfo from "../../components/ClubInfo.tsx"
+import React, { useEffect, useState } from "react";
+import Head from "next/head";
+import ClubCard from "../../components/ClubCard";
+import ClubInfo from "../../components/ClubInfo";
+
+interface Club {
+  name: string;
+  imageteam: string;
+  captain: string;
+  people: string;
+  phonenumber: string;
+  history: string[];
+  imageBack: string;
+  imageAmbler: string;
+  info: string;
+  color: string;
+}
+
+interface ClubProps {
+  data: {
+    data: Club[];
+  };
+}
 
 // 화면 사이즈 구하는 함수
-export default function Club(props) {
-  const clublist = props.data.data
-  const getWindowSize = () => {
-    const [windowSize, setWindowSize] = useState(0);
+export default function Club(props: ClubProps): JSX.Element {
+  const clublist: Club[] = props.data.data;
+  const getWindowSize = (): number => {
+    const [windowSize, setWindowSize] = useState<number>(0);
 
     useEffect(() => {
-      if(typeof window !== "undefined") {
-        const handleResize = () => {
+      if (typeof window !== "undefined") {
+        const handleResize = (): void => {
           setWindowSize(window.innerWidth);
         };
-  
+
         window.addEventListener("resize", handleResize);
         handleResize();
-        return () => window.removeEventListener("resize", handleResize);
+        return (): void => window.removeEventListener("resize", handleResize);
       } else {
         return;
       }
@@ -25,23 +44,23 @@ export default function Club(props) {
     return windowSize;
   };
 
-  const width = getWindowSize();
-  // 480이상일 떄 true
+  const width: number = getWindowSize();
+  // 480이상일 때 true
   // 480보다 작을 때 false
-  const status = width >= 480 ? true : false;
+  const status: boolean = width >= 480;
 
   // 초기 Balland 값들로 설정해 놓았음
-  const [clubName, setclubName] = useState('Balland');
-  const [clubImage, setclubImage] = useState('../BallandTeam.jpg');
-  const [clubCaptain, setclubCaptain] = useState('유정협');
-  const [clubPeople, setclubPeople] = useState('임형준, 우용운');
-  const [clubPhonenumber, setclubPhonenumber] = useState('010-0000-0000');
+  const [clubName, setclubName] = useState<string>("Balland");
+  const [clubImage, setclubImage] = useState<string>("../BallandTeam.jpg");
+  const [clubCaptain, setclubCaptain] = useState<string>("유정협");
+  const [clubPeople, setclubPeople] = useState<string>("임형준, 우용운");
+  const [clubPhonenumber, setclubPhonenumber] = useState<string>("010-0000-0000");
   // 연혁 부분도 배열로 설정해서 map으로 보여지게 해야함
-  const [clubHistory, setclubHistory] = useState(['2022년 정소대배 우승']);
-  const [selectClub, setselectClub] = useState(0)
+  const [clubHistory, setclubHistory] = useState<string[]>(["2022년 정소대배 우승"]);
+  const [selectClub, setselectClub] = useState<number>(0);
 
   // Club 선택했을 때
-  const handleClick = (idx) => {
+  const handleClick = (idx: number): void => {
     setselectClub(idx);
   };
   // 이 안에 데이터들 API로 받아오면 될 거 같음
@@ -52,7 +71,7 @@ export default function Club(props) {
     setclubPeople(clublist[selectClub].people);
     setclubPhonenumber(clublist[selectClub].phonenumber);
     setclubHistory(clublist[selectClub].history);
-  },[selectClub])
+  }, [selectClub]);
 
   return (
     <div className="h-max lg:h-full">
@@ -91,12 +110,12 @@ export default function Club(props) {
   )
 }
 
-export async function getStaticProps(context) {
-  const res = await fetch("http://localhost:3000/api/club")
-  const data = await res.json()
+export async function getStaticProps() {
+  const res = await fetch("http://localhost:3000/api/club");
+  const data = await res.json();
   return {
     props: {
       data,
     },
-  }
+  };
 }
