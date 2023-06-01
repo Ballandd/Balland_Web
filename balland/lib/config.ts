@@ -3,6 +3,9 @@ import mongoose from "mongoose"
 const uri = process.env.NEXT_PUBLIC_MONGODB_URI
 
 const connect = () =>{
+    if(!uri){
+        return
+    }
     mongoose.connect(uri,{
         dbName : "balland"
     })

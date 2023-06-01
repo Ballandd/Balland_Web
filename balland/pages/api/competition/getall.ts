@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import connect from "../../../lib/config.js"
-import competition from "../../../lib/model/competition.js"
+import connect from "../../../lib/config"
+import competition from "../../../lib/model/competition"
 
 export default async function handler(
     req: NextApiRequest,

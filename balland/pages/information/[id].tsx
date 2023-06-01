@@ -11,7 +11,6 @@ export default function InformationDetail() {
   const [writer, setWriter] = useState<string | undefined>();
   const [image, setImage] = useState<string | undefined>();
 
-  console.log(router.query.id);
   const noticeId: string | string[] | undefined = router.query.id?.toString();
 
   const competitiondetail = async () => {
@@ -32,7 +31,7 @@ export default function InformationDetail() {
         // db에 data.data.image 만들고
         // 여기에 response.data.data.image 넣으면 됨
         // 현재는 볼랜드 로고 넣어 놓음
-        setImage('../../BallandLogo.png');
+        setImage(response.data.data.image);
       });
   };
 
@@ -43,7 +42,7 @@ export default function InformationDetail() {
   }, [noticeId]);
 
   return (
-    <div>
+    <div className = "h-full">
       <Head>
         <title>공지 사항</title>
         <link rel="icon" href="/AU.png" />
@@ -51,14 +50,14 @@ export default function InformationDetail() {
       <div className="h-screen">
         <div className="flex flex-col h-max items-center bg-white">
           <div className="border-slate-300 border-t-2 border-b bg-slate-200 w-full py-2 pl-4 sm:pl-6 font-semibold">
-            <h1>Notice title: {title}</h1>
+            <h1>제목: {title}</h1>
           </div>
           <div className="inline-flex mt-4 w-full pl-4 sm:pl-6 text-sm">
-            <p className="mr-2">Notice writer: {writer}</p>
+            <p className="mr-2">작성자: {writer}</p>
             <div className="border-slate-300 border-l-2 mr-2"></div>
-            <p className="">Notice Date: {date}</p>
+            <p className="">작성 날짜: {date}</p>
           </div>
-          <div className="mt-8">Notice content: {content}</div>
+          <div className="mt-8 mr-2 ml-2">{content}</div>
           <img
             className="w-8/12 lg:w-7/12 xl:w-5/12 object-cover mt-5 mb-10"
             src={image}

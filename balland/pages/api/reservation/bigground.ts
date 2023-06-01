@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import connect from "../../../lib/config"
-import reservationperdate from "../../../lib/model/reservationperdate.js"
+import reservationperdate from "../../../lib/model/reservationperdate"
 
 export default async function handler(
   req: NextApiRequest,

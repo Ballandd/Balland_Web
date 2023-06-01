@@ -39,13 +39,13 @@ export default function Information(props: InformationProps) {
   );
 
   return (
-    <div>
+    <div className = "h-screen">
       <Head>
         <title>공지 사항</title>
         <link rel="icon" href="/AU.png" />
       </Head>
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table className="relative overflow-x-a w-1/2 sm:w-full text-[10px] sm:text-xs text-center text-gray-500 dark:text-gray-400">
+      <table className="relative overflow-x-a w-1/2 sm:w-full text-[10px] sm:text-xs lg:text-base text-center text-gray-500 dark:text-gray-400">
   <thead className="text-xxs sm:text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
       <th scope="col" className="sm:py-2 md:py-3">
@@ -120,7 +120,7 @@ export default function Information(props: InformationProps) {
 }
 
 export async function getStaticProps(context: any) {
-  const res = await fetch("http://localhost:3000/api/information/readall");
+  const res = await fetch(`${process.env.API_URL}/information/readall`);
   const data: { data: Notice[] } = await res.json();
   return {
     props: {
