@@ -1,30 +1,37 @@
-import Head from "next/head"
-import Link from "next/link"
-import WaitingService from "../../components/WaitingService.tsx"
-import { useSession } from "next-auth/react"
-import { useEffect, useState } from "react"
-import axios from "axios"
-import moment from "moment"
+import Head from "next/head";
+import Link from "next/link";
+import WaitingService from "../../components/WaitingService";
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import moment from "moment";
+
+interface ReservationData {
+  reservationDate: string;
+  userCnt: number;
+  purpose: string;
+}
 
 export default function Reservation() {
-  const { data: session, status } = useSession()
-  const [userReservation, setuserReservation] = useState([]) //유저의 전체 예약 정보 여기에 담겨있습니다
-  const [userlastReservation, setuserLastReservation] = useState([]) //유저의 지난 예약 정보가 담겨 있습니다
-  const [userfutureReservation, setuserfutureReservation] = useState([]) //유저의 앞으로의 예약 정보가 담겨 있습니다
-
-  const [isSSR, setisSSR] = useState(true)
-
-  const [currentTab, setCurrentTab] = useState(0)
+  const { data: session, status } = useSession();
+  const [userReservation, setuserReservation] = useState<ReservationData[]>([]);
+  const [userlastReservation, setuserLastReservation] = useState<ReservationData[]>([]);
+  const [userfutureReservation, setuserfutureReservation] = useState<ReservationData[]>([]);
+  const [isSSR, setisSSR] = useState(true);
+  const [currentTab, setCurrentTab] = useState(0);
 
   const tabMenu = [
     {
       title: "전체보기",
       content: (
         <>
-          {userReservation ? (
+          {userReservation.length > 0 ? (
             userReservation.map((item, index) => {
               return (
-                <div className="flex items-center my-2 font-light text-center bg-white border-2 border-gray-200 h-[50px] rounded font-table">
+                <div
+                  key={index}
+                  className="flex items-center my-2 font-light text-center bg-white border-2 border-gray-200 h-[50px] rounded font-table"
+                >
                   <span className="w-[30%]">
                     {moment(item.reservationDate).format("YYYY-MM-DD HH:mm:ss")}
                   </span>
@@ -32,7 +39,7 @@ export default function Reservation() {
                   <span className="w-[35%] text-left">{item.purpose}</span>
                   <span className="w-[15%]">-</span>
                 </div>
-              )
+              );
             })
           ) : (
             <div>조회할 데이터가 없습니다.</div>
@@ -42,7 +49,7 @@ export default function Reservation() {
     },
     { title: "예약ing", content: <div>예약ing</div> },
     { title: "예약ed", content: <div>예약ed</div> },
-  ]
+  ];
 
   const getreservationinfo = async () => {
     await axios
@@ -54,9 +61,9 @@ export default function Reservation() {
         },
       })
       .then((response) => {
-        setuserReservation(response.data.data)
-      })
-  }
+        setuserReservation(response.data.data);
+      });
+  };
   const getoldreservationinfo = async () => {
     await axios
       .post("/api/reservation/mylastreservation", {
@@ -67,9 +74,9 @@ export default function Reservation() {
         },
       })
       .then((response) => {
-        setuserLastReservation(response.data.data)
-      })
-  }
+        setuserLastReservation(response.data.data);
+      });
+  };
   const getfuturereservationinfo = async () => {
     await axios
       .post("/api/reservation/myfuturereservation", {
@@ -80,29 +87,29 @@ export default function Reservation() {
         },
       })
       .then((response) => {
-        setuserfutureReservation(response.data.data)
-      })
-  }
+        setuserfutureReservation(response.data.data);
+      });
+  };
   useEffect(() => {
     if (session) {
       // session 객체가 null이 아닐 때만 호출
-      getreservationinfo()
-      getoldreservationinfo()
-      getfuturereservationinfo()
+      getreservationinfo();
+      getoldreservationinfo();
+      getfuturereservationinfo();
     }
-  }, [session])
+  }, [session]);
   useEffect(() => {
-    if (userReservation !== null) {
-      setisSSR(false)
+    if (userReservation.length > 0) {
+      setisSSR(false);
     }
-  }, [userReservation])
+  }, [userReservation]);
   if (status === "loading") {
     // 세션 정보가 로드 중일 때
-    return null
+    return null;
   }
 
-  console.log("userReservation")
-  console.log(userReservation)
+  console.log("userReservation");
+  console.log(userReservation);
   if (!isSSR) {
     return (
       <div>
@@ -122,12 +129,12 @@ export default function Reservation() {
                       : "border-transparent hover:border-gray-200"
                   } py-2 border-b-4 transition-colors duration-300 mr-8`}
                   onClick={() => {
-                    setCurrentTab(index)
+                    setCurrentTab(index);
                   }}
                 >
                   {item.title}
                 </button>
-              )
+              );
             })}
           </div>
           <div className="px-4 py-6">
@@ -143,6 +150,6 @@ export default function Reservation() {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }

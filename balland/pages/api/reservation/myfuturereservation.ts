@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import connect from "../../../lib/config";
-import reservationinfo from "../../../lib/model/reservationinfo.js";
+import reservationinfo from "../../../lib/model/reservationinfo";
 
 export default async function handler(
     req: NextApiRequest,
