@@ -1,17 +1,17 @@
 import Head from "next/head";
 import axios from "axios";
-import { useRouter } from 'next/router';
 import { useEffect, useState } from "react";
-
+import { idState } from "../../components/recoil/state";
+import { useRecoilState } from 'recoil';
 export default function InformationDetail() {
-  const router = useRouter();
+  const [id, setIdState] = useRecoilState(idState);
   const [date, setDate] = useState<string | undefined>();
   const [content, setContent] = useState<string | undefined>();
   const [title, setTitle] = useState<string | undefined>();
   const [writer, setWriter] = useState<string | undefined>();
   const [image, setImage] = useState<string | undefined>();
+  const [isSSR, setIsSSR] = useState(true);
 
-  const noticeId: string | string[] | undefined = router.query.id?.toString();
 
   const competitiondetail = async () => {
     await axios
@@ -19,7 +19,7 @@ export default function InformationDetail() {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
-          id: noticeId,
+          id: id,
         },
       })
       .then((response) => {
@@ -36,11 +36,10 @@ export default function InformationDetail() {
   };
 
   useEffect(() => {
-    if (noticeId != null) {
-      competitiondetail();
-    }
-  }, [noticeId]);
-
+    setIsSSR(false);
+    competitiondetail();
+  }, []);
+if (!isSSR) {
   return (
     <div className = "h-full">
       <Head>
@@ -66,4 +65,5 @@ export default function InformationDetail() {
       </div>
     </div>
   );
+}
 }

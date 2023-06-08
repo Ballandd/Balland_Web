@@ -148,7 +148,7 @@ const Reservationtime = (props: any) => {
       </Head>
       <div className="grid justify-items-center">
         <Modal
-          title="예약 정보가 맞나요?"
+          title="예약을 진행하시겠습니까?"
           date={`${viewyear}년 ${viewmonth}월 ${viewdate}일`}
           time={reservationTime}
           name={session?.user?.email}

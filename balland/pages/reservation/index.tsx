@@ -3,7 +3,7 @@ import Link from "next/link"
 import Facilitychoice from "../../components/Facilitychoice"
 export default function Reservation() {
   return (
-    <div className="h-screen"> 
+    <div className="h-full"> 
       <Head>
         <title>Reservation Main</title>
         <link rel="icon" href="/AU.png" />

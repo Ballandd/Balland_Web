@@ -146,7 +146,7 @@ export default function MyApp() {
             <h2 className="mt-5 left-9 top-5 text-left xs:text-[14px] sm:text-[16px] md:text-[18px] lg:text-[24px] xl:text-[30px] font-semibold">
               예약 현황 확인
             </h2>
-            <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-1 md:items-center lg:grid-cols-2 xxs:mt-2 sm:mt-4 md:mt-3 lg:mt-5">
+            <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-1 md:items-center lg:grid-cols-2 xxs:mt-2 sm:mt-4 md:mt-3 lg:mt-5 mb-3">
               {availabletime.map((time, index) => (
                 <ReserveTime
                   key={index}
@@ -165,7 +165,7 @@ export default function MyApp() {
         <div className="xxs:w-[232px] xs:w-[290px] s:w-[337px] sm:w-[450px] md:w-[342px] lg:w-[456px] xl:w-[570px] bg-white flex flex-wrap overflow-y-auto">
           {choiceBucket.map((item, index) => (
             <div key={index} className="mt-2 ml-2">
-              <div className="flex text-[10px] s:text-[12px] sm:text-[14px] md:text-[10px] lg:text-[14px] xl:text-[18px] text-center ">
+              <div className="flex text-[10px] s:text-[12px] sm:text-[14px] md:text-[10px] lg:text-[14px] xl:text-[18px] text-center mb-1">
                 <p className="rounded-lg border pl-2 pr-2">{item}</p>
                 <button className="rounded-lg border pl-2 pr-2" onClick={() => handleDelete(index)}>
                   X

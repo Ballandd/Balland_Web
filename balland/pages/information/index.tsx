@@ -1,7 +1,10 @@
 import Head from "next/head";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import { idState } from "../../components/recoil/state";
 import axios from "axios";
+import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
 
 interface Notice {
   _id: string;
@@ -17,6 +20,8 @@ interface InformationProps {
 }
 
 export default function Information(props: InformationProps) {
+  const [id, setidstate] = useRecoilState(idState)
+  const router = useRouter();
   const { data: session, status } = useSession();
   const firstinformation = props.data.data;
   const information = [...firstinformation].sort(
@@ -74,8 +79,15 @@ export default function Information(props: InformationProps) {
         <th
           scope="row"
           className="px-2 sm:px-6 py-2 sm:py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          onClick = {() => {
+            setidstate(notice._id);
+            router.push({
+              pathname: "/information/[id]",
+              query: {id: notice._id}
+            })
+          }}
         >
-          <a href={`/information/${notice._id}`}>{notice.title}</a>
+          <a>{notice.title}</a>
         </th>
         <td className="px-6 py-4">{notice.writer}</td>
         <td className="px-6 py-4">{notice.Date.slice(0, 10)}</td>

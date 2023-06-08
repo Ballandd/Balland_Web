@@ -20,6 +20,16 @@ module.exports = {
         "2xs": "0.625rem", // 2px
       },
     },
+    screens:{
+      'xxs': '320px',
+      'xs': '360px',
+      's': '480px',
+      'sm': '640px',
+      'md' : '768px',
+      'lg' : '1024px',
+      'xl' : '1280px',
+      '2xl' : '1536px'
+    }
   },
   plugins: [require("tailwind-scrollbar-hide")],
 }
