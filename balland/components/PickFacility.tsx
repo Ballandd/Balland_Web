@@ -8,11 +8,10 @@ export interface PickFacilityProps {
 
 const PickFacility = (props: PickFacilityProps) => {
   let updatedDates: string[] = props.dates;
-
-  if (props.dates.length >= 21) {
+  if (props.dates && props.dates.length >= 21) {
     updatedDates = String(props.dates).split(',');
   }
-  updatedDates = updatedDates.sort()
+  updatedDates = updatedDates?.sort()
   return (
     <div className="w-[250px] xs:w-[280px] s:w-[342px] sm:w-[456px] md:w-[570px] lg:w-[280px] xl:w-[350px] h-[110px] s:h-[130px] sm:h-[140px] md:h-[170px] lg:h-[440px] xl:h-[550px] rounded border-2 bg-white lg:ml-[20px] overflow-auto">
       <div className="mt-[20px] ml-[20px] mr-[20px] left-9 top-5">
@@ -22,7 +21,7 @@ const PickFacility = (props: PickFacilityProps) => {
           {props.facilityname}
         </h2>
         <div className="mt-[15px] s:mt-[24px]">
-          {updatedDates.map((date, index) => (
+          {updatedDates?.map((date, index) => (
             <div key={index} className="flex flex-row items-center justify-center lg:justify-start">
               <Icon 
                 icon="material-symbols:calendar-today"  

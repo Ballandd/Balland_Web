@@ -75,6 +75,7 @@ const Reservationtime = (props: any) => {
       alert("예약완료");
       router.push("/");
     } else {
+      let response
       for (let i = 0; i < date.length; i++) {
         const reservetime = parseInt(date[i].slice(11, 13));
         const clone = new Date(date[i].slice(0, 10));
@@ -83,7 +84,7 @@ const Reservationtime = (props: any) => {
         const day = ("0" + clone.getDate()).slice(-2);
         const dateString = new Date(`${year}-${month}-${day}T15:00:00.000Z`);
         clone.setDate(clone.getDate() + 1);
-        await axios.post(`${process.env.API_URL}/reservation/createReservation`, {
+        response = await axios.post("../../api/reservation/createReservation", {
           method: "POST",
           Headers: { "Content-Type": "application/json" },
           body: {
@@ -101,8 +102,17 @@ const Reservationtime = (props: any) => {
           },
         });
       }
-      alert("예약완료");
-      router.push("/");
+      console.log(response)
+      if (response && response.data.type === true) {
+        console.log(response)
+        alert("예약완료");
+        router.push("/");
+      }
+      else{
+        console.log(response)
+        alert("이미 예약이 완료된 시간이 있습니다!")
+        router.push("/")
+      }
     }
   };
   }
