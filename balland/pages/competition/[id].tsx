@@ -28,9 +28,36 @@ export default function CompetitionDetail() {
   const [duringdate, setDuringdate] = useState<string[]>([]);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [gamedetailinfobydate, setGamedatailinfobydate] = useState<GameDetail[]>([]);
-  const [grouplist, setGrouplist] = useState<any[]>([]);
+  const [grouplist, setGrouplist] = useState<any[]>([]); // 여기서 teams에 해당하는 배열 받아오게 하면됨
+  // const [grouplist, setGrouplist] = useState<string[]>(["아주대학교", "아주대학교", "아주대학교"])
   const [isCategorySelect, setIsCategorySelect] = useState<boolean[]>([]);
   const [isSSR, setIsSSR] = useState(true);
+
+  // 이런식으로 db에서 team을 배열로 저장하게
+  // 구조 변경해야함
+  // 기존의 teamOne, teamTwo, teamThree는 삭제
+  const teamlist2 = [
+    "아주대학교",
+    "홍익대학교",
+  ]
+  const teamlist3 = [
+    "아주대학교",
+    "홍익대학교",
+    "성균관대학교"
+  ]
+  const teamlist4 = [
+    "아주대학교",
+    "홍익대학교",
+    "한국외국어대학교",
+    "서울대학교"
+  ]
+  const teamlist5 = [
+    "아주대학교",
+    "홍익대학교",
+    "연세대학교",
+    "고려대학교",
+    "한양대학교"
+  ]
 
   function getDatesStartToLast(startDate: string, lastDate: string): string[] {
     var result: string[] = [];
@@ -122,6 +149,32 @@ export default function CompetitionDetail() {
     return (
       <div className="h-screen lg:h-full flex flex-col mt-5 items-center">
         <div className={`${grouplist.length > 4 ? "w-8/12" : null} flex justify-items-center overflow-x-auto overflow-y-hidden`}>
+          <div className="mr-1.5">
+            <GroupRank
+              group= "A"
+              teams= {teamlist2}
+            />
+          </div>
+          <div className="mr-1.5">
+            <GroupRank
+              group= "B"
+              teams= {teamlist3}
+            />
+          </div>
+          <div className="mr-1.5">
+            <GroupRank
+              group= "C"
+              teams= {teamlist4}
+            />
+          </div>
+          <div className="mr-1.5">
+            <GroupRank
+              group= "D"
+              teams= {teamlist5}
+            />
+          </div>
+        </div>
+        {/* <div className={`${grouplist.length > 4 ? "w-8/12" : null} flex justify-items-center overflow-x-auto overflow-y-hidden`}>
           {grouplist.map((group, index) => (
             <div className="mr-1.5" key={index}>
               <GroupRank
@@ -133,7 +186,7 @@ export default function CompetitionDetail() {
               />
             </div>
           ))}
-        </div>
+        </div> */}
         <div className="mt-5">
           {id[0] !== '' && <Image
             src={`${process.env.IMAGE_URL}/competition/${id}.png`}
