@@ -53,7 +53,7 @@ export default function Reservation() {
 
   const getreservationinfo = async () => {
     await axios
-      .post(`${process.env.API_URL}/reservation/myreservation`, {
+      .post("/api/reservation/myreservation", {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
