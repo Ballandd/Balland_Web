@@ -7,6 +7,7 @@ import axios from "axios";
 import Gamedate from "../../components/Gamedate";
 import { idState } from "../../components/recoil/state";
 import { useRecoilState } from 'recoil';
+import { Icon } from "@iconify/react"
 
 interface GameDetail {
   phase: string;
@@ -32,6 +33,7 @@ export default function CompetitionDetail() {
   // const [grouplist, setGrouplist] = useState<string[]>(["아주대학교", "아주대학교", "아주대학교"])
   const [isCategorySelect, setIsCategorySelect] = useState<boolean[]>([]);
   const [isSSR, setIsSSR] = useState(true);
+  const [visibleIndex, setVisibleIndex] = useState(0);
 
   // 이런식으로 db에서 team을 배열로 저장하게
   // 구조 변경해야함
@@ -121,6 +123,21 @@ export default function CompetitionDetail() {
     newArr[idx] = true;
     setIsCategorySelect(newArr);
   };
+  const datehandleClick = (index: number) => {
+    setVisibleIndex(index);
+  };
+
+  const handleRightButtonClick = () => {
+    if (visibleIndex < duringdate.length - 1) {
+      setVisibleIndex(visibleIndex + 1);
+    }
+  };
+
+  const handleLeftButtonClick = () => {
+    if (visibleIndex > 0) {
+      setVisibleIndex(visibleIndex - 1);
+    }
+  };
 
   useEffect(() => {
     setIsSSR(false);
@@ -198,6 +215,13 @@ export default function CompetitionDetail() {
         </div>
         <div className="w-[100%] xl:w-[940px] mt-11 text-2xl font-extrabold ">
           <div className="w-[100%] flex overflow-x-auto overflow-y-hidden scrollbar-hide">
+          <button 
+            onClick={handleLeftButtonClick}
+            className="absolute top-0 left-0 h-full flex justify-center items-center"
+          >
+            <Icon icon="carbon:chevron-left" />
+          </button>
+          <div className="flex" style={{ flex: "1 0 auto" }}>
             {duringdate && duringdate.map((item, index) => {
               return <Gamedate
                 key={index}
@@ -208,6 +232,13 @@ export default function CompetitionDetail() {
               />
             })}
           </div>
+          <button 
+            onClick={handleRightButtonClick}
+            className="absolute top-0 right-0 h-full flex justify-center items-center"  
+          >
+              <Icon icon="carbon:chevron-right" />
+            </button>
+        </div>
         </div>
         <div className="mt-3 lg:mt-11 flex flex-col">
           <div className="pb-2.5">
