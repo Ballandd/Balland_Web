@@ -18,14 +18,20 @@ export default function Reservation() {
   const [userReservation, setuserReservation] = useState<ReservationData[]>([]);
   const [isSSR, setisSSR] = useState(true);
   const [currentTab, setCurrentTab] = useState(0);
-
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
+  const itemsPerPage = 10; // 한 페이지당 보여줄 아이템 수
+  const totalPages = Math.ceil(userReservation.length / itemsPerPage); // 총 페이지 수
+  const currentPageData = userReservation.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
   const tabMenu = [
     {
       title: "전체보기",
       content: (
         <>
           {userReservation.length > 0 ? (
-            userReservation.map((item, index) => {
+            currentPageData.map((item, index) => {
               const statusToKo =
                 item.status === 'wait' ? '승인대기':
                 item.status === 'approve' ? '승인완료':
@@ -123,6 +129,21 @@ export default function Reservation() {
                 <span className="w-[15%]">승인 상태</span>
               </div>
               <div>{tabMenu[currentTab].content}</div>
+              <div className="flex justify-center mt-4">
+              {Array.from({ length: totalPages }, (_, index) => (
+                <button
+                  key={index}
+                  className={`mx-1 px-3 py-1 rounded-full ${
+                    currentPage === index + 1
+                      ? "bg-blue-500 text-white"
+                      : "bg-white text-gray-600"
+                  }`}
+                  onClick={() => setCurrentPage(index + 1)}
+                >
+                  {index + 1}
+                </button>
+              ))}
+            </div>
             </div>
           </div>
         </div>
