@@ -10,6 +10,7 @@ interface ReservationData {
   reservationDate: string;
   userCnt: number;
   purpose: string;
+  status: string;
 }
 
 export default function Reservation() {
@@ -27,6 +28,10 @@ export default function Reservation() {
         <>
           {userReservation.length > 0 ? (
             userReservation.map((item, index) => {
+              const statusToKo =
+                item.status === 'wait' ? '승인대기':
+                item.status === 'approve' ? '승인완료':
+                '승인거절';
               return (
                 <div
                   key={index}
@@ -37,7 +42,11 @@ export default function Reservation() {
                   </span>
                   <span className="w-[20%]">{item.userCnt}</span>
                   <span className="w-[35%] text-left">{item.purpose}</span>
-                  <span className="w-[15%]">-</span>
+                  <span className={`w-[15%] ${
+                    item.status === 'wait' ? "text-green":
+                    item.status === 'approve' ? "text-blue":
+                    "text-red"
+                  }`}>{statusToKo}</span>
                 </div>
               );
             })
