@@ -14,6 +14,7 @@ interface IReservationInfo extends Document {
   reservationModifyDate: Date;
   userId: string;
   time: number;
+  status : string;
 }
 
 const reservationinfoSchema: Schema<IReservationInfo> = new Schema<IReservationInfo>({
@@ -55,6 +56,9 @@ const reservationinfoSchema: Schema<IReservationInfo> = new Schema<IReservationI
   },
   time: {
     type: Number,
+  },
+  status : {
+    type : String,
   },
 });
 

@@ -8,5 +8,10 @@ const idState = atom({
   default: '',
   effects_UNSTABLE: [persistAtom],
 });
-
+const reservationState = atom({
+  key: 'reservationState',
+  default: '',
+  effects_UNSTABLE: [persistAtom],
+});
 export { idState };
+export {reservationState};
