@@ -16,8 +16,6 @@ interface ReservationData {
 export default function Reservation() {
   const { data: session, status } = useSession();
   const [userReservation, setuserReservation] = useState<ReservationData[]>([]);
-  const [userlastReservation, setuserLastReservation] = useState<ReservationData[]>([]);
-  const [userfutureReservation, setuserfutureReservation] = useState<ReservationData[]>([]);
   const [isSSR, setisSSR] = useState(true);
   const [currentTab, setCurrentTab] = useState(0);
 
@@ -56,8 +54,6 @@ export default function Reservation() {
         </>
       ),
     },
-    { title: "예약ing", content: <div>예약ing</div> },
-    { title: "예약ed", content: <div>예약ed</div> },
   ];
 
   const getreservationinfo = async () => {
@@ -66,45 +62,18 @@ export default function Reservation() {
         method: "POST",
         Headers: { "Content-Type": "application/json" },
         body: {
-          email: session?.user?.name, // session 객체가 null이 아닐 때만 접근
+          email: session?.user?.email, // session 객체가 null이 아닐 때만 접근
         },
       })
       .then((response) => {
         setuserReservation(response.data.data);
       });
   };
-  const getoldreservationinfo = async () => {
-    await axios
-      .post("/api/reservation/mylastreservation", {
-        method: "POST",
-        Headers: { "Content-Type": "application/json" },
-        body: {
-          email: session?.user?.name,
-        },
-      })
-      .then((response) => {
-        setuserLastReservation(response.data.data);
-      });
-  };
-  const getfuturereservationinfo = async () => {
-    await axios
-      .post("/api/reservation/myfuturereservation", {
-        method: "POST",
-        Headers: { "Content-Type": "application/json" },
-        body: {
-          email: session?.user?.name,
-        },
-      })
-      .then((response) => {
-        setuserfutureReservation(response.data.data);
-      });
-  };
+  
   useEffect(() => {
     if (session) {
       // session 객체가 null이 아닐 때만 호출
       getreservationinfo();
-      getoldreservationinfo();
-      getfuturereservationinfo();
     }
   }, [session]);
   useEffect(() => {
@@ -116,10 +85,9 @@ export default function Reservation() {
     // 세션 정보가 로드 중일 때
     return null;
   }
-
   console.log("userReservation");
   console.log(userReservation);
-  if (!isSSR) {
+  
     return (
       <div>
         <Head>
@@ -160,5 +128,5 @@ export default function Reservation() {
         </div>
       </div>
     );
-  }
+  
 }
