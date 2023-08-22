@@ -19,4 +19,14 @@ export async function middleware(request: NextRequest, event: NextFetchEvent) {
       return NextResponse.redirect(new URL("/", request.url))
     }
   }
+  if (pathname.startsWith("/auth/signup")){
+    if(session?.email != 'admin@balland.com'){
+      return NextResponse.redirect(new URL("/", request.url))
+    }
+  }
+  if(pathname.startsWith("/admin")){
+    if(session?.email != 'admin@balland.com'){
+      return NextResponse.redirect(new URL("/", request.url))
+    }
+  }
 }

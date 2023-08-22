@@ -1,6 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
-import WaitingService from "../../components/WaitingService";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
