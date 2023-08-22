@@ -1,4 +1,6 @@
 import Head from "next/head";
+import Link from "next/link";
+import WaitingService from "../../components/WaitingService";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -38,10 +40,10 @@ export default function Reservation() {
                   </span>
                   <span className="w-[20%]">{item.userCnt}</span>
                   <span className="w-[35%] text-left">{item.purpose}</span>
-                  <span className={`w-[15%] ${
-                    item.status === 'wait' ? "text-green":
-                    item.status === 'approve' ? "text-blue":
-                    "text-red"
+                  <span className={`w-[15%] font-bold ${
+                    item.status === 'wait' ? "text-green-600":
+                    item.status === 'approve' ? "text-blue-600":
+                    "text-red-600"
                   }`}>{statusToKo}</span>
                 </div>
               );
