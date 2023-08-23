@@ -49,6 +49,10 @@ export default function Reservation() {
               .subtract(1, 'day')
               .format("YYYY-MM-DD");
 
+              const statusToKo =
+                item.status === 'wait' ? '승인대기':
+                item.status === 'approve' ? '승인완료':
+                '승인거절';
               return (
                 <div
                   key={index}
@@ -66,7 +70,11 @@ export default function Reservation() {
                   </span>
                   <span className="w-[20%]">{item.userCnt}</span>
                   <span className="w-[35%] text-left">{item.purpose}</span>
-                  <span className="w-[15%]">{item.status}</span>
+                  <span className={`w-[15%] font-bold ${
+                    item.status === 'wait' ? "text-green-600":
+                    item.status === 'approve' ? "text-blue-600":
+                    "text-red-600"
+                  }`}>{statusToKo}</span>
                 </div>
               );
             })
