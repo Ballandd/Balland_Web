@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import classNames from "classnames"
 import { signOut, useSession } from "next-auth/react"
+import { Icon } from '@iconify/react';
+
 const Navbar = () => {
   const [menuToggle, setMenuToggle] = useState(false)
   const { data: session, status } = useSession()
@@ -67,14 +69,18 @@ const Navbar = () => {
 
           {/* 메뉴2 */}
           {status === "authenticated" ? (
-            <div className="hidden md:flex items-center space-x-1">
-              <button className="py-5 px-3" onClick={() => signOut()}>
+            <div className="hidden md:flex items-center">
+              <Icon icon="ic:round-account-circle" className="w-6 h-6" />
+              <span className="mr-4">{session.user.email}</span>
+              <button className="py-2 px-3 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 hover:text-yellow-800 rounded" onClick={() => signOut()}>
                 Log out
               </button>
             </div>
           ) : (
-            <div className="hidden md:flex items-center space-x-1">
-              <a href="/auth/signin" className="py-5 px-3">
+            <div className="hidden md:flex items-center">
+              <Icon icon="ic:round-account-circle" className="w-6 h-6" />
+              <span className="mr-4">로그인해주세요.</span>
+              <a href="/auth/signin" className="py-2 px-3 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 hover:text-yellow-800 rounded">
                 Login
               </a>
               {/* <a
