@@ -118,12 +118,13 @@ if (!isSSR) {
           <div className="inline-flex mt-4 w-full pl-4 sm:pl-6 text-sm">
             <p className="mr-2">작성자: {writer}</p>
             <div className="border-slate-300 border-l-2 mr-2"></div>
-            <p className="">작성 날짜: {date}</p>
+            <p className="">작성 날짜: </p>
           </div>
           <div className="flex flex-col mt-8 mr-2 ml-10">
             <div className="text-left">내용: {content}</div>
             <div className="text-left">연락처: {contact}</div>
             <div className="text-left">학번: {studentId}</div>
+            <div className="text-left">날짜: {date}</div>
             <div className="text-left">시간: {time}시 ~ {parseInt(time!) + 2} 시</div>
             <div className="text-left">승인상태: {status}</div>
             <div className="text-left overflow-y-auto">

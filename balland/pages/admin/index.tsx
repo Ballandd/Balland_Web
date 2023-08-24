@@ -56,7 +56,7 @@ export default function Reservation() {
               return (
                 <div
                   key={index}
-                  className="flex items-center my-2 font-light text-center bg-white border-2 border-gray-200 h-[50px] rounded font-table"
+                  className="flex items-center my-2 font-light text-center bg-white border-2 border-gray-200 h-[50px] rounded font-table cursor-pointer"
                   onClick = {() => {
                     setidstate(item._id);
                     router.push({
